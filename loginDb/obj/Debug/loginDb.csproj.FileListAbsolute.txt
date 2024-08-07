@@ -1,0 +1,90 @@
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\loginDb.exe.config
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\loginDb.exe
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\loginDb.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.csproj.AssemblyReference.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\MainWindow.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\LoginView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\App.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb_MarkupCompile.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb_MarkupCompile.lref
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\MainWindow.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\LoginView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.g.resources
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.Properties.Resources.resources
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.csproj.GenerateResource.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.csproj.CoreCompileInputs.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.exe
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\CustomControls\BindablePasswordBox.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\MainView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\CustomControls\BindablePasswordBox.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\MainView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\Styles\UIColors.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\App.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\FontAwesome.Sharp.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\FontAwesome.WPF.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\bin\Debug\FontAwesome.WPF.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\loginDb.csproj.Up2Date
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\Styles\ButtonStyles.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\ClientsView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\HomeView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\ClientsView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\נסיונות\loginDb\loginDb\obj\Debug\View\HomeView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\loginDb.exe.config
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\loginDb.exe
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\loginDb.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\FontAwesome.Sharp.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\FontAwesome.WPF.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\FontAwesome.WPF.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.csproj.AssemblyReference.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Styles\ButtonStyles.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Styles\UIColors.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\CustomControls\BindablePasswordBox.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\ClientsView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\HomeView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\LoginView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\MainView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\App.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb_MarkupCompile.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb_MarkupCompile.lref
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\CustomControls\BindablePasswordBox.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\ClientsView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\HomeView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\LoginView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\MainView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.g.resources
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.Properties.Resources.resources
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.csproj.GenerateResource.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.csproj.CoreCompileInputs.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.csproj.Up2Date
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.exe
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\MeetingsView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\MeetingsView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\App.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\loginDb_Content.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\EntityFramework.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\EntityFramework.SqlServer.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\EntityFramework.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\EntityFramework.SqlServer.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.csproj.AssemblyReference.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\Styles\ButtonStyles.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\Styles\UIColors.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\CustomControls\BindablePasswordBox.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\View\MeetingsView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\View\ClientsView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\View\HomeView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\View\LoginView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\View\MainView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\App.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb_Content.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb_MarkupCompile.cache
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb_MarkupCompile.lref
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.exe
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Converters\DateToAgeConverter.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.baml
