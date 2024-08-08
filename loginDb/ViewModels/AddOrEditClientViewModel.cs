@@ -86,8 +86,11 @@ namespace loginDb.ViewModels
 
 
 
-        public AddOrEditClientViewModel()
-        {   
+        public AddOrEditClientViewModel(EditMode mode, Client client)
+        {
+            CurrentMode = mode;
+            SelectedClient = client is null ? new Client() : client;
+            if (!(client is null)) PayerId = SelectedClient.Id;
             userRepository = new UserRepository();
             AddClientCommand = new ViewModelCommand(ExecuteAddClientCommand, CanExecuteAddClientCommand);
             AorECommand = new ViewModelCommand(ExecuteAorECommand, CanExecuteAorECommand);
@@ -153,10 +156,14 @@ namespace loginDb.ViewModels
                 try
                 {
                     Client c = new Client { Id = Id, Cname = Name, BirthDate = BirthDate, Phone = Phone, Email = Email, PayerId = PayerId };
-                    //Client c =  new Client { Id = 325085215, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
+                    //               SelectedClient =  new Client { Id = 325085215, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
+                    if (PayerId.HasValue)
+                    {
+                        c.Payer = (Payer)userRepository.GetById(PayerId.Value, "Payer");
+                    }
                     userRepository.Add(c);
                     ClientsViewModel.Clients.Add(c);
-                
+
                     ErrorMessage = "Client added successfully!";
 
                     Task.Delay(1200).ContinueWith(_ => // Wait before closing
@@ -175,6 +182,7 @@ namespace loginDb.ViewModels
                 try
                 {
                     //new Client { Id = Id, Cname = Name, BirthDate = BirthDate, Phone = Phone, Email = Email, PayerId = PayerId };
+                    Payer p= (Payer)userRepository.GetById(SelectedClient.PayerId.Value, "Payer");
                     userRepository.Edit(SelectedClient);
                   //  ClientsViewModel.Clients (SelectedClient);
 

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace loginDb.Repositories
 {
@@ -126,9 +127,32 @@ namespace loginDb.Repositories
 
         */
 
-        public Object GetById(int id)
+        public Object GetById(int id, string tableName)
         {
-            throw new NotImplementedException();
+            Payer ans = null;
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = $"select *from [{tableName}] where Id=@id";
+                command.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        ans = new Payer()
+                        {
+                            Id = int.Parse(reader[0].ToString()),
+                            Pname = reader[1].ToString(),
+                            ContactName = reader[2].ToString(),
+                            ContactEmail = reader[3].ToString(),
+                            TotalPayment = short.Parse(reader[4].ToString()),
+                        };
+                    }
+                }
+            }
+            return ans;
         }
         public User GetByUsername(string username)
         {
@@ -158,12 +182,13 @@ namespace loginDb.Repositories
             }
             return user;
         }
-        public void Remove(Object obj) //int id)
+        public void Remove(int id)
         {
             using (var db = new POMdbEntities())
             {
 
-                var clnt = obj as Client;//(Client)obj;//db.Clients.Find(id);
+                var clnt = db.Clients.Find(id); 
+             //   var clnt = obj as Client;
                 if (clnt != null)
                 {
                     db.Clients.Remove(clnt);

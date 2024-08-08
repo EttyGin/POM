@@ -23,7 +23,7 @@ namespace loginDb.View
         public AddOrEditClientView(ClientsViewModel.EditMode mode, Client client)
         {
             InitializeComponent();
-            AddOrEditClientViewModel acvm = new AddOrEditClientViewModel { CurrentMode = mode , SelectedClient = client};
+            AddOrEditClientViewModel acvm = new AddOrEditClientViewModel (mode, client);
             this.DataContext = acvm;
 
         }

@@ -1,4 +1,5 @@
-﻿using loginDb.ViewModels;
+﻿using loginDb.Repositories;
+using loginDb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,5 +31,21 @@ namespace loginDb.View
             this.DataContext = cvm;
         }
 
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+           /* var client = sender as Client; // Assuming your object is of type Client
+
+            if (client != null)
+            {
+        */        var result = MessageBox.Show("Are you sure you want to delete it?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+               //     userRepository.Remove(client);
+                 //   ClientsViewModel.Clients.Remove(client);
+                }
+        //    }
+
+        }
     }
 }

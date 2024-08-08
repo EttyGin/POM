@@ -48,17 +48,8 @@ namespace loginDb.ViewModels
                 //OnPropertyChanged(nameof(Clients));
 
             }
-        }
-    /*    public Client SelectedClient
-        {
-            get { return _selectedClient; }
-            set
-            {
-                _selectedClient = value;
-                OnPropertyChanged(nameof(SelectedClient));
-            }
-        }
-    */    public bool IsViewVisible
+        }   
+        public bool IsViewVisible
         {
             get
             {
@@ -92,6 +83,9 @@ namespace loginDb.ViewModels
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
 
+    /*    public static readonly RoutedCommand DeleteRCommand = new RoutedCommand(
+        "DeleteCommand", typeof(ClientsViewModel));
+   */     
         //Constructor
         public ClientsViewModel()
         {
@@ -101,6 +95,9 @@ namespace loginDb.ViewModels
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand, CanExecuteShowEditCommand);
             SearchCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
             DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand);
+
+
+
             LoadClients();
         }
 
@@ -119,7 +116,7 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowAddCommand(object obj)
         {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add, obj as Client);
+            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
             addClientWin.Show();
         }
 
@@ -130,7 +127,8 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowEditCommand(object obj)
         {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, null);
+            Client c = Clients.First();
+            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, c);
             addClientWin.Show();
         }
 
@@ -144,8 +142,9 @@ namespace loginDb.ViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                userRepository.Remove(obj);
-                ClientsViewModel.Clients.Remove(obj as Client);
+                int c = Clients.First().Id;
+                userRepository.Remove(c);
+          //      ClientsViewModel.Clients.Remove(c);// obj as Client);
             }
         }
 

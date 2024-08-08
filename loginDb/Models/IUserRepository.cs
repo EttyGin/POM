@@ -13,12 +13,13 @@ namespace loginDb.Models
         bool AuthenticateUser(NetworkCredential credential);
         void Add(Object o);
         void Edit(Object o);
-   //     void Remove(int id);
-        Object GetById(int id);
+        void Remove(int id);
+        Object GetById(int id, string tableName);
         User GetByUsername(string username);
         IEnumerable<Client> GetAllClients();
         IEnumerable<Payer> GetAllPayers();
-        void Remove(Object obj); //int id)
+  //      void Remove(Object obj); //int id)
+
 
     }
 }

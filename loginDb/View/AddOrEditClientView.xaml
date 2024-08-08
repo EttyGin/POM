@@ -16,6 +16,7 @@ AllowsTransparency="True">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <local1:ModeConverter x:Key="ModeConverter" />
+        <local1:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter" />
     </Window.Resources>
 
 
@@ -104,18 +105,30 @@ AllowsTransparency="True">
                 </Grid>
                 <StackPanel Grid.Row="2">
                     <Label Content="Id"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding Id}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding Id}" Width="200" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding SelectedClient.Id}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" 
+                             Cursor="No" IsReadOnly="True" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Name"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding Name}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding Name}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding SelectedClient.Cname}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Birth Date"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <DatePicker Height="25" SelectedDate="{Binding BirthDate}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <DatePicker Height="25" SelectedDate="{Binding BirthDate}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <DatePicker Height="25" SelectedDate="{Binding SelectedClient.BirthDate}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Phone"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding Phone}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding Phone}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding SelectedClient.Phone}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Email"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding Email}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding Email}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding SelectedClient.Email}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Payer"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <ComboBox SelectedValuePath="PayerId" ItemsSource="{Binding Payers}" SelectedItem="{Binding Pname}" Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
-          Background="{StaticResource panelActiveColor}" IsReadOnly="True" IsEditable="True" DisplayMemberPath="Pname" />
+                    <ComboBox SelectedValuePath="PayerId" ItemsSource="{Binding Payers}"
+                        Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}"
+                        Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                        Background="{StaticResource panelActiveColor}" IsReadOnly="True" IsEditable="True" DisplayMemberPath="Pname" />
+                    <ComboBox SelectedValuePath="PayerId" ItemsSource="{Binding Payers}" SelectedItem="{Binding SelectedClient.Payer.Client, Mode=TwoWay}"
+                        Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}"
+                        Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                        Background="{StaticResource panelActiveColor}" IsReadOnly="True" IsEditable="True" DisplayMemberPath="Pname" />
 
                     <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="#D7596D"
@@ -124,14 +137,9 @@ AllowsTransparency="True">
                         FontFamily="Montserrat"                             
                         Margin="50,10,50,20"
                         TextWrapping="Wrap"/>
-                    <!--Button Command="{Binding AddClientCommand}" Content="Add the Client"  -->
-                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Button'}"        
-                        FontSize="13" 
-                        FontFamily="Montserrat"
-                        Cursor="Hand"
-                        BorderThickness="0"
-                        Foreground="White" Width="110">
 
+                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Button'}" 
+                        FontSize="13" FontFamily="Montserrat" Cursor="Hand" BorderThickness="0" Foreground="White" Width="110">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource color2}"/>

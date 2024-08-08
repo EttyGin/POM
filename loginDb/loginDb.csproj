@@ -74,8 +74,10 @@
     <Compile Include="Client.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Converters\IdToNameConverter.cs" />
     <Compile Include="Converters\ModeConverter.cs" />
     <Compile Include="Converters\DateToAgeConverter.cs" />
+    <Compile Include="Converters\ModeToVisibilityConverter.cs" />
     <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -115,7 +117,7 @@
     <Compile Include="UserAccount.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddClientViewModel.cs" />
+    <Compile Include="ViewModels\AddOrEditClientViewModel.cs" />
     <Compile Include="ViewModels\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\ClientsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

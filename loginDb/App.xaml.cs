@@ -17,7 +17,7 @@ namespace loginDb
     {
         protected void Application_Startup(object sender, StartupEventArgs e)
         {
-        /*      var loginView = new LoginView();
+           /*   var loginView = new LoginView();
               loginView.Show();
               loginView.IsVisibleChanged += (s, ev) =>
               {
