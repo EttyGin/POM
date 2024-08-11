@@ -15,15 +15,14 @@ using System.Collections.ObjectModel;
 using loginDb.View;
 using System.Data.Entity;
 using System.Windows;
+using System.Linq.Expressions;
 
 namespace loginDb.ViewModels
 {
     public class ClientsViewModel : ViewModelBase
     {
         //Fields
-      //  private readonly POMdbEntities _dbContext = new POMdbEntities();
-
-        public static ObservableCollection<Client> _clients { get; set; }
+        public static ObservableCollection<Client> _lstClients;
 
         public enum EditMode { Add, Edit }
 
@@ -32,21 +31,29 @@ namespace loginDb.ViewModels
 
 
         private IUserRepository userRepository;
-      //  private Client _selectedClient;
+
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+            }
+        }
 
         //Properties
-        public static ObservableCollection<Client> Clients
+        public static ObservableCollection<Client> LstClients
         {
             get
             {
-                return _clients;
+                return _lstClients;
             }
 
             set
             {
-                _clients = value;
-                //OnPropertyChanged(nameof(Clients));
-
+                _lstClients = value;
             }
         }   
         public bool IsViewVisible
@@ -83,9 +90,7 @@ namespace loginDb.ViewModels
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
 
-    /*    public static readonly RoutedCommand DeleteRCommand = new RoutedCommand(
-        "DeleteCommand", typeof(ClientsViewModel));
-   */     
+
         //Constructor
         public ClientsViewModel()
         {
@@ -93,21 +98,40 @@ namespace loginDb.ViewModels
             
             ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand, CanExecuteShowAddCommand);
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand, CanExecuteShowEditCommand);
-            SearchCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+            SearchCommand = new ViewModelCommand(ExecuteSearchCommand);
             DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand);
-
-
-
-            LoadClients();
+            LoadClients(c => c.Cname == c.Cname);
         }
 
-        private void LoadClients()
+        private bool CanExecuteSearchCommand(object obj)
         {
-            /*     var query =
-                     from clinet in _dbContext.Clients
-                     select new Client { Id = clinet.Id, Cname = clinet.Cname, BirthDate = clinet.BirthDate, Phone =clinet.Phone, Email = clinet.Email, PayerId = clinet.PayerId };
-            */
-            Clients = new ObservableCollection<Client>(userRepository.GetAllClients());
+            return true;
+        }
+
+        private void ExecuteSearchCommand(object obj)
+        {
+           if (!string.IsNullOrEmpty(SearchText))
+            {
+                LoadClients(c => c.Cname.Contains(SearchText));
+               Client fake =  new Client { Id = 111111111, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
+
+
+               userRepository.Remove(fake, "Id");
+                LstClients.Remove(fake);
+            }
+            else
+            {
+                LoadClients(c => c.Cname == c.Cname);
+            }
+        }
+
+
+
+        private void LoadClients(Expression<Func<Client, bool>> predicate) 
+        {
+            LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(predicate));
+            OnPropertyChanged(nameof(LstClients));
+            //  LstClients = new ObservableCollection<Client>(userRepository.GetAll<Client>());
         }
         private bool CanExecuteShowAddCommand(object obj)
         {
@@ -118,6 +142,7 @@ namespace loginDb.ViewModels
         {
             AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
             addClientWin.Show();
+      
         }
 
         private bool CanExecuteShowEditCommand(object obj)
@@ -127,24 +152,24 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowEditCommand(object obj)
         {
-            Client c = Clients.First();
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, c);
-            addClientWin.Show();
-        }
+         //   Client c = LstClients.First();
+            
+            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, obj as Client);
+            addClientWin.ShowDialog();
+         }
 
-        private void ExecuteRecoverPassCommand(string username, string email)
-        {
-            throw new NotImplementedException();
-        }
         private void ExecuteDeleteCommand(object obj)
         {
-            var result = MessageBox.Show("Are you sure you want to delete it?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            Client toRemove = obj as Client;
+            string name = toRemove.Cname;
+
+            var result = MessageBox.Show($"Are you sure you want to delete {name}?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
-                int c = Clients.First().Id;
-                userRepository.Remove(c);
-          //      ClientsViewModel.Clients.Remove(c);// obj as Client);
+                userRepository.Remove(toRemove, "Id");
+                LstClients.Remove(toRemove);
+
             }
         }
 

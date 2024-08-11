@@ -1,8 +1,10 @@
-﻿using loginDb.Repositories;
+﻿using FontAwesome.Sharp;
+using loginDb.Repositories;
 using loginDb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -28,24 +30,44 @@ namespace loginDb.View
         {
             InitializeComponent();
             ClientsViewModel cvm = new ClientsViewModel();
-            this.DataContext = cvm;
+            DataContext = cvm;
         }
 
-        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-           /* var client = sender as Client; // Assuming your object is of type Client
-
-            if (client != null)
+            if (ActualWidth != 548 || ActualHeight != 333)
             {
-        */        var result = MessageBox.Show("Are you sure you want to delete it?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-               //     userRepository.Remove(client);
-                 //   ClientsViewModel.Clients.Remove(client);
-                }
-        //    }
-
+                // The UserControl is effectively full screen
+                SetColumnWidths(new DataGridLength(1, DataGridLengthUnitType.Star));
+            }
+            else
+            {
+                // The UserControl is not full screen
+                SetColumnWidths(DataGridLength.Auto);
+            }
         }
+
+        private void SetColumnWidths(DataGridLength width)
+        {
+            foreach (var column in datagrid.Columns)
+            {
+                column.Width = width;
+            }
+        }
+/*
+        private void DataGridRow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+       //     if (e.OriginalSource is Border && !(e.Source is Border)) {
+
+                var selectedItem = (sender as DataGridRow).Item;
+                if (selectedItem != null)
+                {
+                    // הפעל את הפקודה ב-ViewModel
+                    var viewModel = DataContext as ClientsViewModel;
+                    viewModel?.ShowEditCommand.Execute(selectedItem);
+                }
+       //     }
+        }
+*/
     }
 }

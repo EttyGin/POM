@@ -7,7 +7,9 @@
              xmlns:local1="clr-namespace:loginDb.Converters" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
              xmlns:viewmodels="clr-namespace:loginDb.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ClientsViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             SizeChanged="UserControl_SizeChanged">
+
     <UserControl.Resources>
         <local1:DateToAgeConverter x:Key="dateToAgeConverter" />
         <local1:IdToNameConverter x:Key="idToNameConverter" />
@@ -29,11 +31,8 @@
                         Grid.Column="0">
                 <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
 
-                <TextBox Text="Search..."   
-                    FontSize="13"
-                         Height="24"
-                           Width="200"
-                           Background="Transparent"
+                <TextBox x:Name="ToSearch" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="13" Height="24" Width="200" Background="Transparent"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
                              Foreground="{StaticResource plainTextColor3}"
@@ -45,7 +44,7 @@
 
                 </TextBox>
                 <Button
-                            Command="{Binding ShowEditCommand}"                            
+                            Command="{Binding SearchCommand}"                            
                             Content="Search"                            
                             FontSize="13"
                             FontFamily="Montserrat"
@@ -115,83 +114,92 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <TextBlock Text="{Binding ErrorMessage}"
+            <!--TextBlock Text="{Binding ErrorMessage}"
                Foreground="#D7596D"
                FontSize="12"
                FontWeight="Medium"
                FontFamily="Montserrat"                             
                Margin="442,8,62,20"
-               TextWrapping="Wrap"/>
+               TextWrapping="Wrap"/-->
         </Grid>
-        <!--ScrollViewer Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1"-->
-        <!--ScrollViewer Grid.Row="1" Grid.Column="4" -->
-
         <Border Grid.Row="1"
-            Background="{DynamicResource panelColor}"
             CornerRadius="10" 
             Padding="10">
-            <DataGrid x:Name="datagrid" ItemsSource="{Binding Clients}" ScrollViewer.VerticalScrollBarVisibility="Hidden"  GridLinesVisibility="None" IsReadOnly="True" 
-                      IsHitTestVisible="True" AutoGenerateColumns="False" ColumnWidth="*"
-                      Background="Transparent" AlternatingRowBackground="#0A003A" AlternationCount="2" BorderThickness="0" RowBackground="Transparent">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="{StaticResource color2}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource titleColor2}" />
-                            <Setter Property="Padding" Value="10,5,10,5"/>
-                            <Setter Property="FontFamily" Value="Montserrat"/>
-                            <Setter Property="FontWeight" Value="DemiBold"/>
-                            <Setter Property="FontSize" Value="20"/>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Foreground" Value="{DynamicResource titleColor2}" />
-                            <Setter Property="FontSize" Value="17" />
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            <Setter Property="Margin" Value="10,10,10,10"/>
-                        </Style>
-                    </DataGrid.CellStyle>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        
+            <DataGrid x:Name="datagrid" ItemsSource="{Binding LstClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="10,0,0,10"
+                      GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
+                      AutoGenerateColumns="False" Background="Transparent" 
+                      AlternatingRowBackground="#0A003A" AlternationCount="2" 
+                      BorderThickness="0" RowBackground="Transparent"
+                      ColumnWidth="Auto" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="{StaticResource color2}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource titleColor2}" />
+                        <Setter Property="Padding" Value="10,5,10,5"/>
+                        <Setter Property="FontFamily" Value="Montserrat"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="{DynamicResource titleColor2}" />
+                        <Setter Property="FontSize" Value="17" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="10,10,10,0"/>
+                        <Setter Property="Margin" Value="10,10,10,10"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource color2}"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
 
-                    <DataGrid.Columns> 
-                        <DataGridTextColumn Header="ID" Binding = "{Binding Id}" HeaderStringFormat=""/>
-                        <DataGridTextColumn Header="Name" Binding = "{Binding Cname}" />
-                        <DataGridTextColumn Header="Age" Binding="{Binding BirthDate, Converter={StaticResource dateToAgeConverter}}" />
-                        <DataGridTextColumn Header="Phone" Binding = "{Binding Phone}" />
-                        <DataGridTextColumn Header="Email" Binding = "{Binding Email}" />
-                    <DataGridTextColumn Header="Payer" Binding = "{Binding PayerId, Converter={StaticResource idToNameConverter}}"/>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Cname}"/>
+                    <DataGridTextColumn Header="Age" Binding="{Binding BirthDate, Converter={StaticResource dateToAgeConverter}}"/>
+                    <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Payer" Binding="{Binding PayerId, Converter={StaticResource idToNameConverter}}"/>
 
-                        <DataGridTemplateColumn Header="Actions" Width="100" >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                <StackPanel x:Name="pnlControlBar"  IsEnabled="True"
-                                        Grid.Row="0"
-                                        Orientation="Horizontal"
-                                        FlowDirection="LeftToRight"
-                                        Background="Transparent"
-                                        Margin="0,0,5,0" >
-                                    <Button x:Name="editBtn"
-                                            Style="{StaticResource controlButton}"
-                                            Tag="{StaticResource color2}"
-                                            Command="{Binding ShowEditCommand}">
-
-                                        <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}"/>
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="Transparent" Margin="0,0,5,0">
+                                    <Button x:Name="editBtn" Style="{StaticResource controlButton}" Command="{Binding DataContext.ShowEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}" />
                                     </Button>
-                                    <Button x:Name="deleteBtn"
-                                            Style="{StaticResource controlButton}"
-                                            Tag="{StaticResource color2}" 
-                                            Command="{Binding DeleteCommand}" >
-                                        <fa:IconImage Icon="TrashCan" Style="{StaticResource controlButtonIcon}"/>
+                                    <Button x:Name="deleteBtn" Style="{StaticResource controlButton}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                        <fa:IconImage Icon="TrashCan" Style="{StaticResource controlButtonIcon}" />
                                     </Button>
                                 </StackPanel>
-
                             </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-            </Border>
-        <!--/ScrollViewer-->
-        <!--/ScrollViewer-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
     </Grid>
 </UserControl>

@@ -1,12 +1,15 @@
 ﻿using loginDb.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -17,7 +20,7 @@ namespace loginDb.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(Object o)
+        public void AddSpe(Object o)
         {
            // throw new NotImplementedException();
             #region adding some rows to DB
@@ -26,15 +29,31 @@ namespace loginDb.Repositories
                 #region adding student example
                 if (o is User u)
                 {
-                    db.Users.Add(u);
+                    string name = u.Username;
+                    var existingPayer = db.Users.FirstOrDefault(us => us.Username == name);
+                    if (existingPayer == null)
+                    {
+                        db.Users.Add(u);
+                    }
                 }
                 if (o is Client c)
                 {
-                    db.Clients.Add(c);
+                    string name = c.Cname;
+                    var existingPayer = db.Clients.FirstOrDefault(cl => cl.Cname == name);
+                    if (existingPayer == null)
+                    {
+                        db.Clients.Add(c);
+                    }                    
                 }
                 if (o is UserAccount ua)
                 {
-                    db.UserAccounts.Add(ua);
+                    string name = ua.Username;
+                    var existingPayer = db.UserAccounts.FirstOrDefault(us => us.Username == name);
+                    if (existingPayer == null)
+                    {
+                        db.UserAccounts.Add(ua);
+                    }
+                    
                 }
                 if (o is Meeting m)
                 {
@@ -42,7 +61,12 @@ namespace loginDb.Repositories
                 }
                 if (o is Payer p)
                 {
-                    db.Payers.Add(p);
+                    string name = p.Pname;
+                    var existingPayer = db.Payers.FirstOrDefault(pyr => pyr.Pname == name);
+                    if (existingPayer == null)
+                    {
+                        db.Payers.Add(p);
+                    }
                 }
                 db.SaveChanges();
                 #endregion
@@ -51,6 +75,32 @@ namespace loginDb.Repositories
             #endregion
             
         }
+
+        public void InitNonePayer()
+        {
+            using (var db = new POMdbEntities())
+            {
+                Payer none = new Payer { Id = 0, Pname = " -", ContactName = "", ContactEmail = "", TotalPayment = 0 };
+                string name = none.Pname;
+                var existingPayer = db.Payers.FirstOrDefault(pyr => pyr.Pname == name);
+                if (existingPayer == null)
+                {
+                    db.Payers.Add(none);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void Add<T>(T entity) where T : class
+        {
+            using (var db = new POMdbEntities())
+            {
+                var dbSet = db.Set<T>();
+                dbSet.Add(entity);
+                db.SaveChanges();
+            }
+        }
+
 
         public bool AuthenticateUser(NetworkCredential credential)
         {
@@ -71,61 +121,26 @@ namespace loginDb.Repositories
             return validUser;
         }
 
-        public void Edit(Object o)
-        {
-            #region update example
-            using (var db = new POMdbEntities())
-            {
-                var clnt = o as Client; // = db.Clients.Find(idupdt);
-                if (clnt != null)
-                {
-                    db.Clients.Attach(clnt);
-                    db.Entry(clnt).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-
-            }
-            #endregion
-        }
-        public IEnumerable<Client> GetAllClients()
+        public void Edit<T>(T entity) where T : class
         {
             using (var db = new POMdbEntities())
             {
-                return db.Clients.ToList();
-
+                var dbSet = db.Set<T>();
+                dbSet.Attach(entity);
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
             }
         }
 
-        public IEnumerable<Payer> GetAllPayers()
+
+        public IEnumerable<T> GetAll<T>() where T : class
         {
             using (var db = new POMdbEntities())
             {
-                return db.Payers.ToList();
-
+                return db.Set<T>().ToList();
             }
         }
-
-        /*        public IEnumerable<T> GetByAll<T>(string tableName) where T : class
-                {
-                    if (!typeof(T).Name.Equals(tableName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        throw new ArgumentException($"Type '{typeof(T).Name}' does not match table name '{tableName}'");
-                    }
-
-                    using (var db = new POMdbEntities())
-                    {
-                        switch (tableName)
-                        {
-                            case "Clients":
-                                return (IEnumerable<T>)db.Clients.ToList();
-                            default:
-                                return null;
-
-                        }
-                    }
-                }
-
-        */
+        
 
         public Object GetById(int id, string tableName)
         {
@@ -182,7 +197,35 @@ namespace loginDb.Repositories
             }
             return user;
         }
-        public void Remove(int id)
+
+        public IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            using (var db = new POMdbEntities())
+            {
+                return db.Set<T>().Where(predicate).ToList();//.OrderBy(item=> (item as Client).Id);
+            }
+        }
+
+
+        public void Remove<TEntity>(TEntity entity, string property) where TEntity : class
+        {
+            using (var db = new POMdbEntities())
+            {
+
+                {
+                    var dbSet = db.Set<TEntity>();
+                    var entityKey = db.Entry(entity).Property(property).CurrentValue;
+                    var existingEntity = dbSet.Find(entityKey);
+                    if (existingEntity != null)
+                    {
+                        dbSet.Remove(existingEntity);
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        /*      public void Remove2(int id)
         {
             using (var db = new POMdbEntities())
             {
@@ -198,6 +241,81 @@ namespace loginDb.Repositories
 
 
             }
-        }    
+        }
+   */
+        /*        public IEnumerable<T> GetByAll<T>(string tableName) where T : class
+                {
+                    if (!typeof(T).Name.Equals(tableName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        throw new ArgumentException($"Type '{typeof(T).Name}' does not match table name '{tableName}'");
+                    }
+
+                    using (var db = new POMdbEntities())
+                    {
+                        switch (tableName)
+                        {
+                            case "Clients":
+                                return (IEnumerable<T>)db.Clients.ToList();
+                            default:
+                                return null;
+
+                        }
+                    }
+                }
+
+        */
+        /*
+        public void Edit2(Object o)
+        {
+            #region update example
+            using (var db = new POMdbEntities())
+            {            
+                var clnt = o as Client; // = db.Clients.Find(idupdt);
+                if (clnt != null)
+                {
+                    db.Clients.Attach(clnt);
+                    db.Entry(clnt).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            #endregion
+        }
+    */
+        /*      public IEnumerable<Client> GetAllClients()
+              {
+                  using (var db = new POMdbEntities())
+                  {
+                      return db.Clients.ToList();
+
+                  }
+              }
+              public IEnumerable<Payer> GetAllPayers()
+              {
+                  using (var db = new POMdbEntities())
+                  {
+                      return db.Payers.ToList();
+
+                  }
+              }
+      */
+        /* public void Remove<T>(T entity) where T : class
+{
+   using (var db = new POMdbEntities())
+   {
+       /* var dbSet = db.Set<T>();
+        dbSet.Remove(entity);
+        db.SaveChanges();
+
+       int iddel = (entity as Client).Id;
+       var stud = db.Clients.Find(iddel);
+
+       if (stud != null)
+       {
+           db.Clients.Remove(stud);
+           db.SaveChanges();
+       }
+   }
+}
+*/
     }
 }

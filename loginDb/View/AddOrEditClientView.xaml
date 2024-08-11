@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:loginDb.View" xmlns:local1="clr-namespace:loginDb.Converters"
         xmlns:viewmodels="clr-namespace:loginDb.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddOrEditClientViewModel}"
         mc:Ignorable="d"
-        Height="480" Width="350" 
+         Width="350" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        Topmost="True"
         ResizeMode="CanResize"
+        MouseDown="Window_MouseDown"
         Background="Transparent"
 AllowsTransparency="True">
 
@@ -39,7 +41,7 @@ AllowsTransparency="True">
         <TextBox Height="25" Text="{Binding PayerId}" Width="200" Margin="25,300" VerticalAlignment="Top" HorizontalAlignment="Center" />
 
     </Grid-->
-    <Border CornerRadius="12">
+    <Border CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Center">
         <Border.Background>
             <ImageBrush ImageSource="/Images/screen.jpg" Stretch="None"/>
         </Border.Background>
@@ -121,25 +123,28 @@ AllowsTransparency="True">
                     <TextBox Height="25" Text="{Binding Email}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <TextBox Height="25" Text="{Binding SelectedClient.Email}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Payer"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <ComboBox SelectedValuePath="PayerId" ItemsSource="{Binding Payers}"
-                        Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}"
+                    <ComboBox ItemsSource="{Binding Payers}"
+                          SelectedValuePath="Id"
+                          DisplayMemberPath="Pname"
+                          SelectedValue="{Binding SpePayerId}"
+                          Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}"
                         Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                        Background="{StaticResource panelActiveColor}" IsReadOnly="True" IsEditable="True" DisplayMemberPath="Pname" />
-                    <ComboBox SelectedValuePath="PayerId" ItemsSource="{Binding Payers}" SelectedItem="{Binding SelectedClient.Payer.Client, Mode=TwoWay}"
+                        Background="{StaticResource panelActiveColor}" IsReadOnly="True"/>
+                    <ComboBox SelectedValuePath="Id" ItemsSource="{Binding Payers}" SelectedValue="{Binding SpePayerId, Mode=Default}"
                         Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}"
                         Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                        Background="{StaticResource panelActiveColor}" IsReadOnly="True" IsEditable="True" DisplayMemberPath="Pname" />
+                        Background="{StaticResource panelActiveColor}" IsReadOnly="True" DisplayMemberPath="Pname" />
 
                     <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="#D7596D"
                         FontSize="13"
                         FontWeight="Medium"
                         FontFamily="Montserrat"                             
-                        Margin="50,10,50,20"
+                        Margin="30,10,30,10"
                         TextWrapping="Wrap"/>
 
                     <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Button'}" 
-                        FontSize="13" FontFamily="Montserrat" Cursor="Hand" BorderThickness="0" Foreground="White" Width="110">
+                        FontSize="13" FontFamily="Montserrat" Margin="0,0,0,20" Cursor="Hand" BorderThickness="0" Foreground="White" Width="110">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource color2}"/>
