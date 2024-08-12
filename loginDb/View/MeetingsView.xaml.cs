@@ -1,4 +1,5 @@
-﻿using System;
+﻿using loginDb.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,21 +19,37 @@ namespace loginDb.View
     /// <summary>
     /// Interaction logic for MeetingsView.xaml
     /// </summary>
+
     public partial class MeetingsView : UserControl
     {
         public MeetingsView()
         {
             InitializeComponent();
+            MeetingsViewModel mvm = new MeetingsViewModel();
+            DataContext = mvm;
         }
 
-        private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-
+            if (ActualWidth != 548 || ActualHeight != 333)
+            {
+                // The UserControl is effectively full screen
+                SetColumnWidths(new DataGridLength(1, DataGridLengthUnitType.Star));
+            }
+            else
+            {
+                // The UserControl is not full screen
+                SetColumnWidths(DataGridLength.Auto);
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SetColumnWidths(DataGridLength width)
         {
-
+            foreach (var column in datagrid.Columns)
+            {
+                column.Width = width;
+            }
         }
     }
+
 }

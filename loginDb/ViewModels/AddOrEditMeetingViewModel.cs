@@ -14,34 +14,35 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using static loginDb.ViewModels.ClientsViewModel;
+using static loginDb.ViewModels.MeetingsViewModel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace loginDb.ViewModels
 {
 
-    public class AddOrEditClientViewModel : ViewModelBase
+    public class AddOrEditMeetingViewModel : ViewModelBase
     {
-        public static ObservableCollection<Payer> Payers { get; set; }
+        public static ObservableCollection<Client> Clients { get; set; }
 
         private IUserRepository userRepository;
         public ICommand AorECommand { get; }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Number { get; set; }
+        public DateTime Date { get; set; }
+        public string Summary { get; set; }
+        public Status Status { get; set; }
 
-        public DateTime BirthDate { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-
-        public int SpePayerId { get; set; }
+        public int UserId { get; set; }
+        public int ClientId { get; set; }
 
         private string _errorMessage;
         private bool _isViewVisible = true;
 
         public EditMode CurrentMode { get; set; }
 
-        private Client _selectedClient;
+        private Meeting _selectedMeeting;
+
+        public int SpeClientId { get; set; }
 
 
         //Properties
@@ -51,7 +52,6 @@ namespace loginDb.ViewModels
             {
                 return _isViewVisible;
             }
-
             set
             {
                 _isViewVisible = value;
@@ -73,48 +73,48 @@ namespace loginDb.ViewModels
             }
         }
 
-        public Client SelectedClient
+        public Meeting SelectedMeeting
         {
-            get { return _selectedClient; }
+            get { return _selectedMeeting; }
             set
             {
-                _selectedClient = value;
-                OnPropertyChanged(nameof(SelectedClient));
+                _selectedMeeting = value;
+                OnPropertyChanged(nameof(SelectedMeeting));
             }
         }
 
 
-        public AddOrEditClientViewModel(EditMode mode, Client client)
+        public AddOrEditMeetingViewModel(EditMode mode, Meeting meeting)
         {
             CurrentMode = mode;
-            if (client != null)
+            if (meeting != null)
             {
-                _selectedClient = client;
-                SpePayerId = SelectedClient.PayerId.Value;
+                _selectedMeeting = meeting;
+                UserId = SelectedMeeting.UserId;
             }
             else
             {
-                _selectedClient = new Client();
+                _selectedMeeting = new Meeting();
             }
             userRepository = new UserRepository();
             AorECommand = new ViewModelCommand(ExecuteAorECommand);
 
-            LoadPayers();
+            LoadClients();
         }
 
-        private void LoadPayers()
+        private void LoadClients()
         {
-            userRepository.InitNonePayer();
-            Payers = new ObservableCollection<Payer>(userRepository.GetAll<Payer>());
-            OnPropertyChanged(nameof(Payers));
+            Clients = new ObservableCollection<Client>(userRepository.GetAll<Client>());
+            OnPropertyChanged(nameof(Clients));
         }
+        
         private bool CanAorECommand()
         {
-            if (CurrentMode == EditMode.Add)
+    /*         if (CurrentMode == EditMode.Add)
             {
-                if (Id.ToString().Length < 8)
+               if (Number.ToString().Length < 8)
                 {
-                    ErrorMessage = $"Incorrect ID";
+                    ErrorMessage = $"Incorrect Number";
                     return false;
                 }
                 else if (Name == null || !Name.All(char.IsLetter) || Name.Length > 20)
@@ -122,10 +122,10 @@ namespace loginDb.ViewModels
                     ErrorMessage = $"Incorrect Name";
                     return false;
                 }
-                else if (BirthDate != null) {
+                else if (Date != null) {
                     int minAge = 5, maxAge = 100;
                     DateTime today = DateTime.Today;
-                    int age = today.Year - BirthDate.Year;
+                    int age = today.Year - Date.Year;
 
                     if (age < minAge || age > maxAge)
                     {
@@ -133,13 +133,13 @@ namespace loginDb.ViewModels
                         return false; 
                     }
                 }
-                else if (Phone == null || Phone.Length != 10 || !Regex.IsMatch(Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
+                else if (Summary == null || Summary.Length > 100)
                 {
-                    ErrorMessage = $"Incorrect Phone";
+                    ErrorMessage = $"Incorrect Summary";
                     return false;
                 }
 
-                else if (Email == null || Email.Length > 30 || !Regex.IsMatch(Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+                else if (Status)
                 {
                     ErrorMessage = $"Incorrect Email";
                     return false;
@@ -152,27 +152,27 @@ namespace loginDb.ViewModels
             }
             else
             {
-                if (SelectedClient.Id.ToString().Length < 8)
+                if (SelectedMeeting.Number.ToString().Length < 8)
                 {
-                    ErrorMessage = $"Incorrect ID";
+                    ErrorMessage = $"Incorrect Number";
                     return false;
                 }
-                else if (SelectedClient.Cname == null || !SelectedClient.Cname.All(char.IsLetter) || SelectedClient.Cname.Length > 20)
+                else if (SelectedMeeting.Cname == null || !SelectedMeeting.Cname.All(char.IsLetter) || SelectedMeeting.Cname.Length > 20)
                 {
                     ErrorMessage = $"Incorrect Name";
                     return false;
                 }
 
-                else if (SelectedClient.Phone == null || SelectedClient.Phone.Length != 10 || !Regex.IsMatch(SelectedClient.Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
+                else if (SelectedMeeting.Summary == null || SelectedMeeting.Summary.Length > 100)
                 {
-                    ErrorMessage = $"Incorrect Phone";
+                    ErrorMessage = $"Incorrect Summary";
                     return false;
                 }
-                else if (SelectedClient.BirthDate != null)
+                else if (SelectedMeeting.Date != null)
                 {
                     int minAge = 5, maxAge = 100;
                     DateTime today = DateTime.Today;
-                    int age = today.Year - SelectedClient.BirthDate.Year;
+                    int age = today.Year - SelectedMeeting.Date.Year;
 
                     if (age < minAge || age > maxAge)
                     {
@@ -181,20 +181,19 @@ namespace loginDb.ViewModels
                     }
                 }
 
-                else if (SelectedClient.Email == null || SelectedClient.Email.Length > 30 || !Regex.IsMatch(SelectedClient.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+                else if (SelectedMeeting.Email == null || SelectedMeeting.Email.Length > 30 || !Regex.IsMatch(SelectedMeeting.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
                 {
                     ErrorMessage = $"Incorrect Email";
                     return false;
                 }
-                else
+               else
                 {
                     ErrorMessage = "";
                 }
-                return true;
+       */         return true;
 
             }
-        }
-
+        
         private void ExecuteAorECommand(object obj)
         {
             if (CanAorECommand())
@@ -203,17 +202,16 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        Client c  = new Client { Id = Id, Cname = Name, BirthDate = BirthDate, Phone = Phone, Email = Email, PayerId = SpePayerId };
-                        //               SelectedClient =  new Client { Id = 325085215, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
-                        userRepository.Add(c);
-                        
 
-                        ErrorMessage = "Client added successfully!";
+                       // Meeting m  = new Meeting {Number = Number, Date = Date, Summary = Summary, Status = Status, UserId = UserId, ClientId = ClientId};
+                        Meeting m  = new Meeting {Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
+                        userRepository.Add(m);
+                        
+                        ErrorMessage = "Meeting added successfully!";
 
                         Task.Delay(1200).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                //            LstClients.Add(c);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception)
@@ -225,30 +223,21 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        //      Payer p = (Payer)userRepository.GetById(SelectedClient.PayerId.Value, "Payer");
-                        /*         Client newClinet;
-                                 if (SpePayerId == 0)
-                                 {
-                                     newClinet = new Client { Id = SelectedClient.Id, Cname = SelectedClient.Cname, BirthDate = SelectedClient.BirthDate, Phone = SelectedClient.Phone, Email = SelectedClient.Email };
-                                 }
-                                 else
-                                     newClinet = new Client { Id = SelectedClient.Id, Cname = SelectedClient.Cname, BirthDate = SelectedClient.BirthDate, Phone = SelectedClient.Phone, Email = SelectedClient.Email, PayerId=SpePayerId };
-                            */
-                        SelectedClient.PayerId = SpePayerId;
-                        userRepository.Edit(SelectedClient);
+                        SelectedMeeting.UserId = UserId;
+                        userRepository.Edit(SelectedMeeting);
 
-                        ErrorMessage = "Client was saved successfully!";
+                        ErrorMessage = "Meeting was saved successfully!";
 
                         Task.Delay(800).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                         //   LstClients.Remove(SelectedClient);
-                           // LstClients.Add(SelectedClient);
+                         //   LstMeetings.Remove(SelectedMeeting);
+                           // LstMeetings.Add(SelectedMeeting);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception ex)
                     {
-                        ErrorMessage = $"Error updating client: {ex.Message}";
+                        ErrorMessage = $"Error updating Meeting: {ex.Message}";
                         // ErrorMessage = $"Please fill in all required fields correctly";
                     }
                 }

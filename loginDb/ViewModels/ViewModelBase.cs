@@ -9,6 +9,8 @@ namespace loginDb.ViewModels
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        public enum EditMode { Add, Edit }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propertyName)

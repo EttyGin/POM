@@ -18,6 +18,7 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
+using NavigationService = loginDb.Models.NavigationService;
 
 
 
@@ -33,6 +34,7 @@ namespace loginDb.ViewModels
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
+
 
         //Properties
         public UserAccount CurrentUserAccount
@@ -112,12 +114,13 @@ namespace loginDb.ViewModels
         {
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccount();
-            LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand);
 
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowClientsViewCommand = new ViewModelCommand(ExecuteShowClientViewCommand);
             ShowMeetingsViewCommand = new ViewModelCommand(ExecuteShowMeetingsViewCommand);
+            LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand);
+
             //Default view
             ExecuteShowHomeViewCommand(null);
             LoadCurrentUserData();

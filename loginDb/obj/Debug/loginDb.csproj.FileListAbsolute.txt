@@ -90,3 +90,5 @@ D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - 
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.baml

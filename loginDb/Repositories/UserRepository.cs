@@ -12,7 +12,9 @@ using System.Net;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -144,7 +146,7 @@ namespace loginDb.Repositories
 
         public Object GetById(int id, string tableName)
         {
-            Payer ans = null;
+            Object ans = null;
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
@@ -156,14 +158,37 @@ namespace loginDb.Repositories
                 {
                     if (reader.Read())
                     {
-                        ans = new Payer()
+                        switch (tableName)
                         {
-                            Id = int.Parse(reader[0].ToString()),
-                            Pname = reader[1].ToString(),
-                            ContactName = reader[2].ToString(),
-                            ContactEmail = reader[3].ToString(),
-                            TotalPayment = short.Parse(reader[4].ToString()),
-                        };
+                            case "Payer": {
+                                    ans = new Payer()
+                                    {
+                                        Id = int.Parse(reader[0].ToString()),
+                                        Pname = reader[1].ToString(),
+                                        ContactName = reader[2].ToString(),
+                                        ContactEmail = reader[3].ToString(),
+                                        TotalPayment = short.Parse(reader[4].ToString()),
+                                    };
+                                    break;
+                                }
+                            case "Client": {
+                                    ans = new Client()
+                                    {
+                                        Id = int.Parse(reader[0].ToString()),
+                                        Cname = reader[1].ToString(),
+                                        BirthDate = Convert.ToDateTime(reader[2]),
+                                        Phone = reader[3].ToString(),
+                                        Email = reader[4].ToString(),
+                                        PayerId = short.Parse(reader[5].ToString()),
+                                    };
+                                    break;
+                                }
+                            default: {
+                                ans = null;
+                                break;
+                            }
+                        }
+                        
                     }
                 }
             }
@@ -202,7 +227,7 @@ namespace loginDb.Repositories
         {
             using (var db = new POMdbEntities())
             {
-                return db.Set<T>().Where(predicate).ToList();//.OrderBy(item=> (item as Client).Id);
+                return db.Set<T>().Where(predicate).ToList();
             }
         }
 
@@ -218,12 +243,28 @@ namespace loginDb.Repositories
                     var existingEntity = dbSet.Find(entityKey);
                     if (existingEntity != null)
                     {
-                        dbSet.Remove(existingEntity);
+                        dbSet.Remove(entity);
                         db.SaveChanges();
                     }
                 }
             }
         }
+
+        public void RemoveMeeting(int userId, int clientId, int number)
+        {
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand("DELETE FROM Meeting WHERE UserId = @userId AND ClientID = @clientId AND Number = @number", connection))
+            {
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.Parameters.AddWithValue("@ClientID", clientId);
+                command.Parameters.AddWithValue("@Number", number);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
 
         /*      public void Remove2(int id)
         {
@@ -242,7 +283,7 @@ namespace loginDb.Repositories
 
             }
         }
-   */
+    */
         /*        public IEnumerable<T> GetByAll<T>(string tableName) where T : class
                 {
                     if (!typeof(T).Name.Equals(tableName, StringComparison.OrdinalIgnoreCase))
@@ -299,9 +340,9 @@ namespace loginDb.Repositories
               }
       */
         /* public void Remove<T>(T entity) where T : class
-{
-   using (var db = new POMdbEntities())
-   {
+    {
+    using (var db = new POMdbEntities())
+    {
        /* var dbSet = db.Set<T>();
         dbSet.Remove(entity);
         db.SaveChanges();
@@ -314,8 +355,8 @@ namespace loginDb.Repositories
            db.Clients.Remove(stud);
            db.SaveChanges();
        }
-   }
-}
-*/
+    }
+    }
+    */
     }
 }

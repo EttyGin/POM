@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\App.xaml
-11-2094554301
+121284044162
 21471617169
-401015879208
+44-525893479
 21-978855339
-Converters\DateToAgeConverter.xaml;CustomControls\BindablePasswordBox.xaml;Garbage\CommandDataGridRow.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\AddOrEditClientView.xaml;View\MeetingsView.xaml;View\ClientsView.xaml;View\HomeView.xaml;View\LoginView.xaml;View\MainView.xaml;
+Converters\DateToAgeConverter.xaml;CustomControls\BindablePasswordBox.xaml;Garbage\CommandDataGridRow.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\AddOrEditMeetingView.xaml;View\AddOrEditClientView.xaml;View\MeetingsView.xaml;View\ClientsView.xaml;View\HomeView.xaml;View\LoginView.xaml;View\MainView.xaml;
 
 False
 

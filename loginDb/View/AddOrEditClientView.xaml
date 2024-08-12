@@ -76,7 +76,7 @@ AllowsTransparency="True">
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5" />
                     </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='TextBlock'}"
+                        <TextBlock Text="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='CLIENT'}"
                                Foreground ="{StaticResource titleColor3}" FontSize="10" FontFamily="Montserrat" 
                                Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <Button x:Name ="btnClose"
