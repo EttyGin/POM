@@ -25,12 +25,13 @@ namespace loginDb.Models
         Object GetById(int id, string tableName);
         User GetByUsername(string username);
         IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class;
-  /*      
-        IEnumerable<Client> GetAllClients();
-        IEnumerable<Payer> GetAllPayers();
+        DateTime GetMeetingDateForClient(int clientId, int number);
+        /*      
+IEnumerable<Client> GetAllClients();
+IEnumerable<Payer> GetAllPayers();
 
-        void Edit2(Object o);
-        void Remove2(int id);
+void Edit2(Object o);
+void Remove2(int id);
 
 */
 

@@ -117,13 +117,13 @@ namespace loginDb.ViewModels
                     ErrorMessage = $"Incorrect ID";
                     return false;
                 }
-                else if (Name == null || !Name.All(char.IsLetter) || Name.Length > 20)
+                else if (Name == null || !Name.Replace(" ", "").All(char.IsLetter) || Name.Length > 20)
                 {
                     ErrorMessage = $"Incorrect Name";
                     return false;
                 }
                 else if (BirthDate != null) {
-                    int minAge = 5, maxAge = 100;
+                    int minAge = 0, maxAge = 100;
                     DateTime today = DateTime.Today;
                     int age = today.Year - BirthDate.Year;
 
@@ -157,7 +157,7 @@ namespace loginDb.ViewModels
                     ErrorMessage = $"Incorrect ID";
                     return false;
                 }
-                else if (SelectedClient.Cname == null || !SelectedClient.Cname.All(char.IsLetter) || SelectedClient.Cname.Length > 20)
+                else if (SelectedClient.Cname == null || !SelectedClient.Cname.Replace(" ", "").All(char.IsLetter) || SelectedClient.Cname.Length > 20)
                 {
                     ErrorMessage = $"Incorrect Name";
                     return false;
@@ -213,7 +213,8 @@ namespace loginDb.ViewModels
                         Task.Delay(1200).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                //            LstClients.Add(c);
+
+                            //LstClients.Add(c);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception)

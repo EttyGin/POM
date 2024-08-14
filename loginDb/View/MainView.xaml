@@ -30,6 +30,9 @@
         <DataTemplate DataType="{x:Type viewModel:MeetingsViewModel}">
             <local:MeetingsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PayersViewModel}">
+            <local:PayersView/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
     <Window.Visibility>
@@ -108,7 +111,7 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}"
-                        Command="{Binding ShowCustomerViewCommand}">
+                        Command="{Binding ShowPayersViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Payers" Style="{StaticResource menuButtonText}"/>
                             <fa:IconImage Icon="HandHoldingHeart" Style="{StaticResource menuButtonIcon}"/>

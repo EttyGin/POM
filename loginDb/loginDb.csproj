@@ -126,8 +126,10 @@
     <Compile Include="UserAccount.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddOrEditPayerViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditMeetingViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditClientViewModel.cs" />
+    <Compile Include="ViewModels\PayersViewModel.cs" />
     <Compile Include="ViewModels\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\ClientsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -135,11 +137,17 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="View\AddOrEditPayerView.xaml.cs">
+      <DependentUpon>AddOrEditPayerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddOrEditMeetingView.xaml.cs">
       <DependentUpon>AddOrEditMeetingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddOrEditClientView.xaml.cs">
       <DependentUpon>AddOrEditClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PayersView.xaml.cs">
+      <DependentUpon>PayersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MeetingsView.xaml.cs">
       <DependentUpon>MeetingsView.xaml</DependentUpon>
@@ -156,7 +164,7 @@
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Converters\DateToAgeConverter.xaml">
+    <Page Include="Garbage\DateToAgeConverter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +188,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddOrEditPayerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddOrEditMeetingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -187,6 +199,10 @@
     <Page Include="View\AddOrEditClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PayersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\MeetingsView.xaml">
       <Generator>MSBuild:Compile</Generator>

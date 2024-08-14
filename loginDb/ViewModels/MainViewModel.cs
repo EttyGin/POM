@@ -28,12 +28,20 @@ namespace loginDb.ViewModels
     {
         //Fields
         private UserAccount _currentUserAccount;
+        private int _userId;
         private ViewModelBase _currntChildView;
         private string _caption;
         private IconChar _icon;
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
+
+        public int UserId
+        {
+            get { return _userId; }
+            set { _userId = value; }
+        }
+
 
 
         //Properties
@@ -105,6 +113,7 @@ namespace loginDb.ViewModels
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowClientsViewCommand { get; }
         public ICommand ShowMeetingsViewCommand { get; }
+        public ICommand ShowPayersViewCommand { get; }
 
         public ICommand LogoutCommand { get; }
 
@@ -119,6 +128,7 @@ namespace loginDb.ViewModels
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowClientsViewCommand = new ViewModelCommand(ExecuteShowClientViewCommand);
             ShowMeetingsViewCommand = new ViewModelCommand(ExecuteShowMeetingsViewCommand);
+            ShowPayersViewCommand = new ViewModelCommand(ExecuteShowPayersViewCommand);
             LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand);
 
             //Default view
@@ -176,6 +186,12 @@ namespace loginDb.ViewModels
             Caption = "Meetings";
             Icon = IconChar.Couch;
         }
+        private void ExecuteShowPayersViewCommand(object obj)
+        {
+            CurrentChildView = new PayersViewModel();
+            Caption = "Payers";
+            Icon = IconChar.HandHoldingHeart;
+        }
 
         
         private void LoadCurrentUserData()
@@ -187,7 +203,7 @@ namespace loginDb.ViewModels
                 CurrentUserAccount.DisplayName = $"{user.Name} {user.LastName}";
 
                 CurrentUserAccount.ProfilePic = null; // "/Images/profileP.png";
-
+                UserId = user.Id;
             }
             else
             {

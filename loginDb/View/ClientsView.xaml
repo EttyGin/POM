@@ -76,10 +76,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-
-
             </StackPanel>
-
             <Button Grid.Column="1"
                             Command="{Binding ShowAddCommand}"                            
                             Content="+    Add a Client"                            
@@ -126,7 +123,7 @@
             </Border.Background>
 
             <DataGrid x:Name="datagrid" ItemsSource="{Binding FilteredClients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="10,0,0,10"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="0,0,0,10"
                       GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
                       AutoGenerateColumns="False" Background="Transparent" 
                       AlternatingRowBackground="#0A003A" AlternationCount="2" 

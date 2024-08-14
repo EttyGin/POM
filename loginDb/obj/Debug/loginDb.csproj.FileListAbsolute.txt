@@ -85,10 +85,14 @@ D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - 
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb_MarkupCompile.lref
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.exe
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.pdb
-D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Converters\DateToAgeConverter.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\DateToAgeConverter.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPayerView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\PayersView.g.cs
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPayerView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\PayersView.baml

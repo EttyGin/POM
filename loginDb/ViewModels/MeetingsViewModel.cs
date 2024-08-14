@@ -36,6 +36,7 @@ namespace loginDb.ViewModels
 
         private string _searchText;
 
+        public int UserId { get; set; }
         //Properties
 
         public string SearchText
@@ -45,7 +46,7 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                UpdateFilteredMeetings();
+         //       UpdateFilteredMeetings();
             }
         }
 
@@ -60,7 +61,7 @@ namespace loginDb.ViewModels
             {
                 _lstMeetings = value;
                 OnPropertyChanged(nameof(LstMeetings));
-                UpdateFilteredMeetings();
+             //   UpdateFilteredMeetings();
             }
         }
 
@@ -133,11 +134,15 @@ namespace loginDb.ViewModels
             else
                 LstMeetings = new ObservableCollection<Meeting>(userRepository.GetWhere<Meeting>(m => m.Number == m.Number));
 
-            UpdateFilteredMeetings();
-
-            //      FilteredMeetings = new ObservableCollection<Meeting>(LstMeetings);
+         //   FilteredMeetings = new ObservableCollection<Meeting>(LstMeetings);
+            var sortedMeetings = LstMeetings.OrderByDescending(meeting => meeting.Date).ToList();
+            FilteredMeetings = new ObservableCollection<Meeting>();
+            foreach (var meeting in sortedMeetings)
+            {
+                FilteredMeetings.Add(meeting);
+            }
         }
-        private void UpdateFilteredMeetings()
+ /*       private void UpdateFilteredMeetings()
         {
             if (string.IsNullOrWhiteSpace(_searchText))
             {
@@ -150,17 +155,17 @@ namespace loginDb.ViewModels
                 FilteredMeetings = new ObservableCollection<Meeting>(filtered);
             }
             //sorting by date - default
-            var sortedMeetings = LstMeetings.OrderBy(meeting => meeting.Date).ToList();
+            var sortedMeetings = LstMeetings.OrderByDescending(meeting => meeting.Date).ToList();
             FilteredMeetings.Clear();
             foreach (var meeting in sortedMeetings)
             {
                 FilteredMeetings.Add(meeting);
             }
         }
-
+*/
         private void ExecuteShowAddCommand(object obj)
         {
-            AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Add, obj as Meeting);
+            AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Add, obj as Meeting, UserId);
             addMeetingWin.Show();
             LoadMeetings(null);
         }
@@ -180,7 +185,7 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowEditCommand(object obj)
         {
-            AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Edit, obj as Meeting);
+            AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Edit, obj as Meeting, UserId);
             addMeetingWin.ShowDialog();
             LoadMeetings(null);
         }

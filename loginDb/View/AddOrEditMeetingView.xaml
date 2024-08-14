@@ -20,6 +20,7 @@ AllowsTransparency="True">
         <converters:ModeConverter x:Key="ModeConverter" />
         <converters:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter" />
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+        <converters:IdToNameConverter x:Key="idToNameConverter" />
     </Window.Resources>
 
 
@@ -98,15 +99,16 @@ AllowsTransparency="True">
                              Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <Label Content="Client"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
                     <ComboBox ItemsSource="{Binding Clients}"
-                          SelectedValuePath="ClientId" DisplayMemberPath="Cname" SelectedValue="{Binding SpeClientId}"
+                          SelectedValuePath="Id" DisplayMemberPath="Cname" SelectedValue="{Binding ClientId}"
                           Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}"
                         Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" 
                         Background="{StaticResource panelActiveColor}" IsReadOnly="True"/>
+
                     <ComboBox ItemsSource="{Binding Clients}"
-                          SelectedValuePath="ClientId" DisplayMemberPath="Cname" SelectedValue="{Binding SpeClientId, Mode=Default}"
+                          SelectedValuePath="Id" DisplayMemberPath="Cname" SelectedValue="{Binding SpeClientId, Mode=Default}"
                         Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}"
                         Height="25" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center"  IsEnabled="False" 
-                        Background="{StaticResource panelActiveColor}"/>
+                        Background="{StaticResource panelActiveColor}" />
                     <Label Content="Date"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
                     <DatePicker Height="25" SelectedDate="{Binding Date}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <DatePicker Height="25" SelectedDate="{Binding SelectedMeeting.Date}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
@@ -115,12 +117,23 @@ AllowsTransparency="True">
                     <TextBox Height="25" Text="{Binding SelectedMeeting.Summary}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
 
                     <Label Content="Status"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Width="200">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Width="200"
+                                 Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}">
                         <RadioButton Content="Planned" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=planned}"
                               Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
                         <RadioButton Content="Unpaid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=unpaid}"
                                     Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
                         <RadioButton Content="Paid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=paid}"
+                                    Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+
+                        </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Width="200"
+                                 Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}">
+                        <RadioButton Content="Planned" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=planned}"
+                              Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+                        <RadioButton Content="Unpaid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=unpaid}"
+                                    Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+                        <RadioButton Content="Paid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=paid}"
                                     Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
 
                         </StackPanel>
@@ -134,11 +147,12 @@ AllowsTransparency="True">
                         Margin="30,10,30,10"
                         TextWrapping="Wrap"/>
 
-                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Button'}" 
-                        FontSize="13" FontFamily="Montserrat" Margin="0,0,0,20" Cursor="Hand" BorderThickness="0" Foreground="White" Width="110">
+                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Meeting'}" 
+                        FontSize="13" FontFamily="Montserrat" Margin="0,0,0,20" Cursor="Hand" BorderThickness="0" Width="110">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource color3}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource panelActiveColor}"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
@@ -154,7 +168,7 @@ AllowsTransparency="True">
 
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#836EFB"/>
+                                        <Setter Property="Background" Value="#FF7FEFFD"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

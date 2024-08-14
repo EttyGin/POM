@@ -143,7 +143,7 @@ AllowsTransparency="True">
                         Margin="30,10,30,10"
                         TextWrapping="Wrap"/>
 
-                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Button'}" 
+                    <Button Command="{Binding AorECommand}" Content="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='Client'}" 
                         FontSize="13" FontFamily="Montserrat" Margin="0,0,0,20" Cursor="Hand" BorderThickness="0" Foreground="White" Width="110">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">

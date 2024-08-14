@@ -84,17 +84,19 @@ namespace loginDb.ViewModels
         }
 
 
-        public AddOrEditMeetingViewModel(EditMode mode, Meeting meeting)
+        public AddOrEditMeetingViewModel(EditMode mode, Meeting meeting, int userId)
         {
             CurrentMode = mode;
             if (meeting != null)
             {
                 _selectedMeeting = meeting;
-                UserId = SelectedMeeting.UserId;
+                UserId = userId;
+                SpeClientId = SelectedMeeting.ClientId;
             }
             else
             {
                 _selectedMeeting = new Meeting();
+                UserId = 325746147; ///////////////////////////////////////////////////////////new MainViewModel().UserId;
             }
             userRepository = new UserRepository();
             AorECommand = new ViewModelCommand(ExecuteAorECommand);
@@ -107,92 +109,72 @@ namespace loginDb.ViewModels
             Clients = new ObservableCollection<Client>(userRepository.GetAll<Client>());
             OnPropertyChanged(nameof(Clients));
         }
-        
+
         private bool CanAorECommand()
         {
-    /*         if (CurrentMode == EditMode.Add)
+            if (CurrentMode == EditMode.Add)
             {
-               if (Number.ToString().Length < 8)
+                if (Date != null)
                 {
-                    ErrorMessage = $"Incorrect Number";
-                    return false;
-                }
-                else if (Name == null || !Name.All(char.IsLetter) || Name.Length > 20)
-                {
-                    ErrorMessage = $"Incorrect Name";
-                    return false;
-                }
-                else if (Date != null) {
-                    int minAge = 5, maxAge = 100;
-                    DateTime today = DateTime.Today;
-                    int age = today.Year - Date.Year;
-
-                    if (age < minAge || age > maxAge)
+                    DateTime lastAppointmentDate = userRepository.GetMeetingDateForClient(ClientId, Number); // פונקציה להביא את התאריך האחרון
+                    if (Date <= lastAppointmentDate)
                     {
-                        ErrorMessage = $"Incorrect Birth Date";
-                        return false; 
+                        ErrorMessage = $"Meeting date must be later than the previous meeting";
+                        return false;
                     }
-                }
+           /*         if (DateTime.Today < Date) possible meeting in feuture? 
+                    {
+                        ErrorMessage = $"Incorrect Date";
+                        return false;
+                    }
+            */    }
                 else if (Summary == null || Summary.Length > 100)
                 {
                     ErrorMessage = $"Incorrect Summary";
                     return false;
                 }
 
-                else if (Status)
-                {
-                    ErrorMessage = $"Incorrect Email";
-                    return false;
-                }
                 else
                 {
                     ErrorMessage = "";
                 }
                 return true;
             }
-            else
+            else // edit mode
             {
-                if (SelectedMeeting.Number.ToString().Length < 8)
+                if (SelectedMeeting.ClientId == 0)
                 {
-                    ErrorMessage = $"Incorrect Number";
+                    ErrorMessage = $"Incorrect Client";
                     return false;
                 }
-                else if (SelectedMeeting.Cname == null || !SelectedMeeting.Cname.All(char.IsLetter) || SelectedMeeting.Cname.Length > 20)
+                else if (SelectedMeeting.Date != null && SelectedMeeting.Number !=1)
                 {
-                    ErrorMessage = $"Incorrect Name";
-                    return false;
-                }
-
+                    DateTime lastAppointmentDate = userRepository.GetMeetingDateForClient(SelectedMeeting.ClientId, SelectedMeeting.Number - 1);
+                    if (SelectedMeeting.Date <= lastAppointmentDate)
+                    {
+                        ErrorMessage = $"Meeting date must be later than the previous meeting";
+                        return false;
+                    }
+         /*          if (DateTime.Today < SelectedMeeting.Date) // possible?
+                    {
+                        ErrorMessage = $"Incorrect Date";
+                        return false;
+                    }
+            */    }
                 else if (SelectedMeeting.Summary == null || SelectedMeeting.Summary.Length > 100)
                 {
                     ErrorMessage = $"Incorrect Summary";
                     return false;
                 }
-                else if (SelectedMeeting.Date != null)
-                {
-                    int minAge = 5, maxAge = 100;
-                    DateTime today = DateTime.Today;
-                    int age = today.Year - SelectedMeeting.Date.Year;
 
-                    if (age < minAge || age > maxAge)
-                    {
-                        ErrorMessage = $"Incorrect Birth Date";
-                        return false;
-                    }
-                }
-
-                else if (SelectedMeeting.Email == null || SelectedMeeting.Email.Length > 30 || !Regex.IsMatch(SelectedMeeting.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
-                {
-                    ErrorMessage = $"Incorrect Email";
-                    return false;
-                }
-               else
+                else
                 {
                     ErrorMessage = "";
                 }
-       */         return true;
+                return true;
 
             }
+        }
         
         private void ExecuteAorECommand(object obj)
         {
@@ -202,9 +184,10 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-
-                       // Meeting m  = new Meeting {Number = Number, Date = Date, Summary = Summary, Status = Status, UserId = UserId, ClientId = ClientId};
-                        Meeting m  = new Meeting {Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
+                        User user = userRepository.GetByUsername("admin");
+                        Client client = (Client)userRepository.GetById(ClientId, "Client");
+                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Status, UserId = UserId, ClientId = ClientId };//,User = user, Client = client};
+                     //   Meeting m  = new Meeting {Number = 1, Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
                         userRepository.Add(m);
                         
                         ErrorMessage = "Meeting added successfully!";
@@ -223,7 +206,7 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        SelectedMeeting.UserId = UserId;
+                        SelectedMeeting.ClientId = SpeClientId;
                         userRepository.Edit(SelectedMeeting);
 
                         ErrorMessage = "Meeting was saved successfully!";
@@ -231,14 +214,12 @@ namespace loginDb.ViewModels
                         Task.Delay(800).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                         //   LstMeetings.Remove(SelectedMeeting);
-                           // LstMeetings.Add(SelectedMeeting);
+
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception ex)
                     {
                         ErrorMessage = $"Error updating Meeting: {ex.Message}";
-                        // ErrorMessage = $"Please fill in all required fields correctly";
                     }
                 }
             }

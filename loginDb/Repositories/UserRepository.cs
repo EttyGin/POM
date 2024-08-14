@@ -78,6 +78,7 @@ namespace loginDb.Repositories
             
         }
 
+  
         public void InitNonePayer()
         {
             using (var db = new POMdbEntities())
@@ -103,7 +104,6 @@ namespace loginDb.Repositories
             }
         }
 
-
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;
@@ -116,9 +116,7 @@ namespace loginDb.Repositories
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
 
-
-
-                validUser = command.ExecuteScalar() == null ? false : true;
+                validUser = command.ExecuteScalar() != null;
             }
             return validUser;
         }
@@ -243,7 +241,7 @@ namespace loginDb.Repositories
                     var existingEntity = dbSet.Find(entityKey);
                     if (existingEntity != null)
                     {
-                        dbSet.Remove(entity);
+                        dbSet.Remove(existingEntity);
                         db.SaveChanges();
                     }
                 }
@@ -262,6 +260,30 @@ namespace loginDb.Repositories
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+        }
+
+        public DateTime GetMeetingDateForClient(int clientId, int number)
+        {
+            clientId = 325746147;
+            DateTime lastAppointmentDate = DateTime.MinValue; // תיחול ערך התחלתי מינימלי
+
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand("SELECT TOP 1 * FROM Meeting WHERE ClientID = @clientID AND Number = @number ORDER BY Date DESC", connection))
+            {
+                command.Parameters.AddWithValue("@clientID", clientId);
+                command.Parameters.AddWithValue("@Number", number);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        lastAppointmentDate = (DateTime)reader["Date"];
+                    }
+                }
+            }
+
+            return lastAppointmentDate;
         }
 
 
@@ -339,24 +361,6 @@ namespace loginDb.Repositories
                   }
               }
       */
-        /* public void Remove<T>(T entity) where T : class
-    {
-    using (var db = new POMdbEntities())
-    {
-       /* var dbSet = db.Set<T>();
-        dbSet.Remove(entity);
-        db.SaveChanges();
 
-       int iddel = (entity as Client).Id;
-       var stud = db.Clients.Find(iddel);
-
-       if (stud != null)
-       {
-           db.Clients.Remove(stud);
-           db.SaveChanges();
-       }
-    }
-    }
-    */
     }
 }

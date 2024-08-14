@@ -17,19 +17,20 @@ using System.Data.Entity;
 using System.Windows;
 using System.Linq.Expressions;
 using FontAwesome.Sharp;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Data.Entity.Infrastructure;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace loginDb.ViewModels
 {
-    public class ClientsViewModel : ViewModelBase
+    public class PayersViewModel : ViewModelBase
     {
         //Fields
-        public ObservableCollection<Client> _lstClients;
+        public ObservableCollection<Payer> _lstPayers;
 
-        private ObservableCollection<Client> _filteredClients;
+        private ObservableCollection<Payer> _filteredPayers;
 
-        private string _errorMessage = string.Empty;
+        private string _errorMessage;
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
@@ -44,34 +45,34 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                //UpdateFilteredClients();
+                //UpdateFilteredPayers();
             }
         }
 
-        public ObservableCollection<Client> LstClients
+        public ObservableCollection<Payer> LstPayers
         {
             get
             {
-                return _lstClients;
+                return _lstPayers;
             }
 
             set
             {
-                _lstClients = value;
-                OnPropertyChanged(nameof(LstClients));
-               // UpdateFilteredClients();
+                _lstPayers = value;
+                OnPropertyChanged(nameof(LstPayers));
+              //  UpdateFilteredPayers();
             }
         }
 
-        public ObservableCollection<Client> FilteredClients
+        public ObservableCollection<Payer> FilteredPayers
         {
-            get => _filteredClients;
+            get => _filteredPayers;
             private set
             {
-                if (_filteredClients != value)
+                if (_filteredPayers != value)
                 {
-                    _filteredClients = value;
-                    OnPropertyChanged(nameof(FilteredClients));
+                    _filteredPayers = value;
+                    OnPropertyChanged(nameof(FilteredPayers));
                 }
             }
         }
@@ -109,10 +110,10 @@ namespace loginDb.ViewModels
         public ICommand DeleteCommand { get; }
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
-        public ICommand ShowMeetingsCommand { get; }
+        public ICommand ShowPayersCommand { get; }
 
         //Constructor
-        public ClientsViewModel()
+        public PayersViewModel()
         {
             userRepository = new UserRepository();
 
@@ -120,69 +121,70 @@ namespace loginDb.ViewModels
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand);
             SearchCommand = new ViewModelCommand(ExecuteSearchCommand);
             DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand);
-            ShowMeetingsCommand = new ViewModelCommand(ExecuteShowMeetingsCommand);
+            ShowPayersCommand = new ViewModelCommand(ExecuteShowPayersCommand);
 
-            LoadClients(null);
+            LoadPayers(null);
         }
 
-        private void LoadClients(Expression<Func<Client, bool>> predicate)
+        private void LoadPayers(Expression<Func<Payer, bool>> predicate)
         {
+            string NoneName = " -";
             if (!(predicate is null))
-                LstClients = new ObservableCollection<Client>(userRepository.GetWhere(predicate));
+                LstPayers = new ObservableCollection<Payer>(userRepository.GetWhere(predicate));
             else
-                LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
+                LstPayers = new ObservableCollection<Payer>(userRepository.GetWhere<Payer>(p => p.Pname != NoneName)); //To avoid showing the none payer
             
-            FilteredClients = new ObservableCollection<Client>(LstClients);
+            FilteredPayers = new ObservableCollection<Payer>(LstPayers);
         }
-/*        private void UpdateFilteredClients()
+ /*       private void UpdateFilteredPayers()
         {
             if (string.IsNullOrWhiteSpace(_searchText))
             {
-                FilteredClients = new ObservableCollection<Client>(_lstClients);
+                FilteredPayers = new ObservableCollection<Payer>(_lstPayers);
             }
             else
             {
                 var searchLower = _searchText.ToLower();
-                var filtered = _lstClients.Where(c => c.Cname.ToLower().Contains(searchLower));
-                FilteredClients = new ObservableCollection<Client>(filtered);
+                var filtered = _lstPayers.Where(p => p.Pname.ToLower().Contains(searchLower));
+                FilteredPayers = new ObservableCollection<Payer>(filtered);
             }
         }
-*/
+ */
         private void ExecuteShowAddCommand(object obj)
         {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
-            addClientWin.ShowDialog();
-            LoadClients(null);
-            }
+            AddOrEditPayerView addPayerWin = new AddOrEditPayerView(EditMode.Add ,obj as Payer);
+            addPayerWin.ShowDialog();
+            LoadPayers(null);
+        }
 
         private void ExecuteSearchCommand(object obj)
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
-                LoadClients(c => c.Cname.Contains(SearchText));
+                LoadPayers(p => p.Pname.Contains(SearchText));
             }
             else
             {
-                LoadClients(c => c.Cname == c.Cname);
+                LoadPayers(p => p.Pname == p.Pname);
             }
         }
 
         private void ExecuteShowEditCommand(object obj)
         {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, obj as Client);
-            addClientWin.ShowDialog();
-            LoadClients(null);
+            AddOrEditPayerView addPayerWin = new AddOrEditPayerView(EditMode.Edit, obj as Payer);
+            addPayerWin.ShowDialog();
+            LoadPayers(null);
          }
 
-        private void ExecuteShowMeetingsCommand(object obj)
+        private void ExecuteShowPayersCommand(object obj)
         {
             IsViewVisible = false;
         }
 
         private void ExecuteDeleteCommand(object obj)
         {
-            Client toRemove = obj as Client;
-            string name = toRemove.Cname;
+            Payer toRemove = obj as Payer;
+            string name = toRemove.Pname;
 
             var result = MessageBox.Show($"Are you sure you want to delete {name}?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -191,17 +193,17 @@ namespace loginDb.ViewModels
                 try
                 {
                     userRepository.Remove(toRemove, "Id");
-                    LstClients.Remove(toRemove);
+                    LstPayers.Remove(toRemove);
                 }
-                catch
-                {
-                    ErrorMessage = $"The client {name} cannot be deleted because it is active";
+                catch {
+                    ErrorMessage = $"The Payer {name} cannot be deleted because it is active";
                     MessageBox.Show(ErrorMessage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     ErrorMessage = string.Empty;
                 }
+                
 
             }
-            LoadClients(null);
+            LoadPayers(null);
         }
     }
 }

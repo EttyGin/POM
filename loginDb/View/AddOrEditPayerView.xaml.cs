@@ -1,8 +1,6 @@
-﻿using loginDb;
-using loginDb.ViewModels;
+﻿using loginDb.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +16,15 @@ using System.Windows.Shapes;
 namespace loginDb.View
 {
     /// <summary>
-    /// Interaction logic for AddOrEditMeetingView.xaml
+    /// Interaction logic for AddOrEditPayerView.xaml
     /// </summary>
-    public partial class AddOrEditMeetingView : Window
+    public partial class AddOrEditPayerView : Window
     {
-        public AddOrEditMeetingView(ViewModelBase.EditMode mode, Meeting meeting, int userId)
+        public AddOrEditPayerView(PayersViewModel.EditMode mode, Payer payer)
         {
             InitializeComponent();
-            AddOrEditMeetingViewModel acvm = new AddOrEditMeetingViewModel (mode, meeting, userId);
-            this.DataContext = acvm;
+            AddOrEditPayerViewModel apvm = new AddOrEditPayerViewModel (mode, payer);
+            this.DataContext = apvm;
 
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)

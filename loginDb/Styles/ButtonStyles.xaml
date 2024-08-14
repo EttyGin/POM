@@ -142,36 +142,11 @@
         <Style.Triggers>
             <!--Button Style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource color2}"/>
+                <Setter Property="Background" Value="{StaticResource plainTextColor1}"/>
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <Style x:Key="MeetingsActionsButton" TargetType="Button">
-        <!--Normal button style-->
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource plainTextColor1}"/>
-        <Setter Property="Padding" Value="10,0,10,0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <!--Button Style on hover-->
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource color3}"/>
-                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
 
 
 </ResourceDictionary>
