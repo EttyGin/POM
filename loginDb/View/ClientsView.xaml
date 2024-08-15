@@ -114,13 +114,6 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <!--TextBlock Text="{Binding ErrorMessage}"
-               Foreground="#D7596D"
-               FontSize="12"
-               FontWeight="Medium"
-               FontFamily="Montserrat"                             
-               Margin="442,8,62,20"
-               TextWrapping="Wrap"/-->
         </Grid>
         <Border Grid.Row="1"
             CornerRadius="10" 
@@ -131,8 +124,8 @@
                     <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-        
-            <DataGrid x:Name="datagrid" ItemsSource="{Binding LstClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+
+            <DataGrid x:Name="datagrid" ItemsSource="{Binding FilteredClients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                       ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="10,0,0,10"
                       GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
                       AutoGenerateColumns="False" Background="Transparent" 
@@ -186,12 +179,16 @@
                     <DataGridTemplateColumn Header="Actions">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Background="Transparent" Margin="0,0,5,0">
-                                    <Button x:Name="editBtn" Style="{StaticResource controlButton}" Command="{Binding DataContext.ShowEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" Background="Transparent" Margin="0,0,5,0"  Width="Auto">
+                                    <Button x:Name="editBtn" Style="{StaticResource ActionsButton}" Width ="35" ToolTip="Edit" Command="{Binding DataContext.ShowEditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <fa:IconImage Icon="Pen" Style="{StaticResource controlButtonIcon}" />
                                     </Button>
-                                    <Button x:Name="deleteBtn" Style="{StaticResource controlButton}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                    <Button x:Name="deleteBtn" Style="{StaticResource ActionsButton}" Width ="35" ToolTip="Delete" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <fa:IconImage Icon="TrashCan" Style="{StaticResource controlButtonIcon}" />
+                                    </Button>
+                                    <Button x:Name="ShowMeetingsBtn" Style="{StaticResource ActionsButton}" Width ="35" Command="{Binding DataContext.ShowMeetingsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"
+                                            ToolTip="Show Meetings">
+                                        <fa:IconImage Icon="Couch" Style="{StaticResource controlButtonIcon}" />
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

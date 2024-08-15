@@ -101,7 +101,7 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color3}"
-                        Command="{Binding ShowMeetingsViewCommand}">
+                        Command="{Binding ShowMeetingsViewCommand}"  CommandParameter="{Binding}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Meetings" Style="{StaticResource menuButtonText}"/>
                             <fa:IconImage Icon="Couch" Style="{StaticResource menuButtonIcon}"/>

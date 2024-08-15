@@ -25,8 +25,6 @@ namespace loginDb.ViewModels
         public static ObservableCollection<Payer> Payers { get; set; }
 
         private IUserRepository userRepository;
-
-    //    public ICommand AddClientCommand { get; }
         public ICommand AorECommand { get; }
 
         public int Id { get; set; }
@@ -36,46 +34,8 @@ namespace loginDb.ViewModels
         public string Phone { get; set; }
         public string Email { get; set; }
 
-     //   public Payer SelectedPayer { get; set; }
-
-  //      private int? _payerId;
         public int SpePayerId { get; set; }
-    /*    {
-            get { return _payerId; }
-            set
-            {
-                if (value != _payerId)
-                {
-                    _payerId = value;
-                    Payer = value.HasValue ? (Payer)userRepository.GetById(value.Value, "Payer") : null;
-                }
-                OnPropertyChanged(nameof(PayerId));
-                OnPropertyChanged(nameof(Payer));
-            }
-        }
-    */
 
-        /*      public int? PayerId { get; set; }
-
-              public Payer _payer;
-
-              public Payer Payer{ 
-                  get
-                  {
-                      if (PayerId.HasValue)
-                      {
-                          return (Payer)userRepository.GetById(PayerId.Value, "Payer");
-                      }
-                      return null;
-
-                  }
-                  set
-                  {
-                      _payer = value;
-                      OnPropertyChanged(nameof(Payer));
-                  }
-              }
-              */
         private string _errorMessage;
         private bool _isViewVisible = true;
 
@@ -148,32 +108,6 @@ namespace loginDb.ViewModels
             Payers = new ObservableCollection<Payer>(userRepository.GetAll<Payer>());
             OnPropertyChanged(nameof(Payers));
         }
-     /*   private void ExecuteAddClientCommand(object obj)
-        {
-            if (CanAorECommand()) {
-                try
-                {
-                    Client c = new Client { Id = Id, Cname = Name, BirthDate = BirthDate, Phone = Phone, Email = Email, PayerId = SpePayerId };// , Payer = Payer};
-                                                                                                                                               //Client c =  new Client { Id = 325085215, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
-                    userRepository.Add(c);
-                    //ClientsViewModel.Clients.Add(c);
-                    ErrorMessage = "Client added successfully!";
-
-                    Task.Delay(1200).ContinueWith(_ => // Wait before closing
-                    {
-                        IsViewVisible = false;
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-
-
-                }
-                catch (Exception ex)
-                {
-                    //   ErrorMessage = $"Error adding client: {ex.Message}";
-                    ErrorMessage = $"Please fill in all required fields correctly";
-                }
-        }
-        }
-        */
         private bool CanAorECommand()
         {
             if (CurrentMode == EditMode.Add)
@@ -188,7 +122,17 @@ namespace loginDb.ViewModels
                     ErrorMessage = $"Incorrect Name";
                     return false;
                 }
+                else if (BirthDate != null) {
+                    int minAge = 5, maxAge = 100;
+                    DateTime today = DateTime.Today;
+                    int age = today.Year - BirthDate.Year;
 
+                    if (age < minAge || age > maxAge)
+                    {
+                        ErrorMessage = $"Incorrect Birth Date";
+                        return false; 
+                    }
+                }
                 else if (Phone == null || Phone.Length != 10 || !Regex.IsMatch(Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
                 {
                     ErrorMessage = $"Incorrect Phone";
@@ -224,6 +168,18 @@ namespace loginDb.ViewModels
                     ErrorMessage = $"Incorrect Phone";
                     return false;
                 }
+                else if (SelectedClient.BirthDate != null)
+                {
+                    int minAge = 5, maxAge = 100;
+                    DateTime today = DateTime.Today;
+                    int age = today.Year - SelectedClient.BirthDate.Year;
+
+                    if (age < minAge || age > maxAge)
+                    {
+                        ErrorMessage = $"Incorrect Birth Date";
+                        return false;
+                    }
+                }
 
                 else if (SelectedClient.Email == null || SelectedClient.Email.Length > 30 || !Regex.IsMatch(SelectedClient.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
                 {
@@ -257,7 +213,7 @@ namespace loginDb.ViewModels
                         Task.Delay(1200).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                            LstClients.Add(c);
+                //            LstClients.Add(c);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception)
@@ -286,8 +242,8 @@ namespace loginDb.ViewModels
                         Task.Delay(800).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                            LstClients.Remove(SelectedClient);
-                            LstClients.Add(SelectedClient);
+                         //   LstClients.Remove(SelectedClient);
+                           // LstClients.Add(SelectedClient);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception ex)
@@ -298,6 +254,5 @@ namespace loginDb.ViewModels
                 }
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using loginDb.Models;
 using loginDb.Repositories;
 using loginDb.ViewModels;
 using System;
@@ -54,20 +55,5 @@ namespace loginDb.View
                 column.Width = width;
             }
         }
-/*
-        private void DataGridRow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-       //     if (e.OriginalSource is Border && !(e.Source is Border)) {
-
-                var selectedItem = (sender as DataGridRow).Item;
-                if (selectedItem != null)
-                {
-                    // הפעל את הפקודה ב-ViewModel
-                    var viewModel = DataContext as ClientsViewModel;
-                    viewModel?.ShowEditCommand.Execute(selectedItem);
-                }
-       //     }
-        }
-*/
     }
 }

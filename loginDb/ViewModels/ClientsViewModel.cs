@@ -16,13 +16,18 @@ using loginDb.View;
 using System.Data.Entity;
 using System.Windows;
 using System.Linq.Expressions;
+using FontAwesome.Sharp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace loginDb.ViewModels
 {
     public class ClientsViewModel : ViewModelBase
     {
         //Fields
-        public static ObservableCollection<Client> _lstClients;
+        public ObservableCollection<Client> _lstClients;
+
+        private ObservableCollection<Client> _filteredClients;
+
 
         public enum EditMode { Add, Edit }
 
@@ -32,6 +37,9 @@ namespace loginDb.ViewModels
 
         private IUserRepository userRepository;
 
+     //   private readonly INavigationService _navigationService;
+
+
         private string _searchText;
         public string SearchText
         {
@@ -40,11 +48,12 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
+                UpdateFilteredClients();
             }
         }
 
         //Properties
-        public static ObservableCollection<Client> LstClients
+        public ObservableCollection<Client> LstClients
         {
             get
             {
@@ -54,8 +63,24 @@ namespace loginDb.ViewModels
             set
             {
                 _lstClients = value;
+                OnPropertyChanged(nameof(LstClients));
+                UpdateFilteredClients();
             }
-        }   
+        }
+
+        public ObservableCollection<Client> FilteredClients
+        {
+            get => _filteredClients;
+            private set
+            {
+                if (_filteredClients != value)
+                {
+                    _filteredClients = value;
+                    OnPropertyChanged(nameof(FilteredClients));
+                }
+            }
+        }
+
         public bool IsViewVisible
         {
             get
@@ -89,35 +114,59 @@ namespace loginDb.ViewModels
         public ICommand DeleteCommand { get; }
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand ShowMeetingsCommand { get; }
 
 
         //Constructor
         public ClientsViewModel()
         {
             userRepository = new UserRepository();
-            
-            ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand, CanExecuteShowAddCommand);
-            ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand, CanExecuteShowEditCommand);
+    //        _navigationService = navigationService;
+
+            ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand);
+            ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand);
             SearchCommand = new ViewModelCommand(ExecuteSearchCommand);
             DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand);
-            LoadClients(c => c.Cname == c.Cname);
+            ShowMeetingsCommand = new ViewModelCommand(ExecuteShowMeetingsCommand);
+
+            LoadClients(null);
         }
 
-        private bool CanExecuteSearchCommand(object obj)
+        private void LoadClients(Expression<Func<Client, bool>> predicate)
         {
-            return true;
+            if (!(predicate is null))
+                LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(predicate));
+            else
+                LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
+            
+            FilteredClients = new ObservableCollection<Client>(LstClients);
         }
+        private void UpdateFilteredClients()
+        {
+            if (string.IsNullOrWhiteSpace(_searchText))
+            {
+                FilteredClients = new ObservableCollection<Client>(_lstClients);
+            }
+            else
+            {
+                var searchLower = _searchText.ToLower();
+                var filtered = _lstClients.Where(c => c.Cname.ToLower().Contains(searchLower));
+                FilteredClients = new ObservableCollection<Client>(filtered);
+            }
+        }
+
+        private void ExecuteShowAddCommand(object obj)
+        {
+            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
+            addClientWin.Show();
+            LoadClients(null);
+            }
 
         private void ExecuteSearchCommand(object obj)
         {
-           if (!string.IsNullOrEmpty(SearchText))
+            if (!string.IsNullOrEmpty(SearchText))
             {
                 LoadClients(c => c.Cname.Contains(SearchText));
-               Client fake =  new Client { Id = 111111111, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
-
-
-               userRepository.Remove(fake, "Id");
-                LstClients.Remove(fake);
             }
             else
             {
@@ -125,38 +174,22 @@ namespace loginDb.ViewModels
             }
         }
 
-
-
-        private void LoadClients(Expression<Func<Client, bool>> predicate) 
-        {
-            LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(predicate));
-            OnPropertyChanged(nameof(LstClients));
-            //  LstClients = new ObservableCollection<Client>(userRepository.GetAll<Client>());
-        }
-        private bool CanExecuteShowAddCommand(object obj)
-        {
-            return true;
-        }
-
-        private void ExecuteShowAddCommand(object obj)
-        {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
-            addClientWin.Show();
-      
-        }
-
-        private bool CanExecuteShowEditCommand(object obj)
-        {
-            return true;
-        }
-
         private void ExecuteShowEditCommand(object obj)
         {
-         //   Client c = LstClients.First();
-            
             AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Edit, obj as Client);
             addClientWin.ShowDialog();
+            LoadClients(null);
          }
+
+        private void ExecuteShowMeetingsCommand(object obj)
+        {
+            /*    Main.CurrentChildView = new MeetingsViewModel();
+                Main.Caption = "Meetings";
+                Main.Icon = IconChar.Couch;
+          */
+            //         _navigationService.NavigateTo(new MeetingsViewModel(_navigationService));
+
+        }
 
         private void ExecuteDeleteCommand(object obj)
         {
@@ -171,7 +204,7 @@ namespace loginDb.ViewModels
                 LstClients.Remove(toRemove);
 
             }
+            LoadClients(null);
         }
-
     }
 }

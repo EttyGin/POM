@@ -1,42 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\",
+  "WorkspaceRootPath": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\view\\clientsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\clientsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\view\\mainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\mainview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|d:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - peace of mind\\v1\\logindb\\viewmodels\\clientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|d:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - peace of mind\\v2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\viewmodels\\clientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\viewmodels\\clientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\view\\clientsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\clientsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\viewmodels\\viewmodelcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\viewmodels\\viewmodelcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\view\\addoreditclientview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\addoreditclientview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\packages\\Prism.Core.8.1.97\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages\\Prism.Core.8.1.97\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|d:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - peace of mind\\v1\\logindb\\view\\addoreditclientview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\addoreditclientview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\view\\meetingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\meetingsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|d:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - peace of mind\\v1\\logindb\\viewmodels\\addoreditclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\viewmodels\\addoreditclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\view\\meetingsview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\view\\meetingsview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\viewmodels\\meetingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\viewmodels\\meetingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\logindb\\models\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\models\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\logindb\\garbage\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{432BD7E6-6268-4AEB-9EFD-9A36B2327F03}|loginDb\\loginDb.csproj|solutionrelative:logindb\\garbage\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\Models\\Messaging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:loginDb\\Models\\Messaging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 300,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,117 +62,135 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AddOrEditClientView.xaml",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\AddOrEditClientView.xaml",
-              "RelativeDocumentMoniker": "loginDb\\View\\AddOrEditClientView.xaml",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\AddOrEditClientView.xaml",
-              "RelativeToolTip": "loginDb\\View\\AddOrEditClientView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-08-11T00:17:36.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AddOrEditClientViewModel.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\ViewModels\\AddOrEditClientViewModel.cs",
-              "RelativeDocumentMoniker": "loginDb\\ViewModels\\AddOrEditClientViewModel.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\ViewModels\\AddOrEditClientViewModel.cs",
-              "RelativeToolTip": "loginDb\\ViewModels\\AddOrEditClientViewModel.cs",
-              "ViewState": "AQIAAHMAAAAAAAAAAAAAwH4AAAAPAAAA",
+              "DocumentIndex": 10,
+              "Title": "Messaging.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\Models\\Messaging.cs",
+              "RelativeDocumentMoniker": "loginDb\\Models\\Messaging.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\Models\\Messaging.cs",
+              "RelativeToolTip": "loginDb\\Models\\Messaging.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T23:21:53.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AddOrEditClientView.xaml.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\AddOrEditClientView.xaml.cs",
-              "RelativeDocumentMoniker": "loginDb\\View\\AddOrEditClientView.xaml.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\AddOrEditClientView.xaml.cs",
-              "RelativeToolTip": "loginDb\\View\\AddOrEditClientView.xaml.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAwBkAAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T23:50:41.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ClientsView.xaml.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\ClientsView.xaml.cs",
-              "RelativeDocumentMoniker": "loginDb\\View\\ClientsView.xaml.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\ClientsView.xaml.cs",
-              "RelativeToolTip": "loginDb\\View\\ClientsView.xaml.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAUwD0AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T12:32:09.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ClientsView.xaml",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\ClientsView.xaml",
-              "RelativeDocumentMoniker": "loginDb\\View\\ClientsView.xaml",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\ClientsView.xaml",
-              "RelativeToolTip": "loginDb\\View\\ClientsView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-08-04T22:24:50.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-11T15:04:28.265Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "readme.txt",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\packages\\Prism.Core.8.1.97\\readme.txt",
+              "RelativeDocumentMoniker": "packages\\Prism.Core.8.1.97\\readme.txt",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\packages\\Prism.Core.8.1.97\\readme.txt",
+              "RelativeToolTip": "packages\\Prism.Core.8.1.97\\readme.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-08-11T15:03:31.438Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ViewModelCommand.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\ViewModelCommand.cs",
+              "RelativeDocumentMoniker": "loginDb\\ViewModels\\ViewModelCommand.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\ViewModelCommand.cs",
+              "RelativeToolTip": "loginDb\\ViewModels\\ViewModelCommand.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T14:39:52.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ClientsViewModel.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\ViewModels\\ClientsViewModel.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\ClientsViewModel.cs",
               "RelativeDocumentMoniker": "loginDb\\ViewModels\\ClientsViewModel.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\ViewModels\\ClientsViewModel.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\ClientsViewModel.cs",
               "RelativeToolTip": "loginDb\\ViewModels\\ClientsViewModel.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAowIsAAAAAAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAwHgAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-07T10:27:23.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "loginDb\\Repositories\\UserRepository.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "loginDb\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAAMoAAAAAAAAAAAAwwCsBAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T10:49:40.705Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "MeetingsView.xaml",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\View\\MeetingsView.xaml",
+              "RelativeDocumentMoniker": "loginDb\\View\\MeetingsView.xaml",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\View\\MeetingsView.xaml",
+              "RelativeToolTip": "loginDb\\View\\MeetingsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-08-11T14:50:34.019Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainView.xaml",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\MainView.xaml",
-              "RelativeDocumentMoniker": "loginDb\\View\\MainView.xaml",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\View\\MainView.xaml",
-              "RelativeToolTip": "loginDb\\View\\MainView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-08-08T17:59:49.481Z",
-              "EditorCaption": ""
+              "DocumentIndex": 4,
+              "Title": "MeetingsView.xaml.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\View\\MeetingsView.xaml.cs",
+              "RelativeDocumentMoniker": "loginDb\\View\\MeetingsView.xaml.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\View\\MeetingsView.xaml.cs",
+              "RelativeToolTip": "loginDb\\View\\MeetingsView.xaml.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABYAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T14:50:44.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MeetingsViewModel.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\MeetingsViewModel.cs",
+              "RelativeDocumentMoniker": "loginDb\\ViewModels\\MeetingsViewModel.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\MeetingsViewModel.cs",
+              "RelativeToolTip": "loginDb\\ViewModels\\MeetingsViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T13:00:16.274Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\Models\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "loginDb\\Models\\IUserRepository.cs",
-              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V1\\loginDb\\Models\\IUserRepository.cs",
-              "RelativeToolTip": "loginDb\\Models\\IUserRepository.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAowBUAAAANAAAA",
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\App.config",
+              "RelativeDocumentMoniker": "loginDb\\App.config",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\App.config",
+              "RelativeToolTip": "loginDb\\App.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-08-11T14:40:01.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\App.xaml.cs",
+              "RelativeDocumentMoniker": "loginDb\\App.xaml.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\App.xaml.cs",
+              "RelativeToolTip": "loginDb\\App.xaml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T19:22:51.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-11T14:40:09.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "INavigationService.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\Garbage\\INavigationService.cs",
+              "RelativeDocumentMoniker": "loginDb\\Garbage\\INavigationService.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\Garbage\\INavigationService.cs",
+              "RelativeToolTip": "loginDb\\Garbage\\INavigationService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T12:39:32.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "loginDb\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "D:\\\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD\\2024\u05D1 \u05E1\u05D3\u05E0\u05D4 \u05D1\u05DE\u05D5\u05E0\u05D7\u05D4 \u05E2\u05E6\u05DE\u05D9\u05DD\\\u05E4\u05E8\u05D5\u05D9\u05E7\u05D8 \u05D2\u05DE\u05E8 - Peace Of Mind\\V2 \u05E0\u05D9\u05E1\u05D5\u05DF \u05DC\u05E0\u05D9\u05D5\u05D5\u05D8\\loginDb\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "loginDb\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAnwLQAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T12:14:11.93Z"
             }
           ]
         }
