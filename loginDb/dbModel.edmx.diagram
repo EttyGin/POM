@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1966e6cd885f444b8d54a0c4c669af93" Name="Diagram1">
-        <EntityTypeShape EntityType="dbModel.Client" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbModel.Meeting" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbModel.Payer" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Client" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" FillColor="BlueViolet" />
+        <EntityTypeShape EntityType="dbModel.Meeting" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" FillColor="Cyan" />
+        <EntityTypeShape EntityType="dbModel.Payer" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="dbModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="dbModel.UserAccount" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="dbModel.FK_ClientMeeting" ManuallyRouted="false" />

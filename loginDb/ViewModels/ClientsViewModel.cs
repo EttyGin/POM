@@ -18,6 +18,10 @@ using System.Windows;
 using System.Linq.Expressions;
 using FontAwesome.Sharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+<<<<<<< HEAD
+=======
+using System.Data.Entity.Infrastructure;
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 
 namespace loginDb.ViewModels
 {
@@ -25,15 +29,17 @@ namespace loginDb.ViewModels
     {
         //Fields
         public ObservableCollection<Client> _lstClients;
+<<<<<<< HEAD
 
         private ObservableCollection<Client> _filteredClients;
 
+=======
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 
-        public enum EditMode { Add, Edit }
+        private ObservableCollection<Client> _filteredClients;
 
-        private string _errorMessage;
+        private string _errorMessage = string.Empty;
         private bool _isViewVisible = true;
-
 
         private IUserRepository userRepository;
 
@@ -41,6 +47,8 @@ namespace loginDb.ViewModels
 
 
         private string _searchText;
+
+        //Properties
         public string SearchText
         {
             get { return _searchText; }
@@ -48,11 +56,18 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
+<<<<<<< HEAD
                 UpdateFilteredClients();
             }
         }
 
         //Properties
+=======
+                //UpdateFilteredClients();
+            }
+        }
+
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
         public ObservableCollection<Client> LstClients
         {
             get
@@ -64,7 +79,11 @@ namespace loginDb.ViewModels
             {
                 _lstClients = value;
                 OnPropertyChanged(nameof(LstClients));
+<<<<<<< HEAD
                 UpdateFilteredClients();
+=======
+               // UpdateFilteredClients();
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
             }
         }
 
@@ -115,13 +134,19 @@ namespace loginDb.ViewModels
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
         public ICommand ShowMeetingsCommand { get; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 
         //Constructor
         public ClientsViewModel()
         {
             userRepository = new UserRepository();
+<<<<<<< HEAD
     //        _navigationService = navigationService;
+=======
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 
             ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand);
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand);
@@ -135,13 +160,21 @@ namespace loginDb.ViewModels
         private void LoadClients(Expression<Func<Client, bool>> predicate)
         {
             if (!(predicate is null))
+<<<<<<< HEAD
                 LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(predicate));
+=======
+                LstClients = new ObservableCollection<Client>(userRepository.GetWhere(predicate));
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
             else
                 LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
             
             FilteredClients = new ObservableCollection<Client>(LstClients);
         }
+<<<<<<< HEAD
         private void UpdateFilteredClients()
+=======
+/*        private void UpdateFilteredClients()
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
         {
             if (string.IsNullOrWhiteSpace(_searchText))
             {
@@ -154,11 +187,19 @@ namespace loginDb.ViewModels
                 FilteredClients = new ObservableCollection<Client>(filtered);
             }
         }
+<<<<<<< HEAD
 
         private void ExecuteShowAddCommand(object obj)
         {
             AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
             addClientWin.Show();
+=======
+*/
+        private void ExecuteShowAddCommand(object obj)
+        {
+            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
+            addClientWin.ShowDialog();
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
             LoadClients(null);
             }
 
@@ -183,12 +224,16 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowMeetingsCommand(object obj)
         {
+<<<<<<< HEAD
             /*    Main.CurrentChildView = new MeetingsViewModel();
                 Main.Caption = "Meetings";
                 Main.Icon = IconChar.Couch;
           */
             //         _navigationService.NavigateTo(new MeetingsViewModel(_navigationService));
 
+=======
+            IsViewVisible = false;
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
         }
 
         private void ExecuteDeleteCommand(object obj)
@@ -200,8 +245,17 @@ namespace loginDb.ViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                userRepository.Remove(toRemove, "Id");
-                LstClients.Remove(toRemove);
+                try
+                {
+                    userRepository.Remove(toRemove, "Id");
+                    LstClients.Remove(toRemove);
+                }
+                catch
+                {
+                    ErrorMessage = $"The client {name} cannot be deleted because it is active";
+                    MessageBox.Show(ErrorMessage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ErrorMessage = string.Empty;
+                }
 
             }
             LoadClients(null);

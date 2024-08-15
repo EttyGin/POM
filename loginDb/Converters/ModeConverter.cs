@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using static loginDb.ViewModels.ClientsViewModel;
+using static loginDb.ViewModels.ViewModelBase;
 
 namespace loginDb.Converters
 {
@@ -20,22 +20,13 @@ namespace loginDb.Converters
                 switch (mode)
                 {
                     case EditMode.Add:
-                        return elementName == "TextBlock" ? "Add A CLIENT" : "Add";
+                        return $"ADD A {elementName}";
                     case EditMode.Edit:
-                        return elementName == "TextBlock" ? "UPDATE A CLIENT" : "Update";
+                        return $"UPDATE A {elementName}";
                     default:
                         return "Unknown Mode";
                 }
-/*
-                {
-                    case EditMode.Add:
-                        return "Add The Client";
-                    case EditMode.Edit:
-                        return "Update The Client";
-                    default:
-                        return "Unknown Mode";
-                }
-    */        }
+            }
             return value;
         }
 

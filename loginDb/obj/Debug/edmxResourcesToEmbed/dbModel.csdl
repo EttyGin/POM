@@ -17,6 +17,7 @@
     <Key>
       <PropertyRef Name="Number" />
       <PropertyRef Name="ClientId" />
+      <PropertyRef Name="UserId" />
     </Key>
     <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />

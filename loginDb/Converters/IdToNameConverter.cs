@@ -21,9 +21,22 @@ namespace loginDb.Converters
             {
                 if (value is int id)
                 {
+
                     userRepository = new UserRepository();
-                    Payer payer = (Payer)userRepository.GetById(id, "Payer");
-                    return payer?.Pname ?? " ";
+                    switch (parameter.ToString())
+                    {
+                        case "Client":
+                            {
+                                Client clnt = (Client)userRepository.GetById(id, "Client");
+                                return clnt?.Cname ?? " ";
+                            }
+                        case "Payer":
+                            {
+                                Payer pyr = (Payer)userRepository.GetById(id, "Payer");
+                                return pyr?.Pname ?? " ";
+                            }
+                    }
+                   
                 }
                 return null;
             }

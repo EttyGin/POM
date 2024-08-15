@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Cname" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BirthDate" Type="datetime" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="10" Nullable="false" />
@@ -19,9 +19,10 @@
         <EntityType Name="Meeting">
           <Key>
             <PropertyRef Name="Number" />
+            <PropertyRef Name="UserId" />
             <PropertyRef Name="ClientId" />
           </Key>
-          <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Summary" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
@@ -42,7 +43,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -57,7 +58,7 @@
           <Property Name="DisplayName" Type="nvarchar(max)" />
           <Property Name="ProfilePic" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_ClientMeeting">
+        <Association Name="FK_Meeting_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
           <ReferentialConstraint>
@@ -69,7 +70,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MeetingUser">
+        <Association Name="FK_Meeting_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,11 +112,11 @@
           <EntitySet Name="Payer" EntityType="Self.Payer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ClientMeeting" Association="Self.FK_ClientMeeting">
+          <AssociationSet Name="FK_Meeting_Client" Association="Self.FK_Meeting_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Meeting" EntitySet="Meeting" />
           </AssociationSet>
-          <AssociationSet Name="FK_MeetingUser" Association="Self.FK_MeetingUser">
+          <AssociationSet Name="FK_Meeting_User" Association="Self.FK_Meeting_User">
             <End Role="User" EntitySet="User" />
             <End Role="Meeting" EntitySet="Meeting" />
           </AssociationSet>
@@ -149,6 +150,7 @@
           <Key>
             <PropertyRef Name="Number" />
             <PropertyRef Name="ClientId" />
+            <PropertyRef Name="UserId" />
           </Key>
           <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
