@@ -123,7 +123,11 @@
         <Setter Property="Height" Value="16"/>
     </Style>
 
+<<<<<<< HEAD
+    <!--Control bar button-->
+=======
     <!--Actions bar button-->
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
     <Style x:Key="ActionsButton" TargetType="Button">
         <!--Normal button style-->
         <Setter Property="Background" Value="Transparent"/>
@@ -142,7 +146,11 @@
         <Style.Triggers>
             <!--Button Style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
+<<<<<<< HEAD
+                <Setter Property="Background" Value="{StaticResource color2}"/>
+=======
                 <Setter Property="Background" Value="{StaticResource plainTextColor1}"/>
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>
         </Style.Triggers>

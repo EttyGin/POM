@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
-D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V2 ניסון לניווט\loginDb\obj\Debug\
 loginDb
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V2 ניסון לניווט\loginDb\App.xaml
+11-2094554301
+21471617169
+42-1386517965
+22301021232
+Converters\DateToAgeConverter.xaml;CustomControls\BindablePasswordBox.xaml;Garbage\CommandDataGridRow.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\AddOrEditClientView.xaml;View\MeetingsView.xaml;View\ClientsView.xaml;View\HomeView.xaml;View\LoginView.xaml;View\MainView.xaml;
+=======
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\App.xaml
 17-1266887899
 21471617169
 60235477104
 21-978855339
+<<<<<<< HEAD
 Garbage\DateToAgeConverter.xaml;CustomControls\BindablePasswordBox.xaml;Garbage\CommandDataGridRow.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\AddOrEditPaymentView.xaml;View\AddOrEditPayerView.xaml;View\AddOrEditMeetingView.xaml;View\AddOrEditClientView.xaml;View\PaymentsView.xaml;View\ReportsView.xaml;View\PayersView.xaml;View\MeetingsView.xaml;View\ClientsView.xaml;View\HomeView.xaml;View\LoginView.xaml;View\MainView.xaml;
+=======
+Garbage\DateToAgeConverter.xaml;CustomControls\BindablePasswordBox.xaml;Garbage\CommandDataGridRow.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\AddOrEditPayerView.xaml;View\AddOrEditMeetingView.xaml;View\AddOrEditClientView.xaml;View\PayersView.xaml;View\MeetingsView.xaml;View\ClientsView.xaml;View\HomeView.xaml;View\LoginView.xaml;View\MainView.xaml;
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
+>>>>>>> a897a612b33cf9c9d4da0052c0a8b4525411def8
 
-False
+True
 

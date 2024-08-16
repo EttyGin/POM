@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+﻿using loginDb.Models;
+=======
 ﻿using loginDb;
 using loginDb.Models;
 using loginDb.Repositories;
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +28,10 @@ namespace loginDb.ViewModels
 {
     public class MeetingsViewModel : ViewModelBase
     {
+<<<<<<< HEAD
+        public MeetingsViewModel()
+        {
+=======
         //Fields
         public ObservableCollection<Meeting> _lstMeetings;
 
@@ -212,6 +220,7 @@ namespace loginDb.ViewModels
 
             }
             LoadMeetings(null);
+>>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
         }
     }
 }
