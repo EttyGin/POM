@@ -26,6 +26,7 @@ namespace loginDb
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public int Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Meeting> Meeting { get; set; }

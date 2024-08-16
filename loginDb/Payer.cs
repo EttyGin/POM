@@ -18,6 +18,7 @@ namespace loginDb
         public Payer()
         {
             this.Client = new HashSet<Client>();
+            this.Payment = new HashSet<Payment>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace loginDb
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payment> Payment { get; set; }
     }
 }

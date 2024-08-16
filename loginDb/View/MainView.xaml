@@ -33,6 +33,12 @@
         <DataTemplate DataType="{x:Type viewModel:PayersViewModel}">
             <local:PayersView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PaymentsViewModel}">
+            <local:PaymentsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ReportsViewModel}">
+            <local:ReportsView/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
     <Window.Visibility>
@@ -118,14 +124,14 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color5}"
-                        Command="{Binding ShowCustomerViewCommand}">
+                        Command="{Binding ShowPaymentsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Payments" Style="{StaticResource menuButtonText}"/>
                             <fa:IconImage Icon="CreditCard" Style="{StaticResource menuButtonIcon}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color6}"
-                        Command="{Binding ShowCustomerViewCommand}">
+                        Command="{Binding ShowReportsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Reports" Style="{StaticResource menuButtonText}"/>
                             <fa:IconImage Icon="ChartPie" Style="{StaticResource menuButtonIcon}" RenderTransformOrigin="0.618,0.5"/>

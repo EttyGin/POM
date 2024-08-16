@@ -93,7 +93,7 @@ namespace loginDb.Repositories
                 }
             }
         }
-
+        
         public void Add<T>(T entity) where T : class
         {
             using (var db = new POMdbEntities())
@@ -169,7 +169,8 @@ namespace loginDb.Repositories
                                     };
                                     break;
                                 }
-                            case "Client": {
+                            case "Client":
+                                {
                                     ans = new Client()
                                     {
                                         Id = int.Parse(reader[0].ToString()),
@@ -178,6 +179,20 @@ namespace loginDb.Repositories
                                         Phone = reader[3].ToString(),
                                         Email = reader[4].ToString(),
                                         PayerId = short.Parse(reader[5].ToString()),
+                                    };
+                                    break;
+                                }
+                            case "User":
+                                {
+                                    ans = new User()
+                                    {
+                                        Id = int.Parse(reader[0].ToString()),
+                                        Username = reader[1].ToString(),
+                                        Password = string.Empty,
+                                        Name = reader[3].ToString(),
+                                        LastName = reader[4].ToString(),
+                                        Email = reader[5].ToString(),
+                                        Price = int.Parse(reader[6].ToString())
                                     };
                                     break;
                                 }
@@ -214,11 +229,22 @@ namespace loginDb.Repositories
                             Name = reader[3].ToString(),
                             LastName = reader[4].ToString(),
                             Email = reader[5].ToString(),
+                            Price = int.Parse(reader[6].ToString())
                         };
                     }
                 }
             }
             return user;
+        }
+
+        public int GetPricePerClient(int cid)
+        {
+            using (var db = new POMdbEntities())
+            {
+                Meeting m = db.Meetings.Where(me => me.ClientId == cid).ToList().FirstOrDefault();
+                User u = (User)GetById(m.UserId, "User");
+                return u.Price;
+            }
         }
 
         public IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class
@@ -286,6 +312,26 @@ namespace loginDb.Repositories
             return lastAppointmentDate;
         }
 
+        public async Task<(int NumOfClients, int NumOfMeetings, int Revenue, int Receivable)> LoadAllAsync()
+        {
+            using (var db = new POMdbEntities())
+            {
+                int NumOfClients = await db.Clients.CountAsync();
+                int NumOfMeetings = await db.Meetings.CountAsync();
+
+                // סכום הפגישות עם סטטוס PAID
+                int PaidAmount = await db.Meetings
+                                    .Where(m => m.Status == Status.paid)
+                                    .CountAsync(); 
+
+                // מספר הפגישות עם סטטוס UNPAID
+                int UnPaidAmount = await db.Meetings
+                                     .Where(m => m.Status == Status.unpaid)
+                                     .CountAsync();
+
+                return (NumOfClients, NumOfMeetings, PaidAmount, UnPaidAmount);
+            }
+        }
 
 
         /*      public void Remove2(int id)

@@ -34,6 +34,17 @@
     <Property Name="ContactEmail" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="TotalPayment" Type="smallint" Nullable="false" />
   </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsOpen" Type="bit" Nullable="false" />
+    <Property Name="ClientID" Type="int" />
+    <Property Name="PayerID" Type="int" />
+    <Property Name="Debt" Type="int" Nullable="false" />
+    <Property Name="LastUpdate" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
@@ -44,6 +55,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserAccount">
     <Key>
@@ -89,6 +101,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Payment_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Payer">
+    <End Role="Payer" Type="Self.Payer" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserAccountUser">
     <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -105,6 +141,7 @@
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payer" EntityType="Self.Payer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Meeting_Client" Association="Self.FK_Meeting_Client">
@@ -118,6 +155,14 @@
     <AssociationSet Name="FK_PayerClient" Association="Self.FK_PayerClient">
       <End Role="Payer" EntitySet="Payer" />
       <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Client" Association="Self.FK_Payment_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Payer" Association="Self.FK_Payment_Payer">
+      <End Role="Payer" EntitySet="Payer" />
+      <End Role="Payment" EntitySet="Payment" />
     </AssociationSet>
     <AssociationSet Name="FK_UserAccountUser" Association="Self.FK_UserAccountUser">
       <End Role="UserAccount" EntitySet="UserAccount" />

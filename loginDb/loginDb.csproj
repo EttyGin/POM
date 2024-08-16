@@ -77,11 +77,15 @@
     <Compile Include="Client.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToFalseConverter.cs" />
+    <Compile Include="Converters\BooleanToTrueConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\TextToFontSizeConverter.cs" />
     <Compile Include="Converters\IdToNameConverter.cs" />
     <Compile Include="Converters\ModeConverter.cs" />
     <Compile Include="Converters\DateToAgeConverter.cs" />
     <Compile Include="Converters\ModeToVisibilityConverter.cs" />
+    <Compile Include="Converters\ToTargetConverter.cs" />
     <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -111,7 +115,11 @@
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Garbage\UserAccountModel.cs" />
     <Compile Include="Garbage\UserModel.cs" />
+    <Compile Include="Models\MyDataTemplateSelector.cs" />
     <Compile Include="Payer.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Prog.cs" />
@@ -126,9 +134,12 @@
     <Compile Include="UserAccount.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddOrEditPaymentViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditPayerViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditMeetingViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditClientViewModel.cs" />
+    <Compile Include="ViewModels\PaymentsViewModel.cs" />
+    <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="ViewModels\PayersViewModel.cs" />
     <Compile Include="ViewModels\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\ClientsViewModel.cs" />
@@ -137,6 +148,9 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="View\AddOrEditPaymentView.xaml.cs">
+      <DependentUpon>AddOrEditPaymentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddOrEditPayerView.xaml.cs">
       <DependentUpon>AddOrEditPayerView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +159,12 @@
     </Compile>
     <Compile Include="View\AddOrEditClientView.xaml.cs">
       <DependentUpon>AddOrEditClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaymentsView.xaml.cs">
+      <DependentUpon>PaymentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReportsView.xaml.cs">
+      <DependentUpon>ReportsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PayersView.xaml.cs">
       <DependentUpon>PayersView.xaml</DependentUpon>
@@ -188,6 +208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddOrEditPaymentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddOrEditPayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -199,6 +223,14 @@
     <Page Include="View\AddOrEditClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaymentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ReportsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PayersView.xaml">
       <Generator>MSBuild:Compile</Generator>

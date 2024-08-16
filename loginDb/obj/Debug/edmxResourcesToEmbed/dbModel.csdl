@@ -12,6 +12,7 @@
     <Property Name="PayerId" Type="Int32" />
     <NavigationProperty Name="Meeting" Relationship="Self.FK_ClientMeeting" FromRole="Client" ToRole="Meeting" />
     <NavigationProperty Name="Payer" Relationship="Self.FK_PayerClient" FromRole="Client" ToRole="Payer" />
+    <NavigationProperty Name="Payment" Relationship="dbModel.FK_Payment_Client" FromRole="Client" ToRole="Payment" />
   </EntityType>
   <EntityType Name="Meeting">
     <Key>
@@ -38,6 +39,7 @@
     <Property Name="ContactEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="TotalPayment" Type="Int16" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="Self.FK_PayerClient" FromRole="Payer" ToRole="Client" />
+    <NavigationProperty Name="Payment" Relationship="dbModel.FK_Payment_Payer" FromRole="Payer" ToRole="Payment" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -51,6 +53,7 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Meeting" Relationship="Self.FK_MeetingUser" FromRole="User" ToRole="Meeting" />
     <NavigationProperty Name="UserAccount" Relationship="Self.FK_UserAccountUser" FromRole="User" ToRole="UserAccount" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="UserAccount">
     <Key>
@@ -131,10 +134,56 @@
       <End Role="UserAccount" EntitySet="UserAccount" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <EntitySet Name="Payment" EntityType="dbModel.Payment" />
+    <AssociationSet Name="FK_Payment_Client" Association="dbModel.FK_Payment_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Payer" Association="dbModel.FK_Payment_Payer">
+      <End Role="Payer" EntitySet="Payer" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
   </EntityContainer>
   <EnumType Name="Status">
     <Member Name="planned" />
     <Member Name="unpaid" />
     <Member Name="paid" />
   </EnumType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" />
+    <Property Name="PayerID" Type="Int32" />
+    <Property Name="Debt" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="dbModel.FK_Payment_Client" FromRole="Payment" ToRole="Client" />
+    <NavigationProperty Name="Payer" Relationship="dbModel.FK_Payment_Payer" FromRole="Payment" ToRole="Payer" />
+    <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <Association Name="FK_Payment_Client">
+    <End Type="dbModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="dbModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Payer">
+    <End Type="dbModel.Payer" Role="Payer" Multiplicity="0..1" />
+    <End Type="dbModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

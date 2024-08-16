@@ -45,12 +45,12 @@
                 </TextBox>
                 <Button
                             Command="{Binding SearchCommand}"                            
-                            Content="Search by Id"                            
+                            Content="Search"                            
                             FontSize="13"
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             BorderThickness="0"
-                            Foreground="{DynamicResource panelColor}" Width="90">
+                            Foreground="{DynamicResource panelColor}" Width="90" Click="Button_Click">
 
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">

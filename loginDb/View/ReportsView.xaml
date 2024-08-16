@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="loginDb.View.ReportsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:loginDb.View" 
+             xmlns:converters="clr-namespace:loginDb.Converters" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:viewmodels="clr-namespace:loginDb.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ReportsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <converters:TextToFontSizeConverter x:Key="TextToFontSizeConverter" />
+        <converters:BooleanToTrueConverter x:Key="BooleanToTrueConverter" />
+        <converters:BooleanToFalseConverter x:Key="BooleanToFalseConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+        <Border Grid.Row="1"
+            CornerRadius="10" 
+            Padding="10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel>
+                <Expander Header=" General" FontSize="25" FontFamily="Calibri" Background="{StaticResource color6}" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
+                    <Grid VerticalAlignment="Top" Background="#FF23105C">
+                        <Grid.Resources>
+                            <Storyboard x:Key="shakeAnimation">
+                            </Storyboard>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Ellipse Grid.Column="0" Style ="{StaticResource reportsAnimation}" Fill="{StaticResource color7}" Width="110" Height="100" Margin="0,10,0,0" />
+                        <TextBlock Grid.Column="0" Text="{Binding NumOfClients}"  FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{Binding Receivable, Converter={StaticResource TextToFontSizeConverter}}" Margin="0,0,0,-5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Clients" FontSize="30" TextAlignment="Center" Foreground="{StaticResource color7}"/>
+
+                        <Ellipse Grid.Column="1" Style ="{StaticResource reportsAnimation}" Fill="{StaticResource color8}" Width="110" Height="100" Margin="0,10,0,0"/>
+                        <TextBlock Grid.Column="1" Text="{Binding NumOfMeetings}"  FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{Binding Receivable, Converter={StaticResource TextToFontSizeConverter}}" Margin="0,0,0,-5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Meetings" FontSize="30" TextAlignment="Center" Foreground="{StaticResource color8}"/>
+
+                        <Ellipse Grid.Column="2" Style ="{StaticResource reportsAnimation}" Fill="{StaticResource color9}" Width="110" Height="100" Margin="0,10,0,0"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Revenue}" FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="{Binding Receivable, Converter={StaticResource TextToFontSizeConverter}}" Margin="0,0,0,-5"/>
+                        <TextBlock Grid.Column="2" Text="₪" FontSize="20" FontWeight="Heavy" TextAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Revenue" FontSize="28" TextAlignment="Center" Foreground="{StaticResource color9}" />
+
+                        <Ellipse Grid.Column="3" Style ="{StaticResource reportsAnimation}" Fill="{StaticResource color10}" Width="110" Height="100" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="ReceivableText" Grid.Column="3" Text="{Binding Receivable}" FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                              FontSize="{Binding Receivable, Converter={StaticResource TextToFontSizeConverter}}" Margin="0,0,0,-5">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="3" Text="₪" FontSize="20" FontWeight="Heavy" FontFamily="Calibri"  TextAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Receivable" FontSize="29" FontFamily="Calibri" TextAlignment="Center" Foreground="{StaticResource color10}"/>
+
+
+                    </Grid>
+                </Expander>
+                <Expander Header=" Clients" Background="{StaticResource color2}" FontSize="25" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
+                    <ItemsControl IsHitTestVisible="True" ItemsSource="{Binding FilteredClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Background="{StaticResource panelColor}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="{Binding ToShow}" Width="110" Height="100" Margin="10" Command="{Binding DataContext.ChangeShowCommand}" CommandParameter="{Binding}">
+                                        <Button.Background>
+                                            <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                                <GradientStop Color="#784DFD" Offset="0"/>
+                                                <GradientStop Color="#FF4726AB" Offset="1"/>
+                                            </RadialGradientBrush>
+                                        </Button.Background>
+                                    </Button>
+
+                                    <Label Content="{Binding ToShow}" FontWeight="Heavy" Foreground="{DynamicResource titleColor2}"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    </Label>
+                                </Grid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        
+                    </ItemsControl>
+                    <!--DataGrid x:Name="datagrid" ItemsSource="{Binding FilteredClients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="0,0,0,10"
+                      GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
+                      AutoGenerateColumns="False" Background="{StaticResource panelColor}" 
+                      BorderThickness="0" RowBackground="{StaticResource panelColor}"
+                      ColumnWidth="Auto" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                      <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                      <Button Content="{Binding ToShow}" Width="110" Height="100" Margin="10" Command="{Binding DataContext.ChangeShowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                            <Button.Background>
+                                                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                                    <GradientStop Color="#784DFD" Offset="0"/>
+                                                    <GradientStop Color="#FF4726AB" Offset="1"/>
+                                                </RadialGradientBrush>
+                                            </Button.Background>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid-->
+
+
+                </Expander>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</UserControl>

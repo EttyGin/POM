@@ -5,17 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
-using static loginDb.ViewModels.MeetingsViewModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 
 namespace loginDb.ViewModels
 {
@@ -29,6 +27,7 @@ namespace loginDb.ViewModels
 
         public int Number { get; set; }
         public DateTime Date { get; set; }
+        public string Hour { get; set; }
         public string Summary { get; set; }
         public Status Status { get; set; }
 
@@ -122,12 +121,18 @@ namespace loginDb.ViewModels
                         ErrorMessage = $"Meeting date must be later than the previous meeting";
                         return false;
                     }
-           /*         if (DateTime.Today < Date) possible meeting in feuture? 
+                 }
+                else if (Hour != null)
+                {
+                    if (!DateTime.TryParseExact(Hour, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                     {
-                        ErrorMessage = $"Incorrect Date";
+                        ErrorMessage = $"Incorrect Hour";
                         return false;
+
                     }
-            */    }
+
+                }
+
                 else if (Summary == null || Summary.Length > 100)
                 {
                     ErrorMessage = $"Incorrect Summary";
@@ -155,12 +160,7 @@ namespace loginDb.ViewModels
                         ErrorMessage = $"Meeting date must be later than the previous meeting";
                         return false;
                     }
-         /*          if (DateTime.Today < SelectedMeeting.Date) // possible?
-                    {
-                        ErrorMessage = $"Incorrect Date";
-                        return false;
-                    }
-            */    }
+             }
                 else if (SelectedMeeting.Summary == null || SelectedMeeting.Summary.Length > 100)
                 {
                     ErrorMessage = $"Incorrect Summary";
@@ -186,6 +186,12 @@ namespace loginDb.ViewModels
                     {
                         User user = userRepository.GetByUsername("admin");
                         Client client = (Client)userRepository.GetById(ClientId, "Client");
+
+                        if (DateTime.TryParseExact(Hour, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedTime))
+                        {
+                            Date = new DateTime(Date.Year, Date.Month, Date.Day, parsedTime.Hour, parsedTime.Minute, 0);
+                        }
+
                         Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Status, UserId = UserId, ClientId = ClientId };//,User = user, Client = client};
                      //   Meeting m  = new Meeting {Number = 1, Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
                         userRepository.Add(m);
@@ -206,6 +212,7 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
+                        
                         SelectedMeeting.ClientId = SpeClientId;
                         userRepository.Edit(SelectedMeeting);
 

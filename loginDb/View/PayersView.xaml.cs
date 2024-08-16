@@ -55,5 +55,10 @@ namespace loginDb.View
                 column.Width = width;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

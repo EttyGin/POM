@@ -23,9 +23,11 @@ namespace loginDb.Models
         void RemoveMeeting(int userId, int clientId, int num);
 
         Object GetById(int id, string tableName);
+        int GetPricePerClient(int cid); 
         User GetByUsername(string username);
         IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class;
         DateTime GetMeetingDateForClient(int clientId, int number);
+        Task<(int NumOfClients, int NumOfMeetings, int Revenue, int Receivable)> LoadAllAsync();
         /*      
 IEnumerable<Client> GetAllClients();
 IEnumerable<Payer> GetAllPayers();

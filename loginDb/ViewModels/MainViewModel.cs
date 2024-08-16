@@ -114,6 +114,8 @@ namespace loginDb.ViewModels
         public ICommand ShowClientsViewCommand { get; }
         public ICommand ShowMeetingsViewCommand { get; }
         public ICommand ShowPayersViewCommand { get; }
+        public ICommand ShowReportsViewCommand { get; }
+        public ICommand ShowPaymentsViewCommand { get; }
 
         public ICommand LogoutCommand { get; }
 
@@ -129,6 +131,8 @@ namespace loginDb.ViewModels
             ShowClientsViewCommand = new ViewModelCommand(ExecuteShowClientViewCommand);
             ShowMeetingsViewCommand = new ViewModelCommand(ExecuteShowMeetingsViewCommand);
             ShowPayersViewCommand = new ViewModelCommand(ExecuteShowPayersViewCommand);
+            ShowReportsViewCommand = new ViewModelCommand(ExecuteShowReportsViewCommand);
+            ShowPaymentsViewCommand = new ViewModelCommand(ExecuteShowPaymentsViewCommand);
             LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand);
 
             //Default view
@@ -191,6 +195,19 @@ namespace loginDb.ViewModels
             CurrentChildView = new PayersViewModel();
             Caption = "Payers";
             Icon = IconChar.HandHoldingHeart;
+        }
+
+        private void ExecuteShowPaymentsViewCommand(object obj)
+        {
+            CurrentChildView = new PaymentsViewModel();
+            Caption = "Payments";
+            Icon = IconChar.HandHoldingHeart;
+        }
+        private void ExecuteShowReportsViewCommand(object obj)
+        {
+            CurrentChildView = new ReportsViewModel();
+            Caption = "Reports";
+            Icon = IconChar.ChartPie;
         }
 
         

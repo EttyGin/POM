@@ -112,6 +112,13 @@ AllowsTransparency="True">
                     <Label Content="Date"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
                     <DatePicker Height="25" SelectedDate="{Binding Date}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <DatePicker Height="25" SelectedDate="{Binding SelectedMeeting.Date}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <Label Content="Hour"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
+                    <TextBox Height="25" Text="{Binding Hour, StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" 
+                        Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"
+                             Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}"/>
+                    <TextBox Height="25" Text="{Binding SelectedMeeting.Date, StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" 
+                         Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"
+                         Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}"/>
                     <Label Content="Summary"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
                     <TextBox Height="25" Text="{Binding Summary}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
                     <TextBox Height="25" Text="{Binding SelectedMeeting.Summary}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
