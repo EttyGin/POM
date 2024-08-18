@@ -21,12 +21,12 @@ namespace loginDb.Models
         void Add<T>(T entity) where T : class;
         void Remove<T>(T entity, string property) where T : class;
         void RemoveMeeting(int userId, int clientId, int num);
-
         Object GetById(int id, string tableName);
-        int GetPricePerClient(int cid); 
+        int GetUserPrice(int cid); 
         User GetByUsername(string username);
         IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class;
         DateTime GetMeetingDateForClient(int clientId, int number);
+        int GetDebtById (int id, bool IsClient);
         Task<(int NumOfClients, int NumOfMeetings, int Revenue, int Receivable)> LoadAllAsync();
         /*      
 IEnumerable<Client> GetAllClients();

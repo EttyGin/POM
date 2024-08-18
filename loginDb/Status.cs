@@ -15,6 +15,7 @@ namespace loginDb
     {
         planned = 0,
         unpaid = 1,
-        paid = 2
+        partiallyPaid = 2,
+        paid = 3
     }
 }

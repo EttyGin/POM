@@ -11,8 +11,7 @@
              SizeChanged="UserControl_SizeChanged">
     <UserControl.Resources>
         <converters:TextToFontSizeConverter x:Key="TextToFontSizeConverter" />
-        <converters:BooleanToTrueConverter x:Key="BooleanToTrueConverter" />
-        <converters:BooleanToFalseConverter x:Key="BooleanToFalseConverter" />
+        <converters:BooleanToStatusConverter x:Key="BooleanToTrueConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
@@ -72,7 +71,7 @@
                     </Grid>
                 </Expander>
                 <Expander Header=" Clients" Background="{StaticResource color2}" FontSize="25" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
-                    <ItemsControl IsHitTestVisible="True" ItemsSource="{Binding FilteredClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
+                    <ItemsControl ItemsSource="{Binding FilteredClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Background="{StaticResource panelColor}" />
@@ -80,7 +79,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <!--Grid>
                                     <Button Content="{Binding ToShow}" Width="110" Height="100" Margin="10" Command="{Binding DataContext.ChangeShowCommand}" CommandParameter="{Binding}">
                                         <Button.Background>
                                             <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
@@ -94,36 +93,66 @@
                                         HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     </Label>
                                 </Grid>
+                                <Button Width="120" Height="120">
+                                    <Button.Background>
+                                        <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="#784DFD" Offset="0"/>
+                                            <GradientStop Color="#FF4726AB" Offset="1"/>
+                                        </RadialGradientBrush>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <StackPanel>
+                                            <Label Content="{Binding Name}"  Height="30" Width="Auto" FontWeight="Heavy" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="15" />
 
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        
-                    </ItemsControl>
-                    <!--DataGrid x:Name="datagrid" ItemsSource="{Binding FilteredClients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="0,0,0,10"
-                      GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
-                      AutoGenerateColumns="False" Background="{StaticResource panelColor}" 
-                      BorderThickness="0" RowBackground="{StaticResource panelColor}"
-                      ColumnWidth="Auto" 
-                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                      <DataGrid.Columns>
-                            <DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                      <Button Content="{Binding ToShow}" Width="110" Height="100" Margin="10" Command="{Binding DataContext.ChangeShowCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
-                                            <Button.Background>
+                                            <Grid Width="120" Height="90" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1.2*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Label  Grid.Row="0" Grid.Column="0" Content="Meetings:"  Width="Auto" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Left"/>
+                                                <Label Grid.Row="0" Grid.Column="1" Content="{Binding MeetingsAmount}"  Width="Auto" Foreground="{DynamicResource titleColor2}"/>
+                                                <Label Grid.Row="1" Grid.Column="0" Content="Debt:"  Width="Auto" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Left"/>
+                                                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Debt}" Width="Auto" Foreground="{DynamicResource titleColor2}"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button-->
+                                <StackPanel Margin="10">
+                                    <Grid>
+                                        <Border  Style ="{StaticResource reportsBorder}"  CornerRadius="30" Width="120" Height="130" >
+                                            <Border.Background>
                                                 <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
                                                     <GradientStop Color="#784DFD" Offset="0"/>
                                                     <GradientStop Color="#FF4726AB" Offset="1"/>
                                                 </RadialGradientBrush>
-                                            </Button.Background>
-                                        </Button>
+                                            </Border.Background>
+                                        </Border>
 
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-
-                        </DataGrid.Columns>
-                    </DataGrid-->
+                                        <Grid Width="110" Height="130" Margin="0,0,0,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.7*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="0.7*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" FontSize="18" Margin="0,0,0,-10" Content="Meetings:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                            <Label Grid.Row="1" FontSize="25"  FontWeight="Medium"  Margin="0,-5,0,-10" Content="{Binding MeetingsAmount}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                                            <Label Grid.Row="2" FontSize="18" Margin="0,-5,0,-10" Content="Debt:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                            <Label Grid.Row="3" FontSize="25"  FontWeight="Medium" Content="{Binding Debt}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource color2}" FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" Width="120"
+                                        FontSize="22" Margin="0,0,0,5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        
+                    </ItemsControl>
 
 
                 </Expander>

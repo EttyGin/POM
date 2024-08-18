@@ -102,3 +102,6 @@ D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - 
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\PaymentsView.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPaymentView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPaymentView.baml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\Prism.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\Prism.pdb
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\Prism.xml

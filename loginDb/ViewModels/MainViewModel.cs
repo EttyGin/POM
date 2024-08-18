@@ -121,37 +121,23 @@ namespace loginDb.ViewModels
 
         public ICommand LogoutCommand { get; }
 
-      //  public INavigationService NavigationService => _navigationService;
-
-
-
         public MainViewModel()
         {
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccount();
-<<<<<<< HEAD
-          //  _navigationService = new NavigationService(this);
-=======
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
-
+            
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowClientsViewCommand = new ViewModelCommand(ExecuteShowClientViewCommand);
             ShowMeetingsViewCommand = new ViewModelCommand(ExecuteShowMeetingsViewCommand);
-<<<<<<< HEAD
-=======
             ShowPayersViewCommand = new ViewModelCommand(ExecuteShowPayersViewCommand);
-<<<<<<< HEAD
             ShowReportsViewCommand = new ViewModelCommand(ExecuteShowReportsViewCommand);
             ShowPaymentsViewCommand = new ViewModelCommand(ExecuteShowPaymentsViewCommand);
-=======
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
->>>>>>> a897a612b33cf9c9d4da0052c0a8b4525411def8
             LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand);
 
             //Default view
-            ExecuteShowHomeViewCommand(null);
             LoadCurrentUserData();
+            ExecuteShowHomeViewCommand(null);
         }
 
 
@@ -163,13 +149,10 @@ namespace loginDb.ViewModels
             if (result == MessageBoxResult.Yes)
             {
                 Thread.CurrentPrincipal = null;
-             //   IsViewVisible = false;
-               // CurrentChildView = new LoginViewModel();
-                
+             
                 var loginView = new LoginView();
                 loginView.Show();
 
-                //הפונקציה הזו היא בשביל לאפס את המצב בהתחברות הבאה, ולא שיכנס לאותם נתונים שעזב
                 loginView.IsVisibleChanged += (s, ev) =>
                 {
                     if (loginView.IsVisible == false && loginView.IsLoaded)
@@ -187,7 +170,6 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowClientViewCommand(object obj)
         {
-//            var navigationService = new NavigationService(this);
             CurrentChildView = new ClientsViewModel();
             Caption = "Clients";
             Icon = IconChar.UserGroup;
@@ -201,7 +183,6 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowMeetingsViewCommand(object obj)
         {
-//            var navigationService = new NavigationService(this);
             CurrentChildView = new MeetingsViewModel();
             Caption = "Meetings";
             Icon = IconChar.Couch;

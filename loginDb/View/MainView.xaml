@@ -22,7 +22,7 @@
             <local:HomeView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
-            <local:HomeView/>
+            <local:MainView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ClientsViewModel}">
             <local:ClientsView/>

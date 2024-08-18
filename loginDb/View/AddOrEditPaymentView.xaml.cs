@@ -20,10 +20,10 @@ namespace loginDb.View
     /// </summary>
     public partial class AddOrEditPaymentView : Window
     {
-        public AddOrEditPaymentView(PaymentsViewModel.EditMode mode, Payment p)
+        public AddOrEditPaymentView(PaymentsViewModel.EditMode mode, Payment p, int userId)
         {
             InitializeComponent();
-            AddOrEditPaymentViewModel acvm = new AddOrEditPaymentViewModel (mode, p);
+            AddOrEditPaymentViewModel acvm = new AddOrEditPaymentViewModel (mode, p, userId);
             this.DataContext = acvm;
 
         }

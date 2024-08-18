@@ -123,12 +123,8 @@
             </Border.Background>
 
             <DataGrid x:Name="datagrid" ItemsSource="{Binding FilteredClients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-<<<<<<< HEAD
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="10,0,0,10"
-=======
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="0,0,0,10"
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
-                      GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto" Padding="10,0,0,10"
+                    GridLinesVisibility="None" IsReadOnly="True" IsHitTestVisible="True" 
                       AutoGenerateColumns="False" Background="Transparent" 
                       AlternatingRowBackground="#0A003A" AlternationCount="2" 
                       BorderThickness="0" RowBackground="Transparent"

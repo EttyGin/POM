@@ -123,11 +123,9 @@
         <Setter Property="Height" Value="16"/>
     </Style>
 
-<<<<<<< HEAD
+
     <!--Control bar button-->
-=======
     <!--Actions bar button-->
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
     <Style x:Key="ActionsButton" TargetType="Button">
         <!--Normal button style-->
         <Setter Property="Background" Value="Transparent"/>
@@ -146,16 +144,13 @@
         <Style.Triggers>
             <!--Button Style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
-<<<<<<< HEAD
                 <Setter Property="Background" Value="{StaticResource color2}"/>
-=======
                 <Setter Property="Background" Value="{StaticResource plainTextColor1}"/>
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="reportsAnimation" TargetType="Ellipse">
         <Setter Property="Width" Value="0" />
         <Setter Property="Height" Value="0" />
@@ -166,27 +161,60 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                    From="0" To="110" Duration="0:0:15" SpeedRatio="30" />
+                                From="0" To="110" Duration="0:0:15" SpeedRatio="30" />
                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                    From="0" To="110" Duration="0:0:15" SpeedRatio="30" />
+                                From="0" To="110" Duration="0:0:15" SpeedRatio="30" />
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                    From="0.2" To="1.0" Duration="0:0:10" SpeedRatio="30" />
+                                From="0.2" To="1.0" Duration="0:0:10" SpeedRatio="30" />
                     </Storyboard>
                 </BeginStoryboard>
-                </EventTrigger>
+            </EventTrigger>
 
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                    From="100" To="110" Duration="0:0:15" SpeedRatio="30" />
+                                From="100" To="110" Duration="0:0:15" SpeedRatio="30" />
                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                    From="100" To="110" Duration="0:0:15" SpeedRatio="30" />
-                        
+                                From="100" To="110" Duration="0:0:15" SpeedRatio="30" />
+
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-                
+
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="reportsBorder" TargetType="Border">
+        <Setter Property="Width" Value="0" />
+        <Setter Property="Height" Value="0" />
+        <Setter Property="Opacity" Value="0.2" />
+
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                From="0" To="120" Duration="0:0:15" SpeedRatio="30" />
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                From="0" To="130" Duration="0:0:15" SpeedRatio="30" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                From="0.2" To="1.0" Duration="0:0:10" SpeedRatio="30" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                From="100" To="120" Duration="0:0:15" SpeedRatio="30" />
+                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                From="100" To="130" Duration="0:0:15" SpeedRatio="30" />
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
         </Style.Triggers>
     </Style>
 

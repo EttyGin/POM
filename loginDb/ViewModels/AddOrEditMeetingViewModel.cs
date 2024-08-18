@@ -89,7 +89,7 @@ namespace loginDb.ViewModels
             if (meeting != null)
             {
                 _selectedMeeting = meeting;
-                UserId = userId;
+                UserId = 325746147;/////////////////////////////////////////////////////////// userId;
                 SpeClientId = SelectedMeeting.ClientId;
             }
             else
@@ -191,8 +191,8 @@ namespace loginDb.ViewModels
                         {
                             Date = new DateTime(Date.Year, Date.Month, Date.Day, parsedTime.Hour, parsedTime.Minute, 0);
                         }
-
-                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Status, UserId = UserId, ClientId = ClientId };//,User = user, Client = client};
+                        Status Stat = Date <= DateTime.Now ? Status.planned : Status.unpaid;
+                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Stat, UserId = UserId, ClientId = ClientId };//,User = user, Client = client};
                      //   Meeting m  = new Meeting {Number = 1, Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
                         userRepository.Add(m);
                         

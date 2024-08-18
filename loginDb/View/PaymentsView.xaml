@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:loginDb.View" 
-             xmlns:local1="clr-namespace:loginDb.Converters" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:converters="clr-namespace:loginDb.Converters" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
              xmlns:viewmodels="clr-namespace:loginDb.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PaymentsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              SizeChanged="UserControl_SizeChanged">
 
     <UserControl.Resources>
-        <local1:DateToAgeConverter x:Key="dateToAgeConverter" />
-        <local1:IdToNameConverter x:Key="idToNameConverter" />
-        <local1:ToTargetConverter x:Key="ToTargetConverter" />
+        <converters:DateToAgeConverter x:Key="dateToAgeConverter" />
+        <converters:IdToNameConverter x:Key="idToNameConverter" />
+        <converters:ToTargetConverter x:Key="ToTargetConverter" />
+        <converters:BooleanToStatusConverter x:Key="BooleanToStatusConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -170,7 +171,7 @@
                     <!--DataGridTextColumn Header="ID" Binding="{Binding Id}" /-->
                     <DataGridTextColumn Header="Target" Binding="{Binding Path=., Converter={StaticResource ToTargetConverter}}" />
                     <DataGridTextColumn Header="Debt" Binding="{Binding Debt}"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding IsOpen}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding IsOpen, Converter={StaticResource BooleanToStatusConverter}}"/>
                     <DataGridTextColumn Header="Last-Update" Binding="{Binding LastUpdate}"/>
 
                     <DataGridTemplateColumn Header="Actions">

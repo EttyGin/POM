@@ -123,11 +123,7 @@ namespace loginDb.ViewModels
                     return false;
                 }
                 else if (BirthDate != null) {
-<<<<<<< HEAD
                     int minAge = 5, maxAge = 100;
-=======
-                    int minAge = 0, maxAge = 100;
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
                     DateTime today = DateTime.Today;
                     int age = today.Year - BirthDate.Year;
 
@@ -217,12 +213,6 @@ namespace loginDb.ViewModels
                         Task.Delay(1200).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-<<<<<<< HEAD
-                //            LstClients.Add(c);
-=======
-
-                            //LstClients.Add(c);
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception)
@@ -234,15 +224,6 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        //      Payer p = (Payer)userRepository.GetById(SelectedClient.PayerId.Value, "Payer");
-                        /*         Client newClinet;
-                                 if (SpePayerId == 0)
-                                 {
-                                     newClinet = new Client { Id = SelectedClient.Id, Cname = SelectedClient.Cname, BirthDate = SelectedClient.BirthDate, Phone = SelectedClient.Phone, Email = SelectedClient.Email };
-                                 }
-                                 else
-                                     newClinet = new Client { Id = SelectedClient.Id, Cname = SelectedClient.Cname, BirthDate = SelectedClient.BirthDate, Phone = SelectedClient.Phone, Email = SelectedClient.Email, PayerId=SpePayerId };
-                            */
                         SelectedClient.PayerId = SpePayerId;
                         userRepository.Edit(SelectedClient);
 

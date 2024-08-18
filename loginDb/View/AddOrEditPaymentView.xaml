@@ -20,6 +20,7 @@ AllowsTransparency="True">
         <local1:ModeConverter x:Key="ModeConverter" />
         <local1:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter" />
         <local1:IdToNameConverter x:Key="IdToNameConverter" />
+        <local1:BooleanNegationConverter x:Key="BooleanNegationConverter" />
     </Window.Resources>
 
 
@@ -126,15 +127,15 @@ AllowsTransparency="True">
                       Background="{StaticResource panelActiveColor}" IsReadOnly="True"/>
 
                     <Label Content="Debt" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}" FontSize="15"/>
-                    <TextBlock IsEnabled="False" Text="{Binding Debt}" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}" FontSize="15"
-                                Width="200" Background="{StaticResource titleColor3}"/>
+                    <TextBlock Cursor="No" Text="{Binding Debt}" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource panelOverColor}" FontSize="15"
+                                Width="200" Background="{StaticResource titleColor3}" FontWeight="Medium"/>
                     
                     
                     <Label Content="Status" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}" FontSize="15"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="Auto" >
-                        <RadioButton Content=" Open  " IsChecked="{Binding IsOpen, Mode=TwoWay}" Command="{Binding OpenCommand}" CommandParameter="true"
+                        <RadioButton Content=" Open  " IsChecked="{Binding IsOpen, Mode=TwoWay}" 
                             Margin="5,10,10,5" Foreground="{StaticResource color5}" BorderBrush="{StaticResource color5}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                        <RadioButton Content=" Close  " IsChecked="{Binding IsOpen, Mode=TwoWay}" Command="{Binding OpenCommand}" CommandParameter="false"
+                        <RadioButton Content=" Close  " IsChecked="{Binding IsOpen, Mode=TwoWay, Converter={StaticResource BooleanNegationConverter}}" 
                             Margin="5,10,0,5" Foreground="{StaticResource color5}" BorderBrush="{StaticResource color5}" Background="{StaticResource titleColor3}" FontSize="14"/>
                     </StackPanel>
                     <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
@@ -192,9 +193,9 @@ AllowsTransparency="True">
                         Width="200" Background="{StaticResource titleColor3}" FontWeight="Medium"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="Auto" >
-                        <RadioButton Content=" Open  " IsChecked="{Binding SelectedPayment.IsOpen, Mode=TwoWay}" Command="{Binding OpenCommand}" CommandParameter="true"
+                        <RadioButton Content=" Open  " IsChecked="{Binding IsOpen, Mode=TwoWay}"
                             Margin="5,10,10,5" Foreground="{StaticResource color5}" BorderBrush="{StaticResource color5}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                        <RadioButton Content=" Close  " IsChecked="{Binding SelectedPayment.IsOpen}" Command="{Binding OpenCommand}" CommandParameter="false"
+                        <RadioButton Content=" Close  " IsChecked="{Binding IsOpen, Mode=TwoWay, Converter={StaticResource BooleanNegationConverter}}"
                             Margin="5,10,0,5" Foreground="{StaticResource color5}" BorderBrush="{StaticResource color5}" Background="{StaticResource titleColor3}" FontSize="14"/>
                     </StackPanel>
                     <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"

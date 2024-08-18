@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-﻿using loginDb.Models;
-=======
 ﻿using loginDb;
 using loginDb.Models;
 using loginDb.Repositories;
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +24,7 @@ namespace loginDb.ViewModels
 {
     public class MeetingsViewModel : ViewModelBase
     {
-<<<<<<< HEAD
-        public MeetingsViewModel()
-        {
-=======
+        
         //Fields
         public ObservableCollection<Meeting> _lstMeetings;
 
@@ -43,7 +36,6 @@ namespace loginDb.ViewModels
         private IUserRepository userRepository;
 
         private string _searchText;
-
         public int UserId { get; set; }
         //Properties
 
@@ -54,7 +46,6 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-         //       UpdateFilteredMeetings();
             }
         }
 
@@ -69,7 +60,6 @@ namespace loginDb.ViewModels
             {
                 _lstMeetings = value;
                 OnPropertyChanged(nameof(LstMeetings));
-             //   UpdateFilteredMeetings();
             }
         }
 
@@ -183,7 +173,7 @@ namespace loginDb.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 var searchLower = _searchText.ToLower();
-                LoadMeetings(m => m.ClientId.ToString().Contains(searchLower));
+                LoadMeetings(m => m.Client.Cname.ToString().Contains(searchLower));
             }
             else
             {
@@ -220,7 +210,6 @@ namespace loginDb.ViewModels
 
             }
             LoadMeetings(null);
->>>>>>> 5b548790048d32e0a487964fe57616b5c7302b04
         }
     }
 }

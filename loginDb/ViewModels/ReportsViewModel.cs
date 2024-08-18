@@ -24,18 +24,7 @@ namespace loginDb.ViewModels
             public int MeetingsAmount { get; set; }
             public int Debt { get; set; }
             private string _toShow;
-            public string ToShow
-            {
-                get { return _toShow; }
-                set
-                {
-                    if (_toShow != value)
-                    {
-                        _toShow = value;
-                        OnPropertyChanged(nameof(ToShow));
-                    }
-                }
-            }
+
 
 
             public FilteredClient(string name, int meetingsAmount, int debt)
@@ -43,7 +32,6 @@ namespace loginDb.ViewModels
                 Name = name;
                 MeetingsAmount = meetingsAmount;
                 Debt = debt;
-                ToShow = Name;
             }
         }
         //Fields
@@ -185,14 +173,14 @@ namespace loginDb.ViewModels
         {
             LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
             var results = await userRepository.LoadAllAsync();
-            int Price = userRepository.GetPricePerClient(LstClients.FirstOrDefault().Id);
+            int Price = userRepository.GetUserPrice(LstClients.FirstOrDefault().Id);
             NumOfClients = results.NumOfClients;
             NumOfMeetings = results.NumOfMeetings;
             Revenue = results.Revenue * Price;
             Receivable = results.Receivable * Price;
 
             FilteredClients = new ObservableCollection<FilteredClient>(
-                LstClients.Select(c => new FilteredClient(c.Cname, c.Id, c.Id))
+                LstClients.Select(c => new FilteredClient(c.Cname, ?, ?))
             );
 
 
@@ -200,7 +188,6 @@ namespace loginDb.ViewModels
         private void ExecuteChangeShowCommand(object obj)
         {
             FilteredClient crt = obj as FilteredClient;
-            crt.ToShow = (obj as FilteredClient).MeetingsAmount.ToString();
         }
 
     }

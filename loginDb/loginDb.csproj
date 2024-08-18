@@ -80,8 +80,9 @@
     <Compile Include="Client.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BooleanToFalseConverter.cs" />
-    <Compile Include="Converters\BooleanToTrueConverter.cs" />
+    <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="Converters\BooleanToStatusConverter.cs" />
+    <Compile Include="Garbage\DateTimeToHourConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\TextToFontSizeConverter.cs" />
     <Compile Include="Converters\IdToNameConverter.cs" />
@@ -118,7 +119,7 @@
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Garbage\UserAccountModel.cs" />
     <Compile Include="Garbage\UserModel.cs" />
-    <Compile Include="Models\MyDataTemplateSelector.cs" />
+    <Compile Include="Garbage\MyDataTemplateSelector.cs" />
     <Compile Include="Payer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -141,12 +142,12 @@
     <Compile Include="ViewModels\AddOrEditPayerViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditMeetingViewModel.cs" />
     <Compile Include="ViewModels\AddOrEditClientViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PaymentsViewModel.cs" />
     <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="ViewModels\PayersViewModel.cs" />
     <Compile Include="ViewModels\MeetingsViewModel.cs" />
     <Compile Include="ViewModels\ClientsViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />

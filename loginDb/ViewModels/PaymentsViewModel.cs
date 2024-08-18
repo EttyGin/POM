@@ -132,7 +132,13 @@ namespace loginDb.ViewModels
             else
                 LstPayments = new ObservableCollection<Payment>(userRepository.GetWhere<Payment>(p => p.Id == p.Id)); //To avoid showing the none Payment
             
-            FilteredPayments = new ObservableCollection<Payment>(LstPayments);
+            FilteredPayments = new ObservableCollection<Payment>();
+            var sorted  = LstPayments.OrderByDescending(p => p.LastUpdate).ToList();
+            FilteredPayments = new ObservableCollection<Payment>();
+            foreach (var meeting in sorted)
+            {
+                FilteredPayments.Add(meeting);
+            }
         }
  /*       private void UpdateFilteredPayments()
         {
@@ -150,7 +156,7 @@ namespace loginDb.ViewModels
  */
         private void ExecuteShowAddCommand(object obj)
         {
-            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Add ,obj as Payment);
+            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Add ,obj as Payment, 3);
             addPaymentWin.ShowDialog();
             LoadPayments(null);
         }
@@ -159,7 +165,7 @@ namespace loginDb.ViewModels
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
-                LoadPayments(p => p.Id.ToString().Contains(SearchText));
+                LoadPayments(p => (p.Payer != null) ? p.Payer.Pname.ToString().Contains(SearchText) : p.Client.Cname.ToString().Contains(SearchText));
             }
             else
             {
@@ -169,7 +175,7 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowEditCommand(object obj)
         {
-            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Edit, obj as Payment);
+            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Edit, obj as Payment, 3);
             addPaymentWin.ShowDialog();
             LoadPayments(null);
          }

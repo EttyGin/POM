@@ -12,7 +12,6 @@ namespace loginDb.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            //_connectionString = "Server=(local); Database=MVVMLoginDb; Integrated Security=true";
             _connectionString = "Server=(local); Database=POMdb; Integrated Security=true";
         }
         protected SqlConnection GetConnection()

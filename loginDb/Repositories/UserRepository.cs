@@ -10,6 +10,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -237,7 +238,7 @@ namespace loginDb.Repositories
             return user;
         }
 
-        public int GetPricePerClient(int cid)
+        public int GetUserPrice(int cid)
         {
             using (var db = new POMdbEntities())
             {
@@ -254,6 +255,41 @@ namespace loginDb.Repositories
                 return db.Set<T>().Where(predicate).ToList();
             }
         }
+
+        public int GetDebtById(int id, bool isClient)
+        {
+            using (var db = new POMdbEntities())
+            {
+                if (!isClient) //payer
+                {
+                    int unpaidMeetingsCount = db.Meetings
+                                  .Where(m => m.Client.PayerId == id && (m.Status == Status.unpaid || m.Status == Status.partiallyPaid))
+                                  .Count();
+                    if (unpaidMeetingsCount > 0)
+                    {
+                        var payer = db.Payers.FirstOrDefault(p => p.Id == id);
+                        return unpaidMeetingsCount * payer.TotalPayment;
+                    }
+                }
+
+                else //Client
+                {
+                    int unpaidMeetingsCount = db.Meetings
+                                            .Where(m => m.ClientId == id && m.Status == Status.unpaid)
+                                            .Count();
+                    if (unpaidMeetingsCount > 0)
+                    {
+                        var client = db.Clients.FirstOrDefault(c => c.Id == id);
+                        var payer = db.Payers.FirstOrDefault(p => p.Id == client.PayerId);
+
+                        int price = GetUserPrice(id) - payer.TotalPayment;
+                        return unpaidMeetingsCount * price;
+                    }
+                }
+                return 0;                
+            }
+        }
+
 
 
         public void Remove<TEntity>(TEntity entity, string property) where TEntity : class
