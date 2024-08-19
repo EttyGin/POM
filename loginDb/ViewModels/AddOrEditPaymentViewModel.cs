@@ -416,8 +416,8 @@ namespace loginDb.ViewModels
             var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets
                 {
-                    ClientId = "?",
-                    ClientSecret = "?"
+                    ClientId = "229928471792-lonks7leojcqm7vl84p4hgh6715263q5.apps.googleusercontent.com",
+                    ClientSecret = "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"
                 },
                 scopes,
                 "user",
