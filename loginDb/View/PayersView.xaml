@@ -183,10 +183,6 @@
                                     <Button x:Name="deleteBtn" Style="{StaticResource ActionsButton}" Width ="35" ToolTip="Delete" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                         <fa:IconImage Icon="TrashCan" Style="{StaticResource controlButtonIcon}" />
                                     </Button>
-                                    <Button x:Name="ShowMeetingsBtn" Style="{StaticResource ActionsButton}" Width ="35" Command="{Binding DataContext.ShowMeetingsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"
-                                            ToolTip="Show Meetings">
-                                        <fa:IconImage Icon="Couch" Style="{StaticResource controlButtonIcon}" />
-                                    </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

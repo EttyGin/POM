@@ -16,9 +16,7 @@ using loginDb.View;
 using System.Data.Entity;
 using System.Windows;
 using System.Linq.Expressions;
-using FontAwesome.Sharp;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
-using System.Data.Entity.Infrastructure;
+
 namespace loginDb.ViewModels
 {
     public class ClientsViewModel : ViewModelBase
@@ -43,8 +41,6 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-
-                //UpdateFilteredClients();
             }
         }
 
@@ -59,8 +55,6 @@ namespace loginDb.ViewModels
             {
                 _lstClients = value;
                 OnPropertyChanged(nameof(LstClients));
-
-                //UpdateFilteredClients();
             }
         }
 
@@ -113,8 +107,6 @@ namespace loginDb.ViewModels
         public ICommand ShowMeetingsCommand { get; }
 
 
-
-
         //Constructor
         public ClientsViewModel()
         {
@@ -140,29 +132,6 @@ namespace loginDb.ViewModels
             FilteredClients = new ObservableCollection<Client>(LstClients);
         }
 
-
-/*        private void UpdateFilteredClients()
-
-        {
-            if (string.IsNullOrWhiteSpace(_searchText))
-            {
-                FilteredClients = new ObservableCollection<Client>(_lstClients);
-            }
-            else
-            {
-                var searchLower = _searchText.ToLower();
-                var filtered = _lstClients.Where(c => c.Cname.ToLower().Contains(searchLower));
-                FilteredClients = new ObservableCollection<Client>(filtered);
-            }
-        }
-
-
-        private void ExecuteShowAddCommand(object obj)
-        {
-            AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);
-            addClientWin.Show();
-
-*/
         private void ExecuteShowAddCommand(object obj)
         {
             AddOrEditClientView addClientWin = new AddOrEditClientView(EditMode.Add ,obj as Client);

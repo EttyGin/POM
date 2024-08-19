@@ -15,7 +15,7 @@
 
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="/Images/screen.jpg" Stretch="None"/>
+            <ImageBrush ImageSource="/Images/screen.jpg" Stretch="UniformToFill"/>
         </Border.Background>
         <Border CornerRadius="10"
         BorderThickness="0.1"

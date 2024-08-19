@@ -45,7 +45,6 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                //UpdateFilteredPayments();
             }
         }
 
@@ -60,7 +59,6 @@ namespace loginDb.ViewModels
             {
                 _lstPayments = value;
                 OnPropertyChanged(nameof(LstPayments));
-              //  UpdateFilteredPayments();
             }
         }
 
@@ -113,7 +111,7 @@ namespace loginDb.ViewModels
         public ICommand ShowPaymentsCommand { get; }
 
         //Constructor
-        public PaymentsViewModel() //int userID)
+        public PaymentsViewModel()
         {
             userRepository = new UserRepository();
             ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand);
@@ -140,23 +138,10 @@ namespace loginDb.ViewModels
                 FilteredPayments.Add(meeting);
             }
         }
- /*       private void UpdateFilteredPayments()
-        {
-            if (string.IsNullOrWhiteSpace(_searchText))
-            {
-                FilteredPayments = new ObservableCollection<Payment>(_lstPayments);
-            }
-            else
-            {
-                var searchLower = _searchText.ToLower();
-                var filtered = _lstPayments.Where(p => p.Pname.ToLower().Contains(searchLower));
-                FilteredPayments = new ObservableCollection<Payment>(filtered);
-            }
-        }
- */
+
         private void ExecuteShowAddCommand(object obj)
         {
-            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Add ,obj as Payment, 3);
+            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Add ,obj as Payment);
             addPaymentWin.ShowDialog();
             LoadPayments(null);
         }
@@ -175,7 +160,7 @@ namespace loginDb.ViewModels
 
         private void ExecuteShowEditCommand(object obj)
         {
-            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Edit, obj as Payment, 3);
+            AddOrEditPaymentView addPaymentWin = new AddOrEditPaymentView(EditMode.Edit, obj as Payment);
             addPaymentWin.ShowDialog();
             LoadPayments(null);
          }

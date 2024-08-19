@@ -151,8 +151,7 @@
                         Command="{Binding LoginCommand}"
                         BorderThickness ="0" Content="LOG IN"
                         Foreground="White" FontSize="12" FontFamily="Montserrat"
-                        Cursor="Hand" Grid.Column="2" Margin="0,50,0,0"
-                        Click="btnLogin_Click">
+                        Cursor="Hand" Grid.Column="2" Margin="0,50,0,0" >
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#462AD8" />

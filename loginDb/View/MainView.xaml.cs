@@ -62,16 +62,7 @@ namespace loginDb.View
         }
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
-      /*      OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "Image files|*.bmp;*.jpg;*.png";
-            openDialog.FilterIndex = 1;
-            if (openDialog.ShowDialog() == true)
-            {
-               // userProfile.ImageSource = new BitmapImage(new Uri(openDialog.FileName));
 
-
-           }
-      */
         }
     }
 }

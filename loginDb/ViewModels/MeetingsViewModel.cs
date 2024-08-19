@@ -115,7 +115,7 @@ namespace loginDb.ViewModels
         public MeetingsViewModel()
         {
             userRepository = new UserRepository();
-
+            UserId = ReadUserIdFromFile();
             ShowAddCommand = new ViewModelCommand(ExecuteShowAddCommand);
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand);
             SearchCommand = new ViewModelCommand(ExecuteSearchCommand);
@@ -130,9 +130,8 @@ namespace loginDb.ViewModels
             if (!(predicate is null))
                 LstMeetings = new ObservableCollection<Meeting>(userRepository.GetWhere(predicate));
             else
-                LstMeetings = new ObservableCollection<Meeting>(userRepository.GetWhere<Meeting>(m => m.Number == m.Number));
+                LstMeetings = new ObservableCollection<Meeting>(userRepository.GetWhere<Meeting>(m => m.UserId == UserId));
 
-         //   FilteredMeetings = new ObservableCollection<Meeting>(LstMeetings);
             var sortedMeetings = LstMeetings.OrderByDescending(meeting => meeting.Date).ToList();
             FilteredMeetings = new ObservableCollection<Meeting>();
             foreach (var meeting in sortedMeetings)
@@ -140,27 +139,7 @@ namespace loginDb.ViewModels
                 FilteredMeetings.Add(meeting);
             }
         }
- /*       private void UpdateFilteredMeetings()
-        {
-            if (string.IsNullOrWhiteSpace(_searchText))
-            {
-                FilteredMeetings = new ObservableCollection<Meeting>(_lstMeetings);
-            }
-            else
-            {
-                var searchLower = _searchText.ToLower();
-                var filtered = _lstMeetings.Where(m => m.ClientId == int.Parse(searchLower));
-                FilteredMeetings = new ObservableCollection<Meeting>(filtered);
-            }
-            //sorting by date - default
-            var sortedMeetings = LstMeetings.OrderByDescending(meeting => meeting.Date).ToList();
-            FilteredMeetings.Clear();
-            foreach (var meeting in sortedMeetings)
-            {
-                FilteredMeetings.Add(meeting);
-            }
-        }
-*/
+
         private void ExecuteShowAddCommand(object obj)
         {
             AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Add, obj as Meeting, UserId);

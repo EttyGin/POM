@@ -26,21 +26,6 @@ AllowsTransparency="True">
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
 
-    <!--Grid>
-        <Label Content="Id"  VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding Id}" Width="200" Margin="25,50" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <Label Content="Name" Margin="25,80" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding Name}" Width="200" Margin="25,100" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <Label Content="Birth Date" Margin="25, 130" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding BirthDate}" Width="200" Margin="25,150" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <Label Content="Phone" Margin="25, 200" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding Phone}" Width="200" Margin="25,200" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <Label Content="Email"  VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding Email}" Width="200" Margin="25,250" VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <Label Content="Payer"  VerticalAlignment="Top" HorizontalAlignment="Center" />
-        <TextBox Height="25" Text="{Binding PayerId}" Width="200" Margin="25,300" VerticalAlignment="Top" HorizontalAlignment="Center" />
-
-    </Grid-->
     <Border CornerRadius="12" HorizontalAlignment="Stretch" VerticalAlignment="Center">
         <Border.Background>
             <ImageBrush ImageSource="/Images/screen.jpg" Stretch="None"/>

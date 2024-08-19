@@ -86,16 +86,15 @@ namespace loginDb.ViewModels
         public AddOrEditMeetingViewModel(EditMode mode, Meeting meeting, int userId)
         {
             CurrentMode = mode;
+            UserId = ReadUserIdFromFile();
             if (meeting != null)
             {
-                _selectedMeeting = meeting;
-                UserId = 325746147;/////////////////////////////////////////////////////////// userId;
+                _selectedMeeting = meeting;                
                 SpeClientId = SelectedMeeting.ClientId;
             }
             else
             {
                 _selectedMeeting = new Meeting();
-                UserId = 325746147; ///////////////////////////////////////////////////////////new MainViewModel().UserId;
             }
             userRepository = new UserRepository();
             AorECommand = new ViewModelCommand(ExecuteAorECommand);
@@ -192,8 +191,7 @@ namespace loginDb.ViewModels
                             Date = new DateTime(Date.Year, Date.Month, Date.Day, parsedTime.Hour, parsedTime.Minute, 0);
                         }
                         Status Stat = Date <= DateTime.Now ? Status.planned : Status.unpaid;
-                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Stat, UserId = UserId, ClientId = ClientId };//,User = user, Client = client};
-                     //   Meeting m  = new Meeting {Number = 1, Date = DateTime.Today, Summary = "get ready", Status = Status.planned, UserId = 325746147, ClientId = 325085215};
+                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Stat, UserId = UserId, ClientId = ClientId ,User = user, Client = client};
                         userRepository.Add(m);
                         
                         ErrorMessage = "Meeting added successfully!";

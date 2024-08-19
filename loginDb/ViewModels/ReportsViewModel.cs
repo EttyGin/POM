@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 
 namespace loginDb.ViewModels
@@ -18,16 +19,14 @@ namespace loginDb.ViewModels
 
     public class ReportsViewModel : ViewModelBase
     {
-        public class FilteredClient : ViewModelBase
+        public class Filtered : ViewModelBase
         {
             public string Name { get; set; }
             public int MeetingsAmount { get; set; }
             public int Debt { get; set; }
-            private string _toShow;
 
 
-
-            public FilteredClient(string name, int meetingsAmount, int debt)
+            public Filtered(string name, int meetingsAmount, int debt)
             {
                 Name = name;
                 MeetingsAmount = meetingsAmount;
@@ -39,31 +38,16 @@ namespace loginDb.ViewModels
         private int _numOfMeetings;
         private int _revenue;
         private int _receivable;
-
-        private ObservableCollection<Client> _lstClients;
         
-        private ObservableCollection<FilteredClient> _filteredClients;
+        private ObservableCollection<Filtered> _filteredClients;
 
-        //private List<Tuple<string, int, string>> _filteredClients;
+        private ObservableCollection<Filtered> _filteredPayers;
 
         private string _errorMessage;
         private bool _isViewVisible = false;
 
         private IUserRepository userRepository;
-
-        private bool _show = true;
-        public bool Show
-        {
-            get { return _show; }
-            set
-            {
-                if (_show != value)
-                {
-                    _show = value;
-                    OnPropertyChanged(nameof(Show));
-                }
-            }
-        }
+  
         //Properties
         public int NumOfClients
         {
@@ -102,7 +86,20 @@ namespace loginDb.ViewModels
             }
         }
 
-        public ObservableCollection<FilteredClient> FilteredClients
+        public ObservableCollection<Filtered> FilteredPayers
+        {
+            get
+            {
+                return _filteredPayers;
+            }
+
+            set
+            {
+                _filteredPayers = value;
+                OnPropertyChanged(nameof(FilteredPayers));
+            }
+        }
+        public ObservableCollection<Filtered> FilteredClients
         {
             get
             {
@@ -113,23 +110,9 @@ namespace loginDb.ViewModels
             {
                 _filteredClients = value;
                 OnPropertyChanged(nameof(FilteredClients));
-              //  UpdateFilteredPayers();
             }
         }
-
-        public ObservableCollection<Client> LstClients
-        {
-            get => _lstClients;
-            private set
-            {
-                if (_lstClients != value)
-                {
-                    _lstClients = value;
-                    OnPropertyChanged(nameof(LstClients));
-                }
-            }
-        }
-
+        
         public bool IsViewVisible
         {
             get
@@ -158,36 +141,48 @@ namespace loginDb.ViewModels
             }
         }
 
-        //-> Commands
-        public ICommand ChangeShowCommand { get; }
-
         //Constructor
         public ReportsViewModel()
         {
             userRepository = new UserRepository();
-            ChangeShowCommand = new ViewModelCommand(ExecuteChangeShowCommand);
             LoadAll();
         }
 
         private async void LoadAll()
         {
-            LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
-            var results = await userRepository.LoadAllAsync();
-            int Price = userRepository.GetUserPrice(LstClients.FirstOrDefault().Id);
+            ObservableCollection<Client> LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
+            int UserId = ReadUserIdFromFile();
+        //    int Price = userRepository.GetUserPrice(LstClients.FirstOrDefault().Id);
+            var results = await userRepository.LoadAllAsync(UserId);
             NumOfClients = results.NumOfClients;
             NumOfMeetings = results.NumOfMeetings;
-            Revenue = results.Revenue * Price;
-            Receivable = results.Receivable * Price;
+            Revenue = results.Revenue;
+            Receivable = results.Receivable;
 
-            FilteredClients = new ObservableCollection<FilteredClient>(
-                LstClients.Select(c => new FilteredClient(c.Cname, ?, ?))
-            );
+            FilteredClients = new ObservableCollection<Filtered>();
+            foreach (Client c in LstClients)
+            {
+                string name = c.Cname;
+                int amoubt = userRepository.GetWhere<Meeting>(m => m.ClientId == c.Id).Count();
+                int debt = userRepository.GetDebtById(c.Id,true, UserId);
+                Filtered fc = new Filtered(name, amoubt, debt);
+                FilteredClients.Add(fc);
+            }
 
+            ObservableCollection<Payer> LstPayers = new ObservableCollection<Payer>(userRepository.GetWhere<Payer>(p => p.Pname == p.Pname));
+            FilteredPayers = new ObservableCollection<Filtered>();
+            foreach (Payer p in LstPayers)
+            {
+                string name = p.Pname;
+                if (name.Equals(" -")) //none payer
+                    continue;
 
-        }
-        private void ExecuteChangeShowCommand(object obj)
-        {
-            FilteredClient crt = obj as FilteredClient;
+                int amoubt = userRepository.GetWhere<Client>(c => c.PayerId == p.Id).Count();
+                int debt = userRepository.GetDebtById(p.Id, false, UserId);
+                Filtered fc = new Filtered(name, amoubt, debt);
+                FilteredPayers.Add(fc);
+            }
+
         }
 
     }

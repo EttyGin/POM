@@ -62,7 +62,7 @@ AllowsTransparency="True">
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5" />
                     </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='MEETING'}"
+                    <TextBlock Text="{Binding Path=CurrentMode, Converter={StaticResource ModeConverter}, ConverterParameter='MEETING'}"
                                Foreground ="{StaticResource titleColor3}" FontSize="10" FontFamily="Montserrat" 
                                Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <Button x:Name ="btnClose"
@@ -120,35 +120,37 @@ AllowsTransparency="True">
                          Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"
                          Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}"/>
                     <Label Content="Summary"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding Summary}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
-                    <TextBox Height="25" Text="{Binding SelectedMeeting.Summary}" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="Auto" Text="{Binding Summary}" TextWrapping="Wrap" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" Width="200"  VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
+                    <TextBox Height="Auto" Text="{Binding SelectedMeeting.Summary}"  TextWrapping="Wrap" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource titleColor3}"/>
 
                     <Label Content="Status"  VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource titleColor3}"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="Auto"
-                      Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}">
+                    <WrapPanel Width="250"
+                      Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Add}" HorizontalAlignment="Center" ItemHeight="30">
                         <RadioButton Content="Planned" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=planned}"
-                   IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+                   IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
                         <RadioButton Content="Unpaid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=unpaid}"
-                        IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                        <RadioButton Content="Partially Paid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=PartiallyPaid}"
-                      Margin="0,0,10,0" IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+                        IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                        <RadioButton Content="Client Paid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=clientPaid}"
+                            Margin="0,0,10,0" IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                        <RadioButton Content="Payer Paid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=payerPaid}"
+                            Margin="40,0,20,0" IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
                         <RadioButton Content="Paid" IsChecked="{Binding Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=paid}"
-                       IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="Auto"
-                                 Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}">
+                       IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                    </WrapPanel>
+                    <WrapPanel Width="250" Visibility="{Binding CurrentMode, Converter={StaticResource ModeToVisibilityConverter}, ConverterParameter=Edit}" HorizontalAlignment="Center" ItemHeight="30">
                         <RadioButton Content="Planned" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=planned}"
-                              IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
                         <RadioButton Content="Unpaid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=unpaid}"
-                                   IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                        <RadioButton Content="Partially paid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=PartiallyPaid}"
-                                 Margin="0,0,10,0"  IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
+     IsEnabled="False" ToolTip="Fills automatically" Margin="0,0,10,0" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                        <RadioButton Content="Client Paid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=clientPaid}"
+         Margin="0,0,10,0" IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                        <RadioButton Content="Payer Paid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=payerPaid}"
+         Margin="40,0,20,0" IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
                         <RadioButton Content="Paid" IsChecked="{Binding SelectedMeeting.Status, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=paid}"
-                                IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14"/>
-                    </StackPanel>
-                    
+    IsEnabled="False" ToolTip="Fills automatically" Foreground="{StaticResource titleColor3}" BorderBrush="{StaticResource color3}" Background="{StaticResource titleColor3}" FontSize="14" VerticalAlignment="Center" />
+                    </WrapPanel>
 
-                        <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="#D7596D"
                         FontSize="13"
                         FontWeight="Medium"

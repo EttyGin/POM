@@ -45,7 +45,6 @@ namespace loginDb.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                //UpdateFilteredPayers();
             }
         }
 
@@ -60,7 +59,6 @@ namespace loginDb.ViewModels
             {
                 _lstPayers = value;
                 OnPropertyChanged(nameof(LstPayers));
-              //  UpdateFilteredPayers();
             }
         }
 
@@ -136,20 +134,7 @@ namespace loginDb.ViewModels
             
             FilteredPayers = new ObservableCollection<Payer>(LstPayers);
         }
- /*       private void UpdateFilteredPayers()
-        {
-            if (string.IsNullOrWhiteSpace(_searchText))
-            {
-                FilteredPayers = new ObservableCollection<Payer>(_lstPayers);
-            }
-            else
-            {
-                var searchLower = _searchText.ToLower();
-                var filtered = _lstPayers.Where(p => p.Pname.ToLower().Contains(searchLower));
-                FilteredPayers = new ObservableCollection<Payer>(filtered);
-            }
-        }
- */
+
         private void ExecuteShowAddCommand(object obj)
         {
             AddOrEditPayerView addPayerWin = new AddOrEditPayerView(EditMode.Add ,obj as Payer);

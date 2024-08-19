@@ -204,7 +204,6 @@ namespace loginDb.ViewModels
                     try
                     {
                         Client c  = new Client { Id = Id, Cname = Name, BirthDate = BirthDate, Phone = Phone, Email = Email, PayerId = SpePayerId };
-                        //               SelectedClient =  new Client { Id = 325085215, Cname = "Dudi Ginzburg", BirthDate = new DateTime(2002, 5, 8), Phone = "0556797375", Email = "davidg@gmail.com" , PayerId = null};
                         userRepository.Add(c);
                         
 
@@ -232,14 +231,11 @@ namespace loginDb.ViewModels
                         Task.Delay(800).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-                         //   LstClients.Remove(SelectedClient);
-                           // LstClients.Add(SelectedClient);
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception ex)
                     {
                         ErrorMessage = $"Error updating client: {ex.Message}";
-                        // ErrorMessage = $"Please fill in all required fields correctly";
                     }
                 }
             }

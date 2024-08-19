@@ -23,7 +23,7 @@ namespace loginDb.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void AddSpe(Object o)
+    /*    public void AddSpe(Object o)
         {
            // throw new NotImplementedException();
             #region adding some rows to DB
@@ -79,7 +79,7 @@ namespace loginDb.Repositories
             
         }
 
-  
+  */
         public void InitNonePayer()
         {
             using (var db = new POMdbEntities())
@@ -133,7 +133,6 @@ namespace loginDb.Repositories
             }
         }
 
-
         public IEnumerable<T> GetAll<T>() where T : class
         {
             using (var db = new POMdbEntities())
@@ -142,7 +141,6 @@ namespace loginDb.Repositories
             }
         }
         
-
         public Object GetById(int id, string tableName)
         {
             Object ans = null;
@@ -238,16 +236,6 @@ namespace loginDb.Repositories
             return user;
         }
 
-        public int GetUserPrice(int cid)
-        {
-            using (var db = new POMdbEntities())
-            {
-                Meeting m = db.Meetings.Where(me => me.ClientId == cid).ToList().FirstOrDefault();
-                User u = (User)GetById(m.UserId, "User");
-                return u.Price;
-            }
-        }
-
         public IEnumerable<T> GetWhere<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             using (var db = new POMdbEntities())
@@ -256,14 +244,15 @@ namespace loginDb.Repositories
             }
         }
 
-        public int GetDebtById(int id, bool isClient)
+        public int GetDebtById(int id, bool isClient, int Uid)
         {
             using (var db = new POMdbEntities())
             {
+                int UserPrice = db.Users.Where(u =>  u.Id == Uid).FirstOrDefault().Price;
                 if (!isClient) //payer
                 {
                     int unpaidMeetingsCount = db.Meetings
-                                  .Where(m => m.Client.PayerId == id && (m.Status == Status.unpaid || m.Status == Status.partiallyPaid))
+                                  .Where(m => m.Client.PayerId == id && (m.Status == Status.unpaid || m.Status == Status.clientPaid))
                                   .Count();
                     if (unpaidMeetingsCount > 0)
                     {
@@ -275,22 +264,20 @@ namespace loginDb.Repositories
                 else //Client
                 {
                     int unpaidMeetingsCount = db.Meetings
-                                            .Where(m => m.ClientId == id && m.Status == Status.unpaid)
+                                            .Where(m => m.ClientId == id && (m.Status == Status.unpaid || m.Status == Status.payerPaid))
                                             .Count();
                     if (unpaidMeetingsCount > 0)
                     {
                         var client = db.Clients.FirstOrDefault(c => c.Id == id);
                         var payer = db.Payers.FirstOrDefault(p => p.Id == client.PayerId);
 
-                        int price = GetUserPrice(id) - payer.TotalPayment;
+                        int price = UserPrice - payer.TotalPayment;
                         return unpaidMeetingsCount * price;
                     }
                 }
                 return 0;                
             }
         }
-
-
 
         public void Remove<TEntity>(TEntity entity, string property) where TEntity : class
         {
@@ -326,8 +313,7 @@ namespace loginDb.Repositories
 
         public DateTime GetMeetingDateForClient(int clientId, int number)
         {
-            clientId = 325746147;
-            DateTime lastAppointmentDate = DateTime.MinValue; // תיחול ערך התחלתי מינימלי
+            DateTime lastAppointmentDate = DateTime.MinValue;
 
             using (var connection = GetConnection())
             using (var command = new SqlCommand("SELECT TOP 1 * FROM Meeting WHERE ClientID = @clientID AND Number = @number ORDER BY Date DESC", connection))
@@ -348,101 +334,56 @@ namespace loginDb.Repositories
             return lastAppointmentDate;
         }
 
-        public async Task<(int NumOfClients, int NumOfMeetings, int Revenue, int Receivable)> LoadAllAsync()
+        public async Task<(int NumOfClients, int NumOfMeetings, int Revenue, int Receivable)> LoadAllAsync(int UserId)
         {
             using (var db = new POMdbEntities())
             {
+                int UserPrice = db.Users.Where(u => u.Id == UserId).FirstOrDefault().Price;
+
                 int NumOfClients = await db.Clients.CountAsync();
                 int NumOfMeetings = await db.Meetings.CountAsync();
+                int Paid = 0, UnPaid = 0;
+                var lstMeetings = await db.Meetings
+                    .Where(m => m.Status != Status.planned && m.UserId == UserId).ToListAsync();
 
-                // סכום הפגישות עם סטטוס PAID
-                int PaidAmount = await db.Meetings
-                                    .Where(m => m.Status == Status.paid)
-                                    .CountAsync(); 
-
-                // מספר הפגישות עם סטטוס UNPAID
-                int UnPaidAmount = await db.Meetings
-                                     .Where(m => m.Status == Status.unpaid)
-                                     .CountAsync();
-
-                return (NumOfClients, NumOfMeetings, PaidAmount, UnPaidAmount);
-            }
-        }
-
-
-        /*      public void Remove2(int id)
-        {
-            using (var db = new POMdbEntities())
-            {
-
-                var clnt = db.Clients.Find(id); 
-             //   var clnt = obj as Client;
-                if (clnt != null)
+                foreach (Meeting meeting in lstMeetings)
                 {
-                    db.Clients.Remove(clnt);
-                    db.SaveChanges();
-
-                }
-
-
-            }
-        }
-    */
-        /*        public IEnumerable<T> GetByAll<T>(string tableName) where T : class
-                {
-                    if (!typeof(T).Name.Equals(tableName, StringComparison.OrdinalIgnoreCase))
+                    switch (meeting.Status)
                     {
-                        throw new ArgumentException($"Type '{typeof(T).Name}' does not match table name '{tableName}'");
-                    }
-
-                    using (var db = new POMdbEntities())
-                    {
-                        switch (tableName)
-                        {
-                            case "Clients":
-                                return (IEnumerable<T>)db.Clients.ToList();
-                            default:
-                                return null;
-
-                        }
+                        case Status.unpaid:
+                            {
+                                UnPaid += UserPrice;
+                                break;
+                            }
+                        case Status.clientPaid:
+                            {
+                                int PayerPart = meeting.Client.Payer.TotalPayment;
+                                UnPaid += PayerPart;
+                                Paid += UserPrice - PayerPart;
+                                break;
+                            }
+                        case Status.payerPaid:
+                            {
+                                int PayerPart = meeting.Client.Payer.TotalPayment;
+                                Paid += PayerPart;
+                                UnPaid += UserPrice - PayerPart;
+                                break;
+                            }
+                        case Status.paid:
+                            {
+                                Paid += UserPrice;
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
                     }
                 }
 
-        */
-        /*
-        public void Edit2(Object o)
-        {
-            #region update example
-            using (var db = new POMdbEntities())
-            {            
-                var clnt = o as Client; // = db.Clients.Find(idupdt);
-                if (clnt != null)
-                {
-                    db.Clients.Attach(clnt);
-                    db.Entry(clnt).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+             return (NumOfClients, NumOfMeetings, Paid, UnPaid);
             }
-            #endregion
         }
-    */
-        /*      public IEnumerable<Client> GetAllClients()
-              {
-                  using (var db = new POMdbEntities())
-                  {
-                      return db.Clients.ToList();
-
-                  }
-              }
-              public IEnumerable<Payer> GetAllPayers()
-              {
-                  using (var db = new POMdbEntities())
-                  {
-                      return db.Payers.ToList();
-
-                  }
-              }
-      */
 
     }
 }

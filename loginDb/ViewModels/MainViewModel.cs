@@ -19,6 +19,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
 using NavigationService = loginDb.Models.NavigationService;
+using System.Configuration;
 
 
 
@@ -162,8 +163,15 @@ namespace loginDb.ViewModels
                         loginView.Close();
                     }
                 };
-   
-           
+                string filePath = "D:\\לימודים\\2024ב סדנה במונחה עצמים\\פרויקט גמר - Peace Of Mind\\V1\\loginDb\\CurrentUserId.txt";
+
+                // Check if file exists, if so, delete it
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+
             }
         }
 
@@ -218,14 +226,40 @@ namespace loginDb.ViewModels
 
                 CurrentUserAccount.ProfilePic = null; // "/Images/profileP.png";
                 UserId = user.Id;
+
+                try
+                {
+                    CreateUserIdFile(UserId);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error while login, try later." );
+                }
+
             }
             else
             {
                 CurrentUserAccount.DisplayName = "Invalid user, not logged in";
-                //Hide child views.
             }
         }
 
+
+        public void CreateUserIdFile(int id)
+        {
+            string filePath = "D:\\לימודים\\2024ב סדנה במונחה עצמים\\פרויקט גמר - Peace Of Mind\\V1\\loginDb\\CurrentUserId.txt";
+
+            // Check if file exists, if so, delete it
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            // Create the file and write the ID
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.Write(id);
+            }
+        }
     }
 }
 

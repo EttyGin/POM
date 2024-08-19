@@ -27,7 +27,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <StackPanel>
-                <Expander Header=" General" FontSize="25" FontFamily="Calibri" Background="{StaticResource color6}" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
+                <Expander Header=" General" FontSize="25" FontFamily="Calibri" Background="{StaticResource color6}" Foreground="{StaticResource panelColor}" Margin="0,0,0,5" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
                     <Grid VerticalAlignment="Top" Background="#FF23105C">
                         <Grid.Resources>
                             <Storyboard x:Key="shakeAnimation">
@@ -70,8 +70,8 @@
 
                     </Grid>
                 </Expander>
-                <Expander Header=" Clients" Background="{StaticResource color2}" FontSize="25" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
-                    <ItemsControl ItemsSource="{Binding FilteredClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
+                <Expander Header=" Clients" Background="{StaticResource color2}" FontSize="25" Margin="0,0,0,5" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
+                    <ItemsControl ItemsSource="{Binding FilteredClients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,0" >
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Background="{StaticResource panelColor}" />
@@ -79,52 +79,9 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <!--Grid>
-                                    <Button Content="{Binding ToShow}" Width="110" Height="100" Margin="10" Command="{Binding DataContext.ChangeShowCommand}" CommandParameter="{Binding}">
-                                        <Button.Background>
-                                            <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-                                                <GradientStop Color="#784DFD" Offset="0"/>
-                                                <GradientStop Color="#FF4726AB" Offset="1"/>
-                                            </RadialGradientBrush>
-                                        </Button.Background>
-                                    </Button>
-
-                                    <Label Content="{Binding ToShow}" FontWeight="Heavy" Foreground="{DynamicResource titleColor2}"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    </Label>
-                                </Grid>
-                                <Button Width="120" Height="120">
-                                    <Button.Background>
-                                        <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-                                            <GradientStop Color="#784DFD" Offset="0"/>
-                                            <GradientStop Color="#FF4726AB" Offset="1"/>
-                                        </RadialGradientBrush>
-                                    </Button.Background>
-                                    <Button.Content>
-                                        <StackPanel>
-                                            <Label Content="{Binding Name}"  Height="30" Width="Auto" FontWeight="Heavy" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" Margin="0,5,0,5" FontSize="15" />
-
-                                            <Grid Width="120" Height="90" >
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1.2*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-                                                <Label  Grid.Row="0" Grid.Column="0" Content="Meetings:"  Width="Auto" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Left"/>
-                                                <Label Grid.Row="0" Grid.Column="1" Content="{Binding MeetingsAmount}"  Width="Auto" Foreground="{DynamicResource titleColor2}"/>
-                                                <Label Grid.Row="1" Grid.Column="0" Content="Debt:"  Width="Auto" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Left"/>
-                                                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Debt}" Width="Auto" Foreground="{DynamicResource titleColor2}"/>
-                                            </Grid>
-
-                                        </StackPanel>
-                                    </Button.Content>
-                                </Button-->
-                                <StackPanel Margin="10">
+                                <StackPanel>
                                     <Grid>
-                                        <Border  Style ="{StaticResource reportsBorder}"  CornerRadius="30" Width="120" Height="130" >
+                                        <Border  Style ="{StaticResource reportsBorder}"  Margin="25"  CornerRadius="30" Width="120" Height="130" >
                                             <Border.Background>
                                                 <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
                                                     <GradientStop Color="#784DFD" Offset="0"/>
@@ -151,11 +108,55 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                        
+
                     </ItemsControl>
 
 
                 </Expander>
+                <Expander Header=" Payers" Background="{StaticResource color4}" FontSize="25" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
+                    <ItemsControl ItemsSource="{Binding FilteredPayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Background="{StaticResource panelColor}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="Auto">
+                                    <Grid>
+                                        <Border  Style ="{StaticResource reportsBorder}" Margin="25" CornerRadius="30" Width="110" Height="130" Opacity="0.9">
+                                            <Border.Background>
+                                                <RadialGradientBrush Center="0,0.1" RadiusX="1" RadiusY="1">
+                                                    <GradientStop Color="#FFFB539B" Offset="1"/>
+                                                    <GradientStop Color="#FF822D51" Offset="0"/>
+                                                </RadialGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+
+                                        <Grid Width="110" Height="130" Margin="0,0,0,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.7*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="0.7*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" FontSize="18" Margin="0,0,0,-10" Content="Clients:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                            <Label Grid.Row="1" FontSize="25"  FontWeight="Medium"  Margin="0,-5,0,-10" Content="{Binding MeetingsAmount}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                                            <Label Grid.Row="2" FontSize="18" Margin="0,-5,0,-10" Content="Debt:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                            <Label Grid.Row="3" FontSize="25"  FontWeight="Medium" Content="{Binding Debt}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource color4}" FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" Width="Auto"
+                                        FontSize="22" Margin="0,0,0,5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+
+                </Expander>
+
             </StackPanel>
         </Border>
     </ScrollViewer>

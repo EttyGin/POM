@@ -1,26 +1,23 @@
-﻿using loginDb.Models;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Gmail.v1;
+using Google.Apis.Gmail.v1.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using loginDb.Models;
 using loginDb.Repositories;
 using loginDb.View;
 using loginDb.ViewModels;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
-using System.Windows.Threading;
-using System.Xml.Linq;
-using static loginDb.ViewModels.PaymentsViewModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+
 
 namespace loginDb.ViewModels
 {
@@ -54,7 +51,6 @@ namespace loginDb.ViewModels
 
         private Payment _selectedPayment;
         public int Uid { get; set; } 
-
 
         //Properties
         public ObservableCollection<Payer> LstPayers
@@ -137,7 +133,7 @@ namespace loginDb.ViewModels
                 _cid = value;
                 if (value != null)
                 {
-                    Debt = userRepository.GetDebtById(Cid.Value, true);
+                    Debt = userRepository.GetDebtById(Cid.Value, true, Uid);
                     OnPropertyChanged(nameof(Debt));
 
                 }
@@ -156,7 +152,7 @@ namespace loginDb.ViewModels
                 _pid = value;
                 if (value != null)
                 {
-                    Debt = userRepository.GetDebtById(Pid.Value, false);
+                    Debt = userRepository.GetDebtById(Pid.Value, false, Uid);
                     OnPropertyChanged(nameof(Debt));
 
                 }
@@ -187,10 +183,11 @@ namespace loginDb.ViewModels
         }
 
         //constructor
-        public AddOrEditPaymentViewModel(EditMode mode, Payment p, int UserId)
+        public AddOrEditPaymentViewModel(EditMode mode, Payment p)
         {
             userRepository = new UserRepository();
             CurrentMode = mode;
+            Uid = ReadUserIdFromFile();
             if (p != null)
             {
                 SelectedPayment = p;
@@ -203,13 +200,10 @@ namespace loginDb.ViewModels
                 if (p.PayerID != null)
                     IsPayer = true;
                 else IsPayer = false;
-                Uid = UserId;
             }
             else
             {
                 SelectedPayment = new Payment();
-                Uid = 325746147; ///////////////////////////////////////////////////////////new MainViewModel().UserId;
-
             }
             AorECommand = new ViewModelCommand(ExecuteAorECommand);
             OpenCommand = new ViewModelCommand(ExecuteOpenCommand);
@@ -281,10 +275,10 @@ namespace loginDb.ViewModels
             DateTime lastUp = CurrentMode == EditMode.Add ? DateTime.Now : SelectedPayment.LastUpdate;
             if (IsClient)
             {
-                var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == Cid && m.Status == Status.unpaid && m.Date <= lastUp);
+                var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == Cid && m.UserId == Uid && (m.Status == Status.unpaid || m.Status == Status.payerPaid) && m.Date <= lastUp);
                 foreach (Meeting m in lstMeetings)
                 {
-                    m.Status = m.Status == Status.partiallyPaid? Status.paid: Status.partiallyPaid; //If part paid than now full paid, else - part paid.
+                    m.Status = m.Status == Status.payerPaid? Status.paid: Status.clientPaid; //If part paid than now full paid, else - part paid.
                     userRepository.Edit(m);
                 }
             }
@@ -294,10 +288,10 @@ namespace loginDb.ViewModels
                 var lstMeetingss = userRepository.GetWhere<Meeting>(m => m.Client.PayerId == Pid);
                 foreach (var c in lstCLients)
                 {
-                    var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == c.Id && (m.Status == Status.unpaid || m.Status == Status.partiallyPaid) && m.Date <= lastUp);
+                    var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == c.Id && m.UserId == Uid && (m.Status == Status.unpaid || m.Status == Status.clientPaid) && m.Date <= lastUp);
                     foreach (Meeting m in lstMeetings)
                     {
-                        m.Status = m.Status == Status.partiallyPaid ? Status.paid : Status.partiallyPaid; //If part paid than now full paid, else - part paid.
+                        m.Status = m.Status == Status.clientPaid ? Status.paid : Status.payerPaid; //If part paid than now full paid, else - part paid.
                         userRepository.Edit(m);
                     }
                 }
@@ -322,11 +316,10 @@ namespace loginDb.ViewModels
                             secs = 1200;
 
                         }
-                        else if (SendEmail())
+                        else if (HundleSending())
                         {
                             userRepository.Add(p);
-                            ErrorMessage = "Payment added successfully!";
-                            secs = 1200;
+                            ErrorMessage = "Email sent. Payment added successfully!";
                         }
                         Task.Delay(secs).ContinueWith(_ => // Wait before closing
                         {
@@ -342,7 +335,6 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        //     SelectedPayment.Id = SpePaymentId;
                         SelectedPayment.LastUpdate = DateTime.Today; // .Now;
                         SelectedPayment.IsOpen = IsOpen;
 
@@ -366,90 +358,132 @@ namespace loginDb.ViewModels
                 }
             }
         }
-        private bool SendEmail()
-        {
-            try
-            {
-                User u = u = (User)userRepository.GetById(Uid, "User");
-                string toAddress, body;
-                if (IsClient)
-                {
-                    Client c = (Client)userRepository.GetById(Cid.Value, "Client");
-                   // u = (User)userRepository.GetById(c.Meeting.First().UserId, "User");
-                    toAddress = c.Email;
-                    body = GetDebtDetailsForClient(c);
-                }
-                else
-                {
-                    Payer p = (Payer)userRepository.GetById(Pid.Value, "Payer");
-              //      Client randClient = (Client)userRepository.GetWhere<Client>(c => c.Meeting.Count() != 0 && c.PayerId == Pid.Value ).FirstOrDefault(); // p.Client.First().Meeting;
-              //      int uid = randClient.Meeting.FirstOrDefault().UserId;
-                  //  u = (User)userRepository.GetById(uid, "User");
-                    toAddress = p.ContactEmail;
-                    body = GetDebtDetailsForPayer(p);
-
-                }
-                var fromAddress = new MailAddress(u.Email, u.Name);
-                var fromPassword = "eg325746147"; // כאן את מכניסה את הסיסמה שלך, מומלץ לאחסן את הסיסמה בצורה בטוחה ולא בקוד ישירות.
-                var subject = "Request to arrange payment for the last meetings";
-
-                var smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = true,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
-
-                using (var message = new MailMessage(fromAddress, new MailAddress(toAddress))
-                {
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = false
-                })
-                {
-                    //smtp.Send(message);
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = "Cannot sent an email. The request is cancelled.\nTry Later";
-                return false;
-            }
-            return true;
-        }
 
         private string GetDebtDetailsForPayer(Payer p)
         {
             DateTime d = DateTime.Now.Date;
-            string open = $"Please find attached a summary of the sessions held for your clients up until {d}.";
+            string open = $"Hello {p.ContactName}. \nPlease find attached a summary of the sessions held for your clients up until {d:dd-MM-yyyy}.\n";
             string body = "A detailed breakdown per client is included below:";
-            string end = $"\nThe total amount due is {Debt} ILS. \nThank you.";
+            string end = $"\n\nThe total amount due is {Debt} ILS. \nThank you.";
             int totalMeetings = 0;
             var lstCLients = userRepository.GetWhere<Client>(c => c.PayerId == p.Id);
             var lstMeetingss = userRepository.GetWhere<Meeting>(m => m.Client.PayerId == p.Id);
             foreach (var c in lstCLients)
             {
-                int count = lstMeetingss.Where(m => m.Status == Status.unpaid && m.Date <= d).Count();
-                body += $"\n * NAME :{c.Cname} - ID : {c.Id} \t {count} meetings.";
+                int count = lstMeetingss.Where(m => (m.Status == Status.unpaid || m.Status == Status.clientPaid) && m.ClientId == c.Id && m.Date <= d).Count();
+                body += $"\n\t * NAME :{c.Cname} - ID : {c.Id} \t {count} meetings.";
                 totalMeetings += count;
             }
-            string res = open + $"A total of {totalMeetings} meetings have been conducted.\n" + body + end;
+            string res = open + $"A total of {totalMeetings} meetings have been conducted.\n\n" + body + end;
             return res;
         }
 
         private string GetDebtDetailsForClient(Client c)
         {
             DateTime d = DateTime.Now.Date;
-            string open = $"Please find attached a summary of the sessions held for you up until {d}.";
-            string end = $"\nThe total amount due is {Debt} ILS. \nThank you.";
+            string open = $"Hello {c.Cname}. \nPlease find attached a summary of the sessions held for you up until {d:dd-MM-yyyy}.\n";
+            string end = $"The total amount due is {Debt} ILS. \nThank you.";
             var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == c.Id && m.Status == Status.unpaid && m.Date <= d);
             int totalMeetings = lstMeetings.Count();
-            string body = $"A total of {totalMeetings} meetings have been conducted.\n";
+            string body = $"A total of {totalMeetings} meetings have been conducted.\n\n";
             string res = open + body + end;
             return res;
+        }
+
+        private bool HundleSending()
+        {
+            ErrorMessage = "Follow the instructions to send the email.";
+            try
+            {
+                Send();
+                return true;
+
+            }
+            catch {
+                return false;
+            }
+        }
+        private async void Send()
+        {
+            var credential = await GetUserCredential();
+            await SendEmail(credential);            
+        }
+
+        public async Task<UserCredential> GetUserCredential()
+        {
+            string[] scopes = { "https://www.googleapis.com/auth/gmail.send" };
+
+            var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets
+                {
+                    ClientId = "229928471792-lonks7leojcqm7vl84p4hgh6715263q5.apps.googleusercontent.com",
+                    ClientSecret = "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"
+                },
+                scopes,
+                "user",
+                CancellationToken.None,
+                new FileDataStore("TokenStorage", true));
+
+            return credential;
+        }
+
+        public async Task SendEmail(UserCredential credential)
+        {
+            var service = new GmailService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "Peace Of Mind"
+            });
+
+            string toAddress, body, toName;
+            if (IsClient)
+            {
+                Client c = (Client)userRepository.GetById(Cid.Value, "Client");
+                toAddress = c.Email;
+                toName = c.Cname;
+                body = GetDebtDetailsForClient(c);
+            }
+            else
+            {
+                Payer p = (Payer)userRepository.GetById(Pid.Value, "Payer");
+                toAddress = p.ContactEmail;
+                toName = p.ContactName;
+                body = GetDebtDetailsForPayer(p);
+
+            }
+
+            User u = (User)userRepository.GetById(Uid, "User");
+
+            var mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress(u.Name+ " " + u.LastName, u.Email));
+            mimeMessage.To.Add(new MailboxAddress(toName, toAddress));
+            mimeMessage.Subject = "Request to arrange payment for the last meetings";
+
+            var bodyBuilder = new BodyBuilder
+            {
+                TextBody = body,
+            };
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+
+            // sending with Gmail API
+            using (var stream = new MemoryStream())
+            {
+                await mimeMessage.WriteToAsync(stream);
+                var email = new Message
+                {
+                    Raw = Base64UrlEncode(stream.ToArray())
+                };
+
+                await service.Users.Messages.Send(email, "me").ExecuteAsync();
+            }
+        }
+
+        private string Base64UrlEncode(byte[] input)
+        {
+            return Convert.ToBase64String(input)
+                .Replace('+', '-')
+                .Replace('/', '_')
+                .Replace("=", "");
         }
     }
 }

@@ -31,10 +31,7 @@ namespace loginDb.ViewModels
         public string Name { get; set; }
         public string CName { get; set; }
         public string CEmail { get; set; }
-
         public short Payment { get; set; }
-
-    //    public int SpePayerId { get; set; }
 
         private string _errorMessage;
         private bool _isViewVisible = true;
@@ -90,7 +87,6 @@ namespace loginDb.ViewModels
             if (payer != null)
             {
                 SelectedPayer = payer;
-     //           SpePayerId = SelectedPayer.Id;
             }
             else
             {
@@ -182,7 +178,7 @@ namespace loginDb.ViewModels
 
                         Task.Delay(1200).ContinueWith(_ => // Wait before closing
                         {
-                            //LstPayers.Add(p);
+                            IsViewVisible = false;
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception)
@@ -194,7 +190,6 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                   //     SelectedPayer.Id = SpePayerId;
                         userRepository.Edit(SelectedPayer);
 
                         ErrorMessage = "Payer was saved successfully!";
@@ -202,8 +197,6 @@ namespace loginDb.ViewModels
                         Task.Delay(800).ContinueWith(_ => // Wait before closing
                         {
                             IsViewVisible = false;
-
-
                         }, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     catch (Exception ex)

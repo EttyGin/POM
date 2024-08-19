@@ -147,7 +147,7 @@
                         <Setter Property="Foreground" Value="{DynamicResource titleColor2}" />
                         <Setter Property="FontSize" Value="17" />
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="10,10,10,0"/>
+                        <Setter Property="Padding" Value="10,10,20,0"/>
                         <Setter Property="Margin" Value="10,10,10,10"/>
                     </Style>
                 </DataGrid.CellStyle>
@@ -173,8 +173,14 @@
                     <DataGridTextColumn Header="Name" Binding="{Binding ClientId, Converter={StaticResource idToNameConverter}, ConverterParameter = 'Client'}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}" /> 
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                    <DataGridTextColumn Header="Summary" Binding="{Binding Summary}"/>
-
+                    <DataGridTextColumn Header="Summary" Binding="{Binding Summary}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="ToolTip" Value="{Binding Summary}" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTemplateColumn Header="Actions">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

@@ -50,11 +50,7 @@ namespace loginDb.View
         }
         private void SetColumnWidths(DataGridLength width)
         {
-          /*  foreach (var column in datagrid.Columns)
-            {
-                column.Width = width;
-            }
-       */ }
+        }
 
     }
 }

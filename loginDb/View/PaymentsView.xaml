@@ -52,7 +52,7 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             BorderThickness="0"
-                            Foreground="{DynamicResource titleColor1}" Width="90" Click="Button_Click">
+                            Foreground="{DynamicResource titleColor1}" Width="90">
 
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -168,7 +168,6 @@
                 </DataGrid.RowStyle>
 
                 <DataGrid.Columns>
-                    <!--DataGridTextColumn Header="ID" Binding="{Binding Id}" /-->
                     <DataGridTextColumn Header="Target" Binding="{Binding Path=., Converter={StaticResource ToTargetConverter}}" />
                     <DataGridTextColumn Header="Debt" Binding="{Binding Debt}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding IsOpen, Converter={StaticResource BooleanToStatusConverter}}"/>

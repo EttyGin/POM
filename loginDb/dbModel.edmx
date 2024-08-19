@@ -325,7 +325,8 @@
         <EnumType Name="Status">
           <Member Name="planned" />
           <Member Name="unpaid" />
-          <Member Name="partiallyPaid" />
+          <Member Name="clientPaid" />
+          <Member Name="payerPaid" />
           <Member Name="paid" />
         </EnumType>
         <EntityType Name="Payment">

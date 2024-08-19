@@ -17,14 +17,13 @@ namespace loginDb.Converters
                 var today = DateTime.Today;
                 var age = today.Year - birthDate.Year;
 
-                // בדיקה אם עדיין לא חל יום ההולדת השנה
+                // Checking if this year's birthday hasn't happened yet
                 if (birthDate.Month > today.Month ||
                     (birthDate.Month == today.Month && birthDate.Day > today.Day))
                 {
                     age--;
                 }
-
-                // חישוב מספר החודשים
+                // Calculate the number of months
                 int months = today.Month - birthDate.Month;
                 if (months < 0)
                 {
@@ -32,7 +31,7 @@ namespace loginDb.Converters
                     age--;
                 }
 
-                // החזרת הגיל בפורמט "xx.y"
+                // return the age in "xx.y" format
                 return Math.Round(age + (double)months / 12, 1);
             }
 
