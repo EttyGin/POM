@@ -96,7 +96,7 @@ namespace loginDb.ViewModels
             userRepository = new UserRepository();
             UserId = ReadUserIdFromFile();
             var user = (User)userRepository.GetById(UserId, "User");
-            DisplayName = user.Name + " " + user.LastName;
+            DisplayName = "Hello " + user.Name + " " + user.LastName;
             LoadMeetings(null);
         }
 

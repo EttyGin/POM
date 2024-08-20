@@ -16,7 +16,7 @@ namespace loginDb.Models
         IEnumerable<T> GetAll<T>() where T : class;
       
         void Edit<T>(T entity) where T : class;
-
+        void AddM(Meeting m);
         void Add<T>(T entity) where T : class;
         void Remove<T>(T entity, string property) where T : class;
         void RemoveMeeting(int userId, int clientId, int num);

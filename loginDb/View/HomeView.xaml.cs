@@ -32,21 +32,33 @@ namespace loginDb.View
         {
             if (ActualWidth != 548 || ActualHeight != 333)
             {
-                // The UserControl is effectively full screen
-                SetColumnWidths(new DataGridLength(1, DataGridLengthUnitType.Star));
+                Set(60, 120);                
             }
             else
             {
                 // The UserControl is not full screen
-                SetColumnWidths(DataGridLength.Auto);
+                Set(30, 45);
             }
         }
 
-        private void SetColumnWidths(DataGridLength width)
+        private void Set(int fsize, int hsize)
         {
-            foreach (var column in datagrid.Columns)
+            foreach (var item in exStackPanel.Children)
             {
-                column.Width = width;
+                if (item is Label l)
+                {
+                    l.FontSize = fsize;
+                    l.Height = hsize;
+
+                }
+            }
+            foreach (var item in inStackPanel.Children)
+            {
+                if (item is Label l)
+                {
+                    l.FontSize = fsize;
+                    l.Height = hsize;
+                }
             }
         }
     }

@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <local1:DateToAgeConverter x:Key="dateToAgeConverter" />
         <local1:IdToNameConverter x:Key="idToNameConverter" />
+        <local1:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -171,7 +172,7 @@
                     <DataGridTextColumn Header="No." Binding="{Binding Number}" />
                     <DataGridTextColumn Header="ID" Binding="{Binding ClientId}"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding ClientId, Converter={StaticResource idToNameConverter}, ConverterParameter = 'Client'}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" /> 
+                    <DataGridTextColumn Header="Time" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" /> 
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
                     <DataGridTextColumn Header="Summary" Binding="{Binding Summary}" >
                         <DataGridTextColumn.ElementStyle>

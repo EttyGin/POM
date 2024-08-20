@@ -13,11 +13,10 @@
   </EntityType>
   <EntityType Name="Meeting">
     <Key>
-      <PropertyRef Name="Number" />
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="ClientId" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Number" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Summary" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="false" />

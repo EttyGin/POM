@@ -28,8 +28,8 @@ namespace loginDb
         public string Email { get; set; }
         public int Price { get; set; }
     
+        public virtual UserAccount UserAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Meeting> Meeting { get; set; }
-        public virtual UserAccount UserAccount { get; set; }
     }
 }

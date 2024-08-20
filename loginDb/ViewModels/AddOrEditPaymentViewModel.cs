@@ -8,6 +8,7 @@ using loginDb.Repositories;
 using loginDb.View;
 using loginDb.ViewModels;
 using MimeKit;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,9 +19,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-
 namespace loginDb.ViewModels
 {
+    public class Installed
+    {
+        public string client_id { get; set; }
+        public string client_secret { get; set; }
+        // You can add other properties if needed
+    }
+
+    public class ClientConfig
+    {
+        public Installed installed { get; set; }
+    }
+
 
     public class AddOrEditPaymentViewModel : ViewModelBase
     {
@@ -273,19 +285,24 @@ namespace loginDb.ViewModels
         private void ClosePayment()
         {
             DateTime lastUp = CurrentMode == EditMode.Add ? DateTime.Now : SelectedPayment.LastUpdate;
+            Payer None = userRepository.GetWhere<Payer>(p => p.Pname.Equals(" -")).FirstOrDefault();
+            int NonePayerId = None.Id;
             if (IsClient)
             {
                 var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == Cid && m.UserId == Uid && (m.Status == Status.unpaid || m.Status == Status.payerPaid) && m.Date <= lastUp);
                 foreach (Meeting m in lstMeetings)
                 {
-                    m.Status = m.Status == Status.payerPaid? Status.paid: Status.clientPaid; //If part paid than now full paid, else - part paid.
+                    var clnt = (Client)userRepository.GetById(m.ClientId, "Client");
+                    if (clnt.PayerId == NonePayerId)
+                        m.Status = Status.paid;
+                    else
+                        m.Status = m.Status == Status.payerPaid? Status.paid: Status.clientPaid; //If part paid than now full paid, else - part paid.
                     userRepository.Edit(m);
                 }
             }
             else
             {
                 var lstCLients = userRepository.GetWhere<Client>(c => c.PayerId == Pid);
-                var lstMeetingss = userRepository.GetWhere<Meeting>(m => m.Client.PayerId == Pid);
                 foreach (var c in lstCLients)
                 {
                     var lstMeetings = userRepository.GetWhere<Meeting>(m => m.ClientId == c.Id && m.UserId == Uid && (m.Status == Status.unpaid || m.Status == Status.clientPaid) && m.Date <= lastUp);
@@ -306,7 +323,7 @@ namespace loginDb.ViewModels
                 {
                     try
                     {
-                        Payment p = new Payment { Id = Id, ClientID = Cid, PayerID = Pid, IsOpen = IsOpen, Debt = Debt, LastUpdate = DateTime.UtcNow };
+                        Payment p = new Payment { Id = Id, ClientID = Cid, PayerID = Pid, IsOpen = IsOpen, Debt = Debt, LastUpdate = DateTime.Now };
                         int secs = 4000;
                         if (IsOpen == false)
                         {
@@ -367,10 +384,10 @@ namespace loginDb.ViewModels
             string end = $"\n\nThe total amount due is {Debt} ILS. \nThank you.";
             int totalMeetings = 0;
             var lstCLients = userRepository.GetWhere<Client>(c => c.PayerId == p.Id);
-            var lstMeetingss = userRepository.GetWhere<Meeting>(m => m.Client.PayerId == p.Id);
+            var lstMeetings = userRepository.GetWhere<Meeting>(m => m.Client.PayerId == p.Id);
             foreach (var c in lstCLients)
             {
-                int count = lstMeetingss.Where(m => (m.Status == Status.unpaid || m.Status == Status.clientPaid) && m.ClientId == c.Id && m.Date <= d).Count();
+                int count = lstMeetings.Where(m => (m.Status == Status.unpaid || m.Status == Status.clientPaid) && m.ClientId == c.Id && m.Date <= d).Count();
                 body += $"\n\t * NAME :{c.Cname} - ID : {c.Id} \t {count} meetings.";
                 totalMeetings += count;
             }
@@ -408,16 +425,24 @@ namespace loginDb.ViewModels
             var credential = await GetUserCredential();
             await SendEmail(credential);            
         }
-
-        public async Task<UserCredential> GetUserCredential()
+        private async Task<UserCredential> GetUserCredential()
         {
             string[] scopes = { "https://www.googleapis.com/auth/gmail.send" };
+
+            //Gets the CLient Details to google API 
+            string jsonFilePath = "ClientsDetails.json";
+            string jsonString = File.ReadAllText(jsonFilePath);
+
+            ClientConfig config = JsonConvert.DeserializeObject<ClientConfig>(jsonString);
+
+            string clientId = config.installed.client_id;
+            string clientSecret = config.installed.client_secret;
 
             var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets
                 {
-                    ClientId = "229928471792-lonks7leojcqm7vl84p4hgh6715263q5.apps.googleusercontent.com",
-                    ClientSecret = "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"
+                    ClientId = clientId,
+                    ClientSecret = clientSecret
                 },
                 scopes,
                 "user",
@@ -427,7 +452,7 @@ namespace loginDb.ViewModels
             return credential;
         }
 
-        public async Task SendEmail(UserCredential credential)
+        private async Task SendEmail(UserCredential credential)
         {
             var service = new GmailService(new BaseClientService.Initializer()
             {

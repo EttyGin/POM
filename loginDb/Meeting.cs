@@ -14,6 +14,7 @@ namespace loginDb
     
     public partial class Meeting
     {
+        public int Id { get; set; }
         public int Number { get; set; }
         public System.DateTime Date { get; set; }
         public string Summary { get; set; }

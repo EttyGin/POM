@@ -152,7 +152,6 @@ namespace loginDb.ViewModels
         {
             ObservableCollection<Client> LstClients = new ObservableCollection<Client>(userRepository.GetWhere<Client>(c => c.Cname == c.Cname));
             int UserId = ReadUserIdFromFile();
-        //    int Price = userRepository.GetUserPrice(LstClients.FirstOrDefault().Id);
             var results = await userRepository.LoadAllAsync(UserId);
             NumOfClients = results.NumOfClients;
             NumOfMeetings = results.NumOfMeetings;

@@ -19,6 +19,7 @@ using System.Linq.Expressions;
 using FontAwesome.Sharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Data.Entity.Infrastructure;
+using System.Xml.Linq;
 
 namespace loginDb.ViewModels
 {
@@ -66,7 +67,7 @@ namespace loginDb.ViewModels
         public ObservableCollection<Meeting> FilteredMeetings
         {
             get => _filteredMeetings;
-            private set
+            set
             {
                 if (_filteredMeetings != value)
                 {
@@ -136,6 +137,10 @@ namespace loginDb.ViewModels
             FilteredMeetings = new ObservableCollection<Meeting>();
             foreach (var meeting in sortedMeetings)
             {
+                if (meeting.Status == Status.planned && meeting.Date < DateTime.Now) { 
+                    meeting.Status = Status.unpaid;
+                    userRepository.Edit(meeting);
+                }
                 FilteredMeetings.Add(meeting);
             }
         }
@@ -143,7 +148,7 @@ namespace loginDb.ViewModels
         private void ExecuteShowAddCommand(object obj)
         {
             AddOrEditMeetingView addMeetingWin = new AddOrEditMeetingView(EditMode.Add, obj as Meeting, UserId);
-            addMeetingWin.Show();
+            addMeetingWin.ShowDialog();
             LoadMeetings(null);
         }
 
@@ -184,8 +189,17 @@ namespace loginDb.ViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                userRepository.RemoveMeeting(userId, clntId, num);
-                LstMeetings.Remove(toRemove);
+                if (toRemove.Status != Status.planned)
+                {
+                    ErrorMessage = $"Only a planned meeting can be deleted";
+                    MessageBox.Show(ErrorMessage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ErrorMessage = string.Empty;
+                }
+                else
+                {
+                    userRepository.RemoveMeeting(userId, clntId, num);
+                    LstMeetings.Remove(toRemove);
+                }
 
             }
             LoadMeetings(null);

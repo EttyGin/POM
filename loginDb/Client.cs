@@ -17,8 +17,8 @@ namespace loginDb
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            this.Meeting = new HashSet<Meeting>();
             this.Payment = new HashSet<Payment>();
+            this.Meeting = new HashSet<Meeting>();
         }
     
         public int Id { get; set; }
@@ -28,10 +28,10 @@ namespace loginDb
         public string Email { get; set; }
         public Nullable<int> PayerId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Meeting> Meeting { get; set; }
         public virtual Payer Payer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meeting> Meeting { get; set; }
     }
 }

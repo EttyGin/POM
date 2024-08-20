@@ -81,7 +81,7 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <Grid>
-                                        <Border  Style ="{StaticResource reportsBorder}"  Margin="25"  CornerRadius="30" Width="120" Height="130" >
+                                        <Border  Style ="{StaticResource reportsBorder}"  Margin="25"  CornerRadius="30" Width="Auto" MinWidth="120" Height="130" >
                                             <Border.Background>
                                                 <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
                                                     <GradientStop Color="#784DFD" Offset="0"/>
@@ -97,7 +97,7 @@
                                                 <RowDefinition Height="0.7*" />
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
-                                            <Label Grid.Row="0" FontSize="18" Margin="0,0,0,-10" Content="Meetings:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                            <Label Grid.Row="0" FontSize="18" Margin="0,0,0,-10" Content="Meetings:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto"/>
                                             <Label Grid.Row="1" FontSize="25"  FontWeight="Medium"  Margin="0,-5,0,-10" Content="{Binding MeetingsAmount}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
                                             <Label Grid.Row="2" FontSize="18" Margin="0,-5,0,-10" Content="Debt:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
                                             <Label Grid.Row="3" FontSize="25"  FontWeight="Medium" Content="{Binding Debt}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
@@ -114,7 +114,7 @@
 
                 </Expander>
                 <Expander Header=" Payers" Background="{StaticResource color4}" FontSize="25" FontFamily="Calibri" Height="Auto" Foreground="{StaticResource panelColor}" Padding="1.5,5,1.5,1.5" VerticalAlignment="Top">
-                    <ItemsControl ItemsSource="{Binding FilteredPayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
+                    <ItemsControl Width="Auto" ItemsSource="{Binding FilteredPayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="1.5,5,1.5,1.5" >
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Background="{StaticResource panelColor}" />
@@ -122,9 +122,9 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="Auto">
+                                <StackPanel Width="Auto" MinWidth="110">
                                     <Grid>
-                                        <Border  Style ="{StaticResource reportsBorder}" Margin="25" CornerRadius="30" Width="110" Height="130" Opacity="0.9">
+                                        <Border  Style ="{StaticResource reportsBorder}" Margin="25" CornerRadius="30"  Width="Auto" MinWidth="110"  Height="130" Opacity="0.9">
                                             <Border.Background>
                                                 <RadialGradientBrush Center="0,0.1" RadiusX="1" RadiusY="1">
                                                     <GradientStop Color="#FFFB539B" Offset="1"/>
@@ -141,13 +141,13 @@
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
                                             <Label Grid.Row="0" FontSize="18" Margin="0,0,0,-10" Content="Clients:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Label Grid.Row="1" FontSize="25"  FontWeight="Medium"  Margin="0,-5,0,-10" Content="{Binding MeetingsAmount}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                                            <Label Grid.Row="1" FontSize="25"  FontWeight="Medium"  Margin="0,-5,0,-10" Width ="Auto" Content="{Binding MeetingsAmount}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
                                             <Label Grid.Row="2" FontSize="18" Margin="0,-5,0,-10" Content="Debt:" Foreground="{DynamicResource titleColor2}" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
                                             <Label Grid.Row="3" FontSize="25"  FontWeight="Medium" Content="{Binding Debt}" Foreground="{DynamicResource titleColor2}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Grid>
                                     <TextBlock Text="{Binding Name}" Foreground="{StaticResource color4}" FontWeight="Heavy" FontFamily="Calibri" TextAlignment="Center" Width="Auto"
-                                        FontSize="22" Margin="0,0,0,5"/>
+                                        FontSize="22" Margin="0,0,0,5" Padding="1" ToolTip ="{Binding Name}" TextTrimming="CharacterEllipsis"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

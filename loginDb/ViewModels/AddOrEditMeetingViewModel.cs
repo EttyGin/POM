@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace loginDb.ViewModels
@@ -27,7 +28,7 @@ namespace loginDb.ViewModels
 
         public int Number { get; set; }
         public DateTime Date { get; set; }
-        public string Hour { get; set; }
+        public string Hour { get; set; } = "00:00";
         public string Summary { get; set; }
         public Status Status { get; set; }
 
@@ -188,10 +189,10 @@ namespace loginDb.ViewModels
 
                         if (DateTime.TryParseExact(Hour, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedTime))
                         {
-                            Date = new DateTime(Date.Year, Date.Month, Date.Day, parsedTime.Hour, parsedTime.Minute, 0);
+                            Date = new DateTime(Date.Year, Date.Month, Date.Day, parsedTime.Hour, parsedTime.Minute,0);
                         }
-                        Status Stat = Date <= DateTime.Now ? Status.planned : Status.unpaid;
-                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Stat, UserId = UserId, ClientId = ClientId ,User = user, Client = client};
+                        Status Stat = Date > DateTime.Now ? Status.planned : Status.unpaid;
+                        Meeting m = new Meeting { Number = Number, Date = Date, Summary = Summary, Status = Stat, UserId = UserId, ClientId = ClientId };
                         userRepository.Add(m);
                         
                         ErrorMessage = "Meeting added successfully!";
@@ -212,6 +213,8 @@ namespace loginDb.ViewModels
                     {
                         
                         SelectedMeeting.ClientId = SpeClientId;
+                        if (SelectedMeeting.Status == Status.planned && SelectedMeeting.Date < DateTime.Now)
+                            SelectedMeeting.Status = Status.unpaid;
                         userRepository.Edit(SelectedMeeting);
 
                         ErrorMessage = "Meeting was saved successfully!";

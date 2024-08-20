@@ -133,7 +133,7 @@ namespace loginDb.ViewModels
                         return false; 
                     }
                 }
-                else if (Phone == null || Phone.Length != 10 || !Regex.IsMatch(Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
+                if (Phone == null || Phone.Length != 10 || !Regex.IsMatch(Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
                 {
                     ErrorMessage = $"Incorrect Phone";
                     return false;
@@ -163,7 +163,7 @@ namespace loginDb.ViewModels
                     return false;
                 }
 
-                else if (SelectedClient.Phone == null || SelectedClient.Phone.Length != 10 || !Regex.IsMatch(SelectedClient.Phone, @"^\d+$")) //!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^0\d{9}$"))
+                else if (SelectedClient.Phone == null || SelectedClient.Phone.Length != 10 || !Regex.IsMatch(SelectedClient.Phone, @"^\d+$"))
                 {
                     ErrorMessage = $"Incorrect Phone";
                     return false;
@@ -181,7 +181,7 @@ namespace loginDb.ViewModels
                     }
                 }
 
-                else if (SelectedClient.Email == null || SelectedClient.Email.Length > 30 || !Regex.IsMatch(SelectedClient.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+                if (SelectedClient.Email == null || SelectedClient.Email.Length > 30 || !Regex.IsMatch(SelectedClient.Email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
                 {
                     ErrorMessage = $"Incorrect Email";
                     return false;

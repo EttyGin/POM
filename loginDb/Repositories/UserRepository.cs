@@ -23,63 +23,19 @@ namespace loginDb.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-    /*    public void AddSpe(Object o)
+        public void AddM(Meeting m)
         {
-           // throw new NotImplementedException();
-            #region adding some rows to DB
             using (var db = new POMdbEntities())
             {
-                #region adding student example
-                if (o is User u)
-                {
-                    string name = u.Username;
-                    var existingPayer = db.Users.FirstOrDefault(us => us.Username == name);
-                    if (existingPayer == null)
-                    {
-                        db.Users.Add(u);
-                    }
-                }
-                if (o is Client c)
-                {
-                    string name = c.Cname;
-                    var existingPayer = db.Clients.FirstOrDefault(cl => cl.Cname == name);
-                    if (existingPayer == null)
-                    {
-                        db.Clients.Add(c);
-                    }                    
-                }
-                if (o is UserAccount ua)
-                {
-                    string name = ua.Username;
-                    var existingPayer = db.UserAccounts.FirstOrDefault(us => us.Username == name);
-                    if (existingPayer == null)
-                    {
-                        db.UserAccounts.Add(ua);
-                    }
-                    
-                }
-                if (o is Meeting m)
-                {
-                    db.Meetings.Add(m);
-                }
-                if (o is Payer p)
-                {
-                    string name = p.Pname;
-                    var existingPayer = db.Payers.FirstOrDefault(pyr => pyr.Pname == name);
-                    if (existingPayer == null)
-                    {
-                        db.Payers.Add(p);
-                    }
-                }
-                db.SaveChanges();
-                #endregion
 
+                m.ClientId = 3257;
+                db.Meetings.Add(m);
+                db.SaveChanges();
             }
-            #endregion
-            
+
+
         }
 
-  */
         public void InitNonePayer()
         {
             using (var db = new POMdbEntities())
@@ -253,7 +209,7 @@ namespace loginDb.Repositories
                 {
                     int unpaidMeetingsCount = db.Meetings
                                   .Where(m => m.Client.PayerId == id && (m.Status == Status.unpaid || m.Status == Status.clientPaid))
-                                  .Count();
+                                  .Count(); 
                     if (unpaidMeetingsCount > 0)
                     {
                         var payer = db.Payers.FirstOrDefault(p => p.Id == id);

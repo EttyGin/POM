@@ -87,11 +87,8 @@ D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - 
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V0\loginDb\obj\Debug\loginDb.pdb
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditClientView.baml
-D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.g.cs
-D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\CommandDataGridRow.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditMeetingView.baml
-D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\Garbage\DateToAgeConverter.baml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPayerView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\PayersView.g.cs
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\obj\Debug\View\AddOrEditPayerView.baml
@@ -135,3 +132,13 @@ D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - 
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Memory.xml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Numerics.Vectors.xml
 D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Text.Encodings.Web.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Text.Json.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.ValueTuple.dll
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Text.Encodings.Web.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Text.Json.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\לימודים\2024ב סדנה במונחה עצמים\פרויקט גמר - Peace Of Mind\V1\loginDb\bin\Debug\System.ValueTuple.xml

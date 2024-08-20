@@ -26,10 +26,10 @@ namespace loginDb
         }
     
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Payer> Payers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Meeting> Meetings { get; set; }
     }
 }

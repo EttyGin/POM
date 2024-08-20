@@ -18,7 +18,6 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
-using NavigationService = loginDb.Models.NavigationService;
 using System.Configuration;
 
 
@@ -231,9 +230,9 @@ namespace loginDb.ViewModels
                 {
                     CreateUserIdFile(UserId);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw new Exception("Error while login, try later." );
+                    Console.WriteLine("Error while login, try later.");
                 }
 
             }
@@ -252,10 +251,11 @@ namespace loginDb.ViewModels
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
+                
             }
 
             // Create the file and write the ID
-            using (StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 writer.Write(id);
             }

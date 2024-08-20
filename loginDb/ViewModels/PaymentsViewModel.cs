@@ -65,7 +65,7 @@ namespace loginDb.ViewModels
         public ObservableCollection<Payment> FilteredPayments
         {
             get => _filteredPayments;
-            private set
+            set
             {
                 if (_filteredPayments != value)
                 {
@@ -150,7 +150,8 @@ namespace loginDb.ViewModels
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
-                LoadPayments(p => (p.Payer != null) ? p.Payer.Pname.ToString().Contains(SearchText) : p.Client.Cname.ToString().Contains(SearchText));
+
+                LoadPayments(p => (p.PayerID != null) ? p.Payer.Pname.ToString().Contains(SearchText) : p.Client.Cname.ToString().Contains(SearchText));
             }
             else
             {

@@ -18,11 +18,10 @@
         </EntityType>
         <EntityType Name="Meeting">
           <Key>
-            <PropertyRef Name="Number" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Number" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Summary" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
@@ -188,24 +187,9 @@
           <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PayerId" Type="Int32" />
-          <NavigationProperty Name="Meeting" Relationship="Self.FK_ClientMeeting" FromRole="Client" ToRole="Meeting" />
           <NavigationProperty Name="Payer" Relationship="Self.FK_PayerClient" FromRole="Client" ToRole="Payer" />
           <NavigationProperty Name="Payment" Relationship="dbModel.FK_Payment_Client" FromRole="Client" ToRole="Payment" />
-        </EntityType>
-        <EntityType Name="Meeting">
-          <Key>
-            <PropertyRef Name="Number" />
-            <PropertyRef Name="ClientId" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Summary" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Status" Type="dbModel.Status" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_ClientMeeting" FromRole="Meeting" ToRole="Client" />
-          <NavigationProperty Name="User" Relationship="Self.FK_MeetingUser" FromRole="Meeting" ToRole="User" />
+          <NavigationProperty Name="Meeting" Relationship="dbModel.FK_Meeting_Client" FromRole="Client" ToRole="Meeting" />
         </EntityType>
         <EntityType Name="Payer">
           <Key>
@@ -229,9 +213,9 @@
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Meeting" Relationship="Self.FK_MeetingUser" FromRole="User" ToRole="Meeting" />
           <NavigationProperty Name="UserAccount" Relationship="Self.FK_UserAccountUser" FromRole="User" ToRole="UserAccount" />
           <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Meeting" Relationship="dbModel.FK_Meeting_User" FromRole="User" ToRole="Meeting" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -242,18 +226,6 @@
           <Property Name="ProfilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserAccountUser" FromRole="UserAccount" ToRole="User" />
         </EntityType>
-        <Association Name="FK_ClientMeeting">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Meeting">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PayerClient">
           <End Role="Payer" Type="Self.Payer" Multiplicity="0..1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -263,18 +235,6 @@
             </Principal>
             <Dependent Role="Client">
               <PropertyRef Name="PayerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingUser">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Meeting">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -291,37 +251,37 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="POMdbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Client" EntityType="Self.Client" />
-          <EntitySet Name="Meeting" EntityType="Self.Meeting" />
-          <EntitySet Name="Payer" EntityType="Self.Payer" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" />
-          <AssociationSet Name="FK_ClientMeeting" Association="Self.FK_ClientMeeting">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Meeting" EntitySet="Meeting" />
-          </AssociationSet>
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Payers" EntityType="Self.Payer" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
           <AssociationSet Name="FK_PayerClient" Association="Self.FK_PayerClient">
-            <End Role="Payer" EntitySet="Payer" />
-            <End Role="Client" EntitySet="Client" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingUser" Association="Self.FK_MeetingUser">
-            <End Role="User" EntitySet="User" />
-            <End Role="Meeting" EntitySet="Meeting" />
+            <End Role="Payer" EntitySet="Payers" />
+            <End Role="Client" EntitySet="Clients" />
           </AssociationSet>
           <AssociationSet Name="FK_UserAccountUser" Association="Self.FK_UserAccountUser">
-            <End Role="UserAccount" EntitySet="UserAccount" />
-            <End Role="User" EntitySet="User" />
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Payment" EntityType="dbModel.Payment" />
+          <EntitySet Name="Payments" EntityType="dbModel.Payment" />
           <AssociationSet Name="FK_Payment_Client" Association="dbModel.FK_Payment_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
           <AssociationSet Name="FK_Payment_Payer" Association="dbModel.FK_Payment_Payer">
-            <End Role="Payer" EntitySet="Payer" />
-            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Payer" EntitySet="Payers" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Meetings" EntityType="dbModel.Meeting" />
+          <AssociationSet Name="FK_Meeting_Client" Association="dbModel.FK_Meeting_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Meeting" EntitySet="Meetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_User" Association="dbModel.FK_Meeting_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Meeting" EntitySet="Meetings" />
+          </AssociationSet>
+          </EntityContainer>
         <EnumType Name="Status">
           <Member Name="planned" />
           <Member Name="unpaid" />
@@ -366,13 +326,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Summary" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="dbModel.Status" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="dbModel.FK_Meeting_Client" FromRole="Meeting" ToRole="Client" />
+          <NavigationProperty Name="User" Relationship="dbModel.FK_Meeting_User" FromRole="Meeting" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Meeting_Client">
+          <End Type="dbModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="dbModel.Meeting" Role="Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_User">
+          <End Type="dbModel.User" Role="User" Multiplicity="1" />
+          <End Type="dbModel.Meeting" Role="Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="POMdbEntities">
-          <EntitySetMapping Name="Client">
+          <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="dbModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -384,19 +382,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Meeting">
-            <EntityTypeMapping TypeName="dbModel.Meeting">
-              <MappingFragment StoreEntitySet="Meeting">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Payer">
+          <EntitySetMapping Name="Payers">
             <EntityTypeMapping TypeName="dbModel.Payer">
               <MappingFragment StoreEntitySet="Payer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -407,7 +393,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
+          <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="dbModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -420,7 +406,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserAccount">
+          <EntitySetMapping Name="UserAccounts">
             <EntityTypeMapping TypeName="dbModel.UserAccount">
               <MappingFragment StoreEntitySet="UserAccount">
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -429,7 +415,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Payment">
+          <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="dbModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
@@ -437,6 +423,19 @@
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
                 <ScalarProperty Name="PayerID" ColumnName="PayerID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="dbModel.Meeting">
+              <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
