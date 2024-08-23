@@ -104,8 +104,6 @@ namespace loginDb.ViewModels
         public ICommand DeleteCommand { get; }
         public ICommand ShowEditCommand { get; }
         public ICommand SearchCommand { get; }
-        public ICommand ShowMeetingsCommand { get; }
-
 
         //Constructor
         public ClientsViewModel()
@@ -115,7 +113,6 @@ namespace loginDb.ViewModels
             ShowEditCommand = new ViewModelCommand(ExecuteShowEditCommand);
             SearchCommand = new ViewModelCommand(ExecuteSearchCommand);
             DeleteCommand = new ViewModelCommand(ExecuteDeleteCommand);
-            ShowMeetingsCommand = new ViewModelCommand(ExecuteShowMeetingsCommand);
 
             LoadClients(null);
         }
@@ -158,11 +155,6 @@ namespace loginDb.ViewModels
             addClientWin.ShowDialog();
             LoadClients(null);
          }
-
-        private void ExecuteShowMeetingsCommand(object obj)
-        {
-           IsViewVisible = false;
-        }
 
         private void ExecuteDeleteCommand(object obj)
         {
